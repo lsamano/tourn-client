@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {doTheSignupThing} from '../Redux/actions';
+import {signupFetch} from '../Redux/actions';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 
 class Signup extends Component {
@@ -17,19 +18,9 @@ class Signup extends Component {
   };
 
   handleSubmit = event => {
-    fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        accepts: "application/json"
-      },
-      body: JSON.stringify({ user: this.state })
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        localStorage.setItem("token", data.jwt);
-        this.setState({ user: data.user }, () => console.log(this.state));
-      });
+    event.preventDefault();
+    console.log("Now starting the fetch...");
+    this.props.signupFetch(this.state);
   }
 
   render() {
@@ -38,7 +29,7 @@ class Signup extends Component {
     }
     return (
       <Form onSubmit={ event => this.handleSubmit(event) }>
-        <h1>Signup</h1>
+        <h1>Sign Up</h1>
         <Form.Field>
           <label>Username</label>
           <input
@@ -67,4 +58,8 @@ class Signup extends Component {
   }
 }
 
-export default connect(null, { doTheSignupThing })(Signup);
+const mapDispatchToProps = (dispatch) => ({
+    signupFetch: (userObj) => dispatch(signupFetch(userObj))
+})
+
+export default connect(null, mapDispatchToProps)(Signup);

@@ -5,6 +5,13 @@ export const doTheLoginThing = userLogin => {
   }
 }
 
+export const doTheSignupThing = userInfo => {
+  return {
+    type: "SIGNUP_USER",
+    payload: userInfo
+  }
+}
+
 export const loginFetch = (userObj) => {
   return (dispatch) => {
     return fetch("http://localhost:3000/api/v1/login", {
@@ -21,5 +28,24 @@ export const loginFetch = (userObj) => {
       localStorage.setItem("token", data.jwt)
       dispatch(doTheLoginThing(data.user))
     })
+  }
+}
+
+export const signupFetch = userInfo => {
+  return (dispatch) => {
+    return fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({ user: userInfo })
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        console.log("The signup fetch worked?", data)
+        localStorage.setItem("token", data.jwt);
+        dispatch(doTheLoginThing(data.user))
+      });
   }
 }
