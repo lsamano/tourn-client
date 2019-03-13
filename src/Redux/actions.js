@@ -12,6 +12,10 @@ export const doTheSignupThing = userInfo => {
   }
 }
 
+const loadTournaments = (tournaments) => ({
+  type: "LOAD_TOURNAMENTS", payload: tournaments
+})
+
 export const loginFetch = (userObj) => {
   return (dispatch) => {
     return fetch("http://localhost:3000/api/v1/login", {
@@ -47,5 +51,17 @@ export const signupFetch = userInfo => {
         localStorage.setItem("token", data.jwt);
         dispatch(doTheLoginThing(data.user))
       });
+  }
+}
+
+export const getTournaments = () => {
+  return (dispatch) => {
+    return fetch("http://localhost:3000/api/v1/tournaments")
+    .then(res => res.json())
+    .then(data => {
+      console.log("fetched the tournaments", data)
+      dispatch(loadTournaments(data))
+    })
+    .catch(console.error)
   }
 }

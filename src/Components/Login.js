@@ -24,7 +24,7 @@ class Login extends Component {
 
   render() {
     if (localStorage.token) {
-      return <Redirect to="/movies" />
+      return <Redirect to="/home" />
     }
     return (
       <Form onSubmit={ event => this.handleSubmit(event) }>
