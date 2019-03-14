@@ -54,13 +54,47 @@ export const signupFetch = userInfo => {
   }
 }
 
+export const getProfileFetch = () => {
+  return (dispatch) => {
+    let token = localStorage.token;
+    return fetch("http://localhost:3000/api/v1/profile", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        accepts: "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        console.log("fetched the profile", data)
+        dispatch(doTheLoginThing(data.user))
+      });
+  }
+}
+
+export const tournamentPostFetch = (tournament) => {
+  return (dispatch) => {
+    return fetch("http://localhost:3000/api/v1/tournaments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({tournament: tournament})
+    })
+    .then(res => res.json())
+    .then(data => console.log("the stuff", data))
+  }
+}
+
 export const getTournaments = () => {
   return (dispatch) => {
     return fetch("http://localhost:3000/api/v1/tournaments")
     .then(res => res.json())
     .then(data => {
       console.log("fetched the tournaments", data)
-      dispatch(loadTournaments(data))
+      dispatch(loadTournaments(data.tournaments))
     })
     .catch(console.error)
   }

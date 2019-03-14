@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {doTheSignupThing} from '../Redux/actions';
+// import {doTheSignupThing} from '../Redux/actions';
 import {signupFetch} from '../Redux/actions';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 
@@ -20,12 +20,16 @@ class Signup extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log("Now starting the fetch...");
-    this.props.signupFetch(this.state);
+    this.props.signupFetch({
+      username: this.state.username,
+      password: this.state.password
+    });
   }
 
   render() {
+    // must fix below to set up routes
     if (localStorage.token) {
-      return <Redirect to="/movies" />
+      return <Redirect to="/home" />
     }
     return (
       <Form onSubmit={ event => this.handleSubmit(event) }>
@@ -58,8 +62,14 @@ class Signup extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
 const mapDispatchToProps = (dispatch) => ({
     signupFetch: (userObj) => dispatch(signupFetch(userObj))
 })
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
