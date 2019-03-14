@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginFetch} from '../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
+// import history from './history'
 
 class Login extends Component {
   state = {
@@ -20,10 +21,11 @@ class Login extends Component {
     event.preventDefault();
     console.log("Now starting the fetch...");
     this.props.loginFetch(this.state);
+    browserHistory.push('/home')
   }
 
   render() {
-    if (localStorage.token) {
+    if (this.props.user.id) {
       return <Redirect to="/home" />
     }
     return (
@@ -54,8 +56,12 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+    user: state.reducer.user
+})
+
 const mapDispatchToProps = (dispatch) => ({
     loginFetch: (userObj) => dispatch(loginFetch(userObj))
 })
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

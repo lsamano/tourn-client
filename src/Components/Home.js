@@ -34,8 +34,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  tournaments: state.tournaments,
-  user: state.user
+  tournaments: state.reducer.tournaments,
+  user: state.reducer.user
 })
 //
 // const mapDispatchToProps = dispatch => ({

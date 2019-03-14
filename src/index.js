@@ -5,17 +5,36 @@ import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router} from 'react-router-dom';
-import { createStore, applyMiddleware } from 'redux';
-import reducer from './Redux/reducer.js';
+import { createStore, applyMiddleware, compose } from 'redux';
+// import reducer from './Redux/reducer.js';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const store = createStore(reducer, applyMiddleware(thunk));
+import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history'
+import createRootReducer from './Redux/rootReducer'
+
+export const history = createBrowserHistory()
+
+const store = createStore(
+    createRootReducer(history),
+    compose(
+      applyMiddleware(
+        routerMiddleware(history),
+        thunk
+      ),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    ),
+  )
+
+// const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Router>
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>
   </Router>, document.getElementById('root'));
 

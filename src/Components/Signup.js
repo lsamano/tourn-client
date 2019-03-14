@@ -28,7 +28,7 @@ class Signup extends Component {
 
   render() {
     // must fix below to set up routes
-    if (localStorage.token) {
+    if (this.props.user.id) {
       return <Redirect to="/home" />
     }
     return (
@@ -64,7 +64,7 @@ class Signup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.reducer.user
   }
 }
 
