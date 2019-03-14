@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("Should see +1", this.props);
+    console.log("Should see +1 or something", this.props);
     return (
       <div className="app">
         <Nav/>
