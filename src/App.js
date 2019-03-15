@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getTournaments, getProfileFetch} from './Redux/actions';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Home from './Components/Home';
-import NewTournamentForm from './Components/NewTournamentForm';
-import Nav from './Components/Nav'
+import Nav from './Components/Nav';
+import TournContainer from './Containers/TournContainer';
 
 class App extends Component {
   componentDidMount = () => {
@@ -16,7 +16,7 @@ class App extends Component {
   }
 
     render() {
-      console.log("Should see +1 or something...", this.props);
+      console.log("The props of App:", this.props);
       return (
         <div className="app">
           <Route component={Nav}/>
@@ -25,7 +25,8 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/home" component={Home} />
-              <Route path="/new-tournament" component={NewTournamentForm} />
+              <Route path="/tournaments" component={TournContainer} />
+              <Route exact path="/" render={() => this.props.user ? <Redirect to="/home"/> : <Redirect to="/login"/>} />
             </Switch>
           </div>
         </div>

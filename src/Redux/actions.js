@@ -1,5 +1,3 @@
-import { push } from 'connected-react-router';
-
 export const doTheLoginThing = userLogin => {
   return {
     type: "LOGIN_USER",

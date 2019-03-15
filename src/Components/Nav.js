@@ -16,8 +16,9 @@ const Nav = props => {
     </div>
     <Link to="/home"><a className="item">Home</a></Link>
     <a className="item">Search</a>
-    <Link to="/new-tournament"><a className="item">Host Tournament</a></Link>
-    <Link to="/login"><a className="item">Sign-in</a></Link>
+    <Link to="/tournaments/new"><a className="item">Host Tournament</a></Link>
+    <Link to="/login"><a className="item">Login</a></Link>
+    <Link to="/signup"><a className="item">Sign Up</a></Link>
     <a className="item" onClick={handleClick}>Log Out</a>
     </div>
   )

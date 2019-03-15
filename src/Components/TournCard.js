@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const TournCard = ({tournament}) => {
   return (
@@ -7,6 +8,7 @@ const TournCard = ({tournament}) => {
         <h3>{tournament.title}</h3>
         <div className="description">
           {tournament.description}
+          <p><Link to={`/tournaments/${tournament.id}`}>See Tournament Info</Link></p>
         </div>
       </div>
     </div>
