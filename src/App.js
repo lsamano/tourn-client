@@ -19,7 +19,7 @@ class App extends Component {
       console.log("Should see +1 or something...", this.props);
       return (
         <div className="app">
-          <Nav/>
+          <Route component={Nav}/>
           <div className="pusher">
             <Switch>
               <Route path="/login" component={Login} />

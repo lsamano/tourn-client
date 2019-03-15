@@ -19,7 +19,7 @@ class NewTournamentForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log("Now starting the Post fetch for a tournament...");
-    const tournInfo = {...this.state, user_id: this.props.user.id}
+    const tournInfo = {...this.state, host_id: this.props.user.id}
     console.log("This", tournInfo);
     this.props.tournamentPostFetch(tournInfo);
   }
@@ -44,7 +44,7 @@ class NewTournamentForm extends Component {
           <label>Description</label>
           <textarea
             name="description"
-            placeholder='Password'
+            placeholder='Description'
             value={this.state.description}
             onChange={(event) => this.handleChange(event)}
             />
@@ -56,7 +56,7 @@ class NewTournamentForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.reducer.user
 })
 
 const mapDispatchToProps = (dispatch) => ({
