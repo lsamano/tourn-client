@@ -3,6 +3,8 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginFetch} from '../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
+import { push } from 'connected-react-router'
+import {withRouter} from 'react-router';
 // import history from './history'
 
 class Login extends Component {
@@ -21,13 +23,16 @@ class Login extends Component {
     event.preventDefault();
     console.log("Now starting the fetch...");
     this.props.loginFetch(this.state);
-    browserHistory.push('/home')
+    // browserHistory.push('/home')
+    // store.dispatch(push('/home'))
+    // this.props.push('/home');
   }
 
   render() {
-    if (this.props.user.id) {
+    if (localStorage.token) {
       return <Redirect to="/home" />
     }
+    console.log("These are the Login props", this.props);
     return (
       <Form onSubmit={ event => this.handleSubmit(event) }>
         <h1>Login</h1>
@@ -57,11 +62,12 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.reducer.user
+    user: state.reducer.user,
+    pathname: state.router.location.pathname
 })
 
 const mapDispatchToProps = (dispatch) => ({
     loginFetch: (userObj) => dispatch(loginFetch(userObj))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 // import {getTournaments, getProfileFetch} from '../Redux/actions';
 import TournCard from './TournCard';
+import {Redirect} from 'react-router-dom';
 
 class Home extends Component {
 
@@ -15,6 +16,9 @@ class Home extends Component {
   }
 
   render() {
+    if (!localStorage.token) {
+      return <Redirect to="/login" />
+    }
     return (
       <div>
         <h1>Welcome, {this.props.user.username}!</h1>

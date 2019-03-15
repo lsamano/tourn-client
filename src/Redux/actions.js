@@ -1,3 +1,5 @@
+import { push } from 'connected-react-router';
+
 export const doTheLoginThing = userLogin => {
   return {
     type: "LOGIN_USER",
@@ -31,6 +33,7 @@ export const loginFetch = (userObj) => {
       console.log("Hey, the fetch worked?", data)
       localStorage.setItem("token", data.jwt)
       dispatch(doTheLoginThing(data.user))
+      // dispatch(push('/home'))
     })
   }
 }
@@ -57,19 +60,33 @@ export const signupFetch = userInfo => {
 export const getProfileFetch = () => {
   return (dispatch) => {
     let token = localStorage.token;
-    return fetch("http://localhost:3000/api/v1/profile", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        accepts: "application/json",
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        console.log("fetched the profile", data)
-        dispatch(doTheLoginThing(data.user))
-      });
+    if (token) {
+      return fetch("http://localhost:3000/api/v1/profile", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          accepts: "application/json",
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          console.log("fetched the profile", data)
+          dispatch(doTheLoginThing(data.user))
+        });
+    }
+  }
+}
+
+export const signOutUser = () => {
+  return dispatch => {
+    dispatch(logOutUser())
+  }
+}
+
+const logOutUser = () => {
+  return {
+    type: "LOGOUT_USER"
   }
 }
 

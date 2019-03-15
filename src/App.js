@@ -15,24 +15,23 @@ class App extends Component {
     this.props.getProfileFetch();
   }
 
-  render() {
-    console.log("Should see +1 or something...", this.props);
-    return (
-      <div className="app">
-        <Nav/>
-        <div className="pusher">
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/home" component={Home} />
-            <Route path="/new-tournament" component={NewTournamentForm} />
-          </Switch>
+    render() {
+      console.log("Should see +1 or something...", this.props);
+      return (
+        <div className="app">
+          <Nav/>
+          <div className="pusher">
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/home" component={Home} />
+              <Route path="/new-tournament" component={NewTournamentForm} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
 }
-
 
 const mapStateToProps = state => ({
   tournaments: state.reducer.tournaments,
