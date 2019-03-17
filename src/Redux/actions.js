@@ -1,3 +1,4 @@
+// User Actions (Login and Sign Up)
 export const doTheLoginThing = userLogin => {
   return {
     type: "LOGIN_USER",
@@ -11,10 +12,6 @@ export const doTheSignupThing = userInfo => {
     payload: userInfo
   }
 }
-
-const loadTournaments = (tournaments) => ({
-  type: "LOAD_TOURNAMENTS", payload: tournaments
-})
 
 export const loginFetch = (userObj) => {
   return (dispatch) => {
@@ -87,6 +84,17 @@ const logOutUser = () => {
     type: "LOGOUT_USER"
   }
 }
+
+// User Show
+export const getUserFetch = () => {
+  
+}
+
+
+// Tournament Actions
+const loadTournaments = (tournaments) => ({
+  type: "LOAD_TOURNAMENTS", payload: tournaments
+})
 
 export const tournamentPostFetch = (tournament) => {
   return (dispatch) => {
