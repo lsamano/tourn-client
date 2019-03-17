@@ -10,7 +10,7 @@ const Nav = props => {
   }
 
   return (
-    <div className="ui left fixed vertical menu visible sidebar thin">
+    <div className="ui left fixed vertical menu visible sidebar thin red inverted">
     <div className="item">
       <h1>Tourn</h1>
     </div>

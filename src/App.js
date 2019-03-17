@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import './App.css';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getTournaments, getProfileFetch} from './Redux/actions';
+import {getProfileFetch} from './Redux/actions';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Home from './Components/Home';
 import Nav from './Components/Nav';
 import TournContainer from './Containers/TournContainer';
+import UserContainer from './Containers/UserContainer';
 
 class App extends Component {
   componentDidMount = () => {
-    this.props.getTournaments();
     this.props.getProfileFetch();
   }
+  // <Route path="/users" component={UserContainer} />
 
     render() {
       console.log("The props of App:", this.props);
@@ -26,7 +27,8 @@ class App extends Component {
               <Route path="/signup" component={Signup} />
               <Route path="/home" component={Home} />
               <Route path="/tournaments" component={TournContainer} />
-              <Route exact path="/" render={() => this.props.user ? <Redirect to="/home"/> : <Redirect to="/login"/>} />
+              <Route exact path="/" component={Home} />
+              <Route path="/" component={UserContainer} />
             </Switch>
           </div>
         </div>
@@ -35,12 +37,10 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  tournaments: state.reducer.tournaments,
   user: state.reducer.user
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTournaments: () => dispatch(getTournaments()),
   getProfileFetch: () => dispatch(getProfileFetch())
 })
 

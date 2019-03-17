@@ -4,10 +4,15 @@ import TournCard from '../Components/TournCard';
 import TournShow from '../Components/TournShow';
 import NewTournamentForm from '../Components/NewTournamentForm';
 import {Redirect} from 'react-router-dom';
+import {getTournaments} from '../Redux/actions';
 
 import {Switch, Route} from 'react-router-dom';
 
 class TournContainer extends Component {
+  componentDidMount = () => {
+    this.props.getTournaments();
+  }
+
   formatTournaments = tournaments => {
     return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
   }
@@ -22,7 +27,7 @@ class TournContainer extends Component {
         <Route path="/tournaments/new" component={NewTournamentForm} />
         <Route path="/tournaments/:id" render={routerProps => {
             let id = routerProps.match.params.id;
-            let tournament = this.props.tournaments.find(tournament => tournament.id == id);
+            let tournament = this.props.tournaments.find(tournament => tournament.id === id);
             console.log(this.props.tournaments, tournament);
             return (tournament ? <TournShow tournament={tournament} /> : null)
           }
@@ -45,4 +50,8 @@ const mapStateToProps = state => ({
   user: state.reducer.user
 })
 
-export default connect(mapStateToProps)(TournContainer);
+const mapDispatchToProps = dispatch => ({
+  getTournaments: () => dispatch(getTournaments())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TournContainer);

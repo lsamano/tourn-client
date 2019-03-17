@@ -19,6 +19,7 @@ class Home extends Component {
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }
+    console.log("Home Props:", this.props);
     return (
       <div>
         <h1>Welcome, {this.props.user.username}!</h1>
@@ -39,7 +40,8 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   tournaments: state.reducer.tournaments,
-  user: state.reducer.user
+  user: state.reducer.user,
+  hosted_tourns: state.reducer.user.hosted_tourns
 })
 //
 // const mapDispatchToProps = dispatch => ({
