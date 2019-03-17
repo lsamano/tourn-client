@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import TournCard from '../Components/TournCard';
 import TournShow from '../Components/TournShow';
 import NewTournamentForm from '../Components/NewTournamentForm';
+import {Redirect} from 'react-router-dom';
 
 import {Switch, Route} from 'react-router-dom';
 
@@ -13,6 +14,9 @@ class TournContainer extends Component {
 
   render() {
     console.log("Tourn container rendered", this.props);
+    if (!localStorage.token) {
+      return <Redirect to="/login" />
+    }
     return (
       <Switch>
         <Route path="/tournaments/new" component={NewTournamentForm} />

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {tournamentPostFetch} from '../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
-import {Redirect} from 'react-router-dom';
 
 class NewTournamentForm extends Component {
   state = {
@@ -25,9 +24,6 @@ class NewTournamentForm extends Component {
   }
 
   render() {
-    if (!localStorage.token) {
-      return <Redirect to="/login" />
-    }
     return (
       <Form onSubmit={ event => this.handleSubmit(event) }>
         <h1>New Tournament Form</h1>
