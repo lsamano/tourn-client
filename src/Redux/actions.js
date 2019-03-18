@@ -6,13 +6,6 @@ const doTheLoginThing = userLogin => {
   }
 }
 
-const doTheSignupThing = userInfo => {
-  return {
-    type: "SIGNUP_USER",
-    payload: userInfo
-  }
-}
-
 export const loginFetch = (userObj) => {
   return (dispatch) => {
     return fetch("http://localhost:3000/api/v1/login", {
