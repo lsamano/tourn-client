@@ -11,11 +11,12 @@ const Nav = props => {
 
   return (
     <div className="ui left fixed vertical menu visible sidebar thin red inverted">
-    <div className="item">
+    <div className="header item">
       <h1>Tourn</h1>
     </div>
-    <Link to="/home"><a className="item">Home</a></Link>
-    <a className="item">Search</a>
+    <Link to="/"><a className="item">Home</a></Link>
+    <div class="header item">Tournaments</div>
+    <Link to="/tournaments"><a className="item">All Tournaments</a></Link>
     <Link to="/tournaments/new"><a className="item">Host Tournament</a></Link>
     <Link to="/login"><a className="item">Login</a></Link>
     <Link to="/signup"><a className="item">Sign Up</a></Link>

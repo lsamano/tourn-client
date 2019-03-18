@@ -29,7 +29,7 @@ class Signup extends Component {
   render() {
     // must fix below to set up routes
     if (this.props.user.id) {
-      return <Redirect to="/home" />
+      return <Redirect to="/" />
     }
     return (
       <Grid columns={4}>

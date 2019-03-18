@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getProfileFetch} from './Redux/actions';
 import Login from './Components/Login';
@@ -9,12 +9,12 @@ import Home from './Components/Home';
 import Nav from './Components/Nav';
 import TournContainer from './Containers/TournContainer';
 import UserContainer from './Containers/UserContainer';
+import NoRouteMatch from './Components/NoRouteMatch';
 
 class App extends Component {
   componentDidMount = () => {
     this.props.getProfileFetch();
   }
-  // <Route path="/users" component={UserContainer} />
 
     render() {
       console.log("The props of App:", this.props);
@@ -25,10 +25,10 @@ class App extends Component {
             <Switch>
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
-              <Route path="/home" component={Home} />
               <Route path="/tournaments" component={TournContainer} />
+              <Route path="/users" component={UserContainer} />
               <Route exact path="/" component={Home} />
-              <Route path="/" component={UserContainer} />
+              <Route path="/" component={NoRouteMatch} />
             </Switch>
           </div>
         </div>

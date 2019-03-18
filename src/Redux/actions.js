@@ -1,12 +1,12 @@
 // User Actions (Login and Sign Up)
-export const doTheLoginThing = userLogin => {
+const doTheLoginThing = userLogin => {
   return {
     type: "LOGIN_USER",
     payload: userLogin
   }
 }
 
-export const doTheSignupThing = userInfo => {
+const doTheSignupThing = userInfo => {
   return {
     type: "SIGNUP_USER",
     payload: userInfo
@@ -86,8 +86,30 @@ const logOutUser = () => {
 }
 
 // User Show
-export const getUserFetch = () => {
-  
+export const getUserFetch = (id) => {
+  return (dispatch) => {
+    console.log("THIS IS THE ID:", id);
+    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("fetched the user shown", data)
+        dispatch(loadUserShown(data))
+    })
+  }
+}
+
+const loadUserShown = (userShown) => {
+  return {
+    type: "LOAD_USER_SHOWN",
+    payload: userShown
+  }
 }
 
 
@@ -108,7 +130,7 @@ export const tournamentPostFetch = (tournament) => {
       body: JSON.stringify({tournament: tournament})
     })
     .then(res => res.json())
-    .then(data => console.log("the stuff", data))
+    .then(data => console.log("New Tourn Added:", data))
   }
 }
 
@@ -121,5 +143,21 @@ export const getTournaments = () => {
       dispatch(loadTournaments(data.tournaments))
     })
     .catch(console.error)
+  }
+}
+
+export const entryPostFetch = (entryInfo) => {
+  return (dispatch) => {
+    return fetch("", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({entryInfo})
+    })
+    .then(res => res.json())
+    .then(data => console.log("New Entry Added:", data))
   }
 }

@@ -28,7 +28,7 @@ class Login extends Component {
 
   render() {
     if (localStorage.token) {
-      return <Redirect to="/home" />
+      return <Redirect to="/" />
     }
     console.log("These are the Login props", this.props);
     return (

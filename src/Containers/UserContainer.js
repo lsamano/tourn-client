@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import UserShow from '../Components/UserShow';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Switch, Route} from 'react-router-dom';
 
-import {Switch, Route} from 'react-router-dom';
+import MyPlaceholder from '../Components/MyPlaceholder';
+import UserShow from '../Components/UserShow';
+import {getUserFetch} from '../Redux/actions';
 
 class UserContainer extends Component {
   componentDidMount = () => {
-    // this.props.getUserShown();
+    const id = this.props.location.pathname.substring(7)
+    this.props.getUserFetch(id);
   }
 
   render() {
@@ -17,18 +19,16 @@ class UserContainer extends Component {
     }
     return (
       <Switch>
-        <Route path="/" render={() =>(
-          <div>
-            Seeing all users might be strange, no?
-          </div>
-        )}/>
         <Route path="/users/:id" render={routerProps => {
-            let id = routerProps.match.params.id;
-            let user = this.props.users.find(user => user.id === id);
-            console.log("This is the user being shown:", user);
-            return (user ? <UserShow user={user} /> : null)
+            console.log("These are your UserCont props", this.props);
+            return (this.props.userShown ? <UserShow user={this.props.userShown} /> : null)
           }
         }/>
+        <Route path="/users" render={() =>(
+          <div>
+          Seeing all users might be strange, no?
+          </div>
+        )}/>
       </Switch>
     )
   }
@@ -36,11 +36,11 @@ class UserContainer extends Component {
 
 const mapStateToProps = state => ({
   user: state.reducer.user,
-  users: state.reducer.users
+  userShown: state.reducer.userShown
 })
 
 const mapDispatchToProps = dispatch => ({
-  // getUserShown: () => dispatch(getUserShown()),
+  getUserFetch: (id) => dispatch(getUserFetch(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);

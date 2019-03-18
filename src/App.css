@@ -1,5 +1,10 @@
 .app {
-  padding: 8rem;
+  /* background-color: #282c34; */
+  padding: 5rem;
+}
+
+.App {
+  text-align: center;
 }
 
 .App-logo {
@@ -31,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+/* p, h1, h2, h3, h4, h5, span {
+  color: white;
+} */

@@ -3,10 +3,8 @@ import {connect} from 'react-redux';
 import TournCard from '../Components/TournCard';
 import TournShow from '../Components/TournShow';
 import NewTournamentForm from '../Components/NewTournamentForm';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Switch, Route} from 'react-router-dom';
 import {getTournaments} from '../Redux/actions';
-
-import {Switch, Route} from 'react-router-dom';
 
 class TournContainer extends Component {
   componentDidMount = () => {
@@ -26,7 +24,7 @@ class TournContainer extends Component {
       <Switch>
         <Route path="/tournaments/new" component={NewTournamentForm} />
         <Route path="/tournaments/:id" render={routerProps => {
-            let id = routerProps.match.params.id;
+            let id = parseInt(routerProps.match.params.id);
             let tournament = this.props.tournaments.find(tournament => tournament.id === id);
             console.log(this.props.tournaments, tournament);
             return (tournament ? <TournShow tournament={tournament} /> : null)
