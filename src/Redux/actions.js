@@ -227,3 +227,19 @@ export const tournamentPatchFetch = (tournament) => {
     .then(data => console.log("Tournament Updated:", data))
   }
 }
+
+export const userPatchFetch = (user) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({user: user})
+    })
+    .then(res => res.json())
+    .then(data => console.log("User Updated:", data))
+  }
+}

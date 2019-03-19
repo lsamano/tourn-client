@@ -3,11 +3,21 @@ import {connect} from 'react-redux';
 import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
 import TournCard from './TournCard';
-
+import UserEdit from './UserEdit';
 
 class UserShow extends React.Component {
+  state = {
+    formVisible: false
+  }
+
   componentDidMount = () => {
     // this.props.getTeamFetch(this.props.match.params.id);
+  }
+
+  clickHandler = () => {
+    this.setState({
+      formVisible: !this.state.formVisible
+    })
   }
 
   formatTeams = teams => {
@@ -27,15 +37,14 @@ class UserShow extends React.Component {
     console.log("User Being Shown:", userShown);
     return (
       <div>
+        {this.state.formVisible ? <UserEdit user={user}/> : null}
         <h1 className="ui top attached inverted header red">
           <img className="ui avatar image" alt="" src={userShown.avatar}/>{userShown.username}
             <div className="sub header">----------</div>
           </h1>
           <div className="ui attached segment">
             {userShown.id === user.id
-              ? <Link to={`/users/${user.id}/edit`}>
-                  <button className="ui button secondary">Edit Profile</button>
-                </Link>
+              ? <button className="ui button secondary" onClick={this.clickHandler}>Edit Profile</button>
               : null }
             <p className="description">{userShown.bio}</p>
             <h3>Teams:</h3>
