@@ -12,6 +12,7 @@ class UserEdit extends Component {
     bio: this.props.user.bio,
     avatar: this.props.user.avatar
   }
+  //
 
   handleChange = event => {
     this.setState({
