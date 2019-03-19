@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import MyPlaceholder from './MyPlaceholder';
+import ModalModalExample from './ModalModalExample';
 
 import TournCard from './TournCard';
 
@@ -34,6 +35,7 @@ class Home extends Component {
           <div className="ui middle aligned divided list">
             {tournaments.length > 0 ? this.formatTournaments(tournaments) : <MyPlaceholder /> }
           </div>
+      <ModalModalExample />
       </div>
     )
   }

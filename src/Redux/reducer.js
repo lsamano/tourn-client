@@ -21,6 +21,11 @@ export default function reducer(state = initialState, action) {
       // Tournaments
         case "LOAD_TOURNAMENTS":
           return { ...state, tournaments: action.payload};
+
+      // Teams
+        case 'LOAD_TEAM_SHOWN':
+          return { ...state, teamShown: action.payload};
+
         default:
             return state;
     }

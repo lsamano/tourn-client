@@ -21,7 +21,6 @@ export const loginFetch = (userObj) => {
       console.log("Hey, the fetch worked?", data)
       localStorage.setItem("token", data.jwt)
       dispatch(doTheLoginThing(data.user))
-      // dispatch(push('/home'))
     })
   }
 }
@@ -152,5 +151,47 @@ export const entryPostFetch = (entryInfo) => {
     })
     .then(res => res.json())
     .then(data => console.log("New Entry Added:", data))
+  }
+}
+
+export const getTeamFetch = (id) => {
+  return (dispatch) => {
+    console.log("THIS IS THE ID:", id);
+    return fetch(`http://localhost:3000/api/v1/teams/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("fetched the team shown", data)
+        dispatch(loadTeamShown(data))
+    })
+  }
+}
+
+const loadTeamShown = (team) => {
+  return {
+    type: "LOAD_TEAM_SHOWN",
+    payload: team
+  }
+}
+
+export const teamPostFetch = (team) => {
+  return (dispatch) => {
+    return fetch("http://localhost:3000/api/v1/teams", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({team: team})
+    })
+    .then(res => res.json())
+    .then(data => console.log("New Team Added:", data))
   }
 }

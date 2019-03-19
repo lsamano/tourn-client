@@ -4,6 +4,10 @@ import moment from 'moment';
 import TournSignup from './TournSignup';
 
 const TournShow = ({tournament}) => {
+  const formatTeams = () => {
+    return tournament.teams.map(team =><div><Link to={`/teams/${team.id}`}>{team.name}</Link></div>)
+  }
+
   console.log("Tournament Show:", tournament);
   return (
     <Switch>
@@ -19,6 +23,7 @@ const TournShow = ({tournament}) => {
             <p className="description">{tournament.description}</p>
             <Link to={`/tournaments/${tournament.id}/signup`}><button className="ui button primary">Join This Tournament</button></Link>
             <h3>Current Teams Entered:</h3>
+              {formatTeams()}
           </div>
         </div>
         }

@@ -9,6 +9,7 @@ import Home from './Components/Home';
 import Nav from './Components/Nav';
 import TournContainer from './Containers/TournContainer';
 import UserContainer from './Containers/UserContainer';
+import TeamContainer from './Containers/TeamContainer';
 import NoRouteMatch from './Components/NoRouteMatch';
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
               <Route path="/signup" component={Signup} />
               <Route path="/tournaments" component={TournContainer} />
               <Route path="/users" component={UserContainer} />
+              <Route path="/teams" component={TeamContainer} />
               <Route exact path="/" component={Home} />
               <Route path="/" component={NoRouteMatch} />
             </Switch>
