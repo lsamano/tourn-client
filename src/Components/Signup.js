@@ -8,7 +8,9 @@ import { Button, Checkbox, Form, Grid } from 'semantic-ui-react';
 class Signup extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    bio: "",
+    avatar: ""
   }
 
   handleChange = event => {
@@ -20,10 +22,7 @@ class Signup extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log("Now starting the fetch...");
-    this.props.signupFetch({
-      username: this.state.username,
-      password: this.state.password
-    });
+    this.props.signupFetch(this.state);
   }
 
   render() {
@@ -55,6 +54,24 @@ class Signup extends Component {
                   name="password"
                   placeholder='Password'
                   value={this.state.password}
+                  onChange={(event) => this.handleChange(event)}
+                  />
+              </Form.Field>
+              <Form.Field>
+                <label>Avatar</label>
+                <input
+                  name="avatar"
+                  placeholder='Avatar (URL)'
+                  value={this.state.avatar}
+                  onChange={(event) => this.handleChange(event)}
+                  />
+              </Form.Field>
+              <Form.Field>
+                <label>Bio</label>
+                <textarea
+                  name="bio"
+                  placeholder='Bio'
+                  value={this.state.bio}
                   onChange={(event) => this.handleChange(event)}
                   />
               </Form.Field>

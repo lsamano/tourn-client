@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {tournamentPostFetch} from '../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
+import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 class NewTournamentForm extends Component {
   state = {
     title: "",
-    description: ""
+    description: "",
+    start_dt: ""
   }
 
   handleChange = event => {
@@ -14,6 +16,12 @@ class NewTournamentForm extends Component {
       [event.target.name]: event.target.value
     });
   };
+
+  handleDateChange = (event, {name, value}) => {
+  if (this.state.hasOwnProperty(name)) {
+    this.setState({ [name]: value });
+  }
+}
 
   handleSubmit = event => {
     event.preventDefault();
@@ -45,6 +53,13 @@ class NewTournamentForm extends Component {
             onChange={(event) => this.handleChange(event)}
             />
         </Form.Field>
+        <DateTimeInput
+          name="start_dt"
+          placeholder="Date & Start Time"
+          value={this.state.start_dt}
+          iconPosition="left"
+          onChange={this.handleDateChange}
+        />
         <Button type='submit'>Submit</Button>
       </Form>
     )

@@ -12,6 +12,10 @@ class Home extends Component {
     return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
   }
 
+  formatTeams = teams => {
+    return teams.map(team => <h4><Link to={`/teams/${team.id}`}>{team.name}</Link></h4>)
+  }
+
   // filterHostedTournments = () => {
   //   const filteredTournaments = this.props.tournaments.filter(tourn => tourn.host.id === this.props.user.id)
   //   return this.formatTournaments(filteredTournaments)
@@ -22,18 +26,21 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
     console.log("Home Props:", this.props);
-    const {user, hosted_tourns, tournaments} = this.props
+    const {user, hosted_tourns, tournaments, teams} = this.props
     return (
       <div>
         <h1><img className="ui avatar image" alt="" src={user.avatar}/>Welcome, {<Link to={`users/${user.id}`}>{user.username}</Link>}!</h1>
         <h2 className="ui header">Your Teams:</h2>
+          <div className="ui middle aligned divided list">
+            {teams ? this.formatTeams(teams) : <MyPlaceholder /> }
+          </div>
         <h2 className="ui header">Your Hosted Tournaments:</h2>
           <div className="ui middle aligned divided list">
             {hosted_tourns ? this.formatTournaments(hosted_tourns) : <MyPlaceholder /> }
           </div>
         <h2>Your Entered Tournaments:</h2>
           <div className="ui middle aligned divided list">
-            {tournaments.length > 0 ? this.formatTournaments(tournaments) : <MyPlaceholder /> }
+            {tournaments ? this.formatTournaments(tournaments) : <MyPlaceholder /> }
           </div>
       <ModalModalExample />
       </div>
