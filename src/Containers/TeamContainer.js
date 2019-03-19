@@ -11,6 +11,7 @@ class TeamContainer extends Component {
   //   const id = this.props.location.pathname.substring(7)
   //   this.props.getTeamFetch(id);
   // }
+  //
 
   render() {
     console.log("Team container rendered", this.props);
