@@ -37,7 +37,7 @@ class TeamShow extends React.Component {
     if (teamShown) {
       return (
         <div>
-          {this.state.formVisible ? <TeamEdit teamShown={teamShown}/> : null}
+          {this.state.formVisible ? <TeamEdit teamShown={teamShown} clickHandler={this.clickHandler}/> : null}
                 <h1 className="ui top attached inverted header">{teamShown.name}
                   <div className="sub header"> {teamShown.tagline}</div>
                 </h1>

@@ -21,6 +21,15 @@ export default function reducer(state = initialState, action) {
       // Tournaments
         case "LOAD_TOURNAMENTS":
           return { ...state, tournaments: action.payload};
+        case 'RELOAD_TOURNAMENT':
+          const updatedTournaments = state.tournaments.map(tourn => {
+            if (tourn.id === action.payload.id) {
+              return action.payload
+            } else {
+              return tourn
+            }
+          })
+          return { ...state, tournaments: updatedTournaments}
 
       // Teams
         case 'LOAD_TEAM_SHOWN':

@@ -28,6 +28,7 @@ class TournamentEdit extends Component {
     console.log("Now starting the Patch fetch for a tournament...");
     const tournInfo = {...this.state, host_id: this.props.user.id, id: this.props.tournament.id}
     console.log("This", tournInfo);
+    this.props.clickHandler();
     this.props.tournamentPatchFetch(tournInfo);
   }
 

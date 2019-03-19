@@ -12,7 +12,6 @@ class UserEdit extends Component {
     bio: this.props.user.bio,
     avatar: this.props.user.avatar
   }
-  //
 
   handleChange = event => {
     this.setState({
@@ -22,6 +21,7 @@ class UserEdit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    this.props.clickHandler();
     this.props.userPatchFetch({...this.state, id: this.props.user.id});
   }
 

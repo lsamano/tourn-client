@@ -37,7 +37,7 @@ class UserShow extends React.Component {
     console.log("User Being Shown:", userShown);
     return (
       <div>
-        {this.state.formVisible ? <UserEdit user={user}/> : null}
+        {this.state.formVisible ? <UserEdit user={user} clickHandler={this.clickHandler}/> : null}
         <h1 className="ui top attached inverted header red">
           <img className="ui avatar image" alt="" src={userShown.avatar}/>{userShown.username}
             <div className="sub header">----------</div>

@@ -208,7 +208,11 @@ export const teamPatchFetch = (team) => {
       body: JSON.stringify({team: team})
     })
     .then(res => res.json())
-    .then(data => console.log("Team Updated:", data))
+    .then(data => {
+      console.log("Team Updated:", data)
+      dispatch(loadTeamShown(data.team))
+      dispatch(doTheLoginThing(data.user))
+    })
   }
 }
 
@@ -224,9 +228,18 @@ export const tournamentPatchFetch = (tournament) => {
       body: JSON.stringify({tournament: tournament})
     })
     .then(res => res.json())
-    .then(data => console.log("Tournament Updated:", data))
+    .then(data => {
+      console.log("Tournament Updated:", data)
+      dispatch(reloadTournament(data.tournament))
+      dispatch(doTheLoginThing(data.user))
+    })
   }
 }
+
+const reloadTournament = tournament => ({
+    type: "RELOAD_TOURNAMENT",
+    payload: tournament
+})
 
 export const userPatchFetch = (user) => {
   return (dispatch) => {
@@ -240,6 +253,10 @@ export const userPatchFetch = (user) => {
       body: JSON.stringify({user: user})
     })
     .then(res => res.json())
-    .then(data => console.log("User Updated:", data))
+    .then(data => {
+      console.log("User Updated:", data)
+      dispatch(doTheLoginThing(data))
+      dispatch(loadUserShown(data))
+    })
   }
 }

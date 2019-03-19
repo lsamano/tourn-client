@@ -29,7 +29,7 @@ class TournShow extends React.Component {
         <Route path="/tournaments/:id/signup" component={TournSignup} />
         <Route render={() => {
             return <div>
-              {this.state.formVisible ? <TournamentEdit tournament={tournament}/> : null}
+              {this.state.formVisible ? <TournamentEdit tournament={tournament} clickHandler={this.clickHandler}/> : null}
               <Link to="/tournaments">See All Tournaments</Link>
               <h1 className="ui top attached inverted header">{tournament.title}
                 <div className="sub header">{moment(tournament.start_dt).format('llll')}</div>
