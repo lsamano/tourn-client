@@ -196,7 +196,7 @@ export const teamPostFetch = (team) => {
   }
 }
 
-export const teamUpdateFetch = (team) => {
+export const teamPatchFetch = (team) => {
   return (dispatch) => {
     return fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
       method: "PATCH",
@@ -209,5 +209,21 @@ export const teamUpdateFetch = (team) => {
     })
     .then(res => res.json())
     .then(data => console.log("Team Updated:", data))
+  }
+}
+
+export const tournamentPatchFetch = (tournament) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/tournaments/${tournament.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({tournament: tournament})
+    })
+    .then(res => res.json())
+    .then(data => console.log("Tournament Updated:", data))
   }
 }

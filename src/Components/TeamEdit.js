@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {teamUpdateFetch} from '../Redux/actions';
+import {teamPatchFetch} from '../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 
 class TeamEdit extends Component {
@@ -18,10 +18,10 @@ class TeamEdit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Now starting the Update fetch for a team...");
+    console.log("Now starting the Patch fetch for a team...");
     const teamInfo = {...this.state, captain_id: this.props.user.id, id: this.props.teamShown.id}
-    console.log("This will be sent to teamUpdateFetch:", teamInfo);
-    this.props.teamUpdateFetch(teamInfo);
+    console.log("This will be sent to teamPatchFetch:", teamInfo);
+    this.props.teamPatchFetch(teamInfo);
   }
 
   render() {
@@ -66,7 +66,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    teamUpdateFetch: (tournInfo) => dispatch(teamUpdateFetch(tournInfo))
+    teamPatchFetch: (tournInfo) => dispatch(teamPatchFetch(tournInfo))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamEdit);
