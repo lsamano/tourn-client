@@ -4,10 +4,12 @@ import moment from 'moment';
 import TournSignup from './TournSignup';
 import {connect} from 'react-redux';
 import TournamentEdit from './TournamentEdit';
+import TeamDropDown from './TeamDropDown';
 
 class TournShow extends React.Component {
   state = {
-    formVisible: false
+    formVisible: false,
+    chosenTeam: {}
   }
 
   clickHandler = () => {
@@ -22,7 +24,6 @@ class TournShow extends React.Component {
   }
 
   render() {
-    console.log("Tournament Show:", tournament);
     const {tournament, user} = this.props
     return (
       <Switch>
@@ -37,9 +38,7 @@ class TournShow extends React.Component {
               <div className="ui attached segment">
                 <p>Hosted by {tournament.host.username}</p>
                 <p className="description">{tournament.description}</p>
-                <Link to={`/tournaments/${tournament.id}/signup`}>
-                  <button className="ui button primary">Join This Tournament</button>
-                </Link>
+                <TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
                 {tournament.host.id === user.id
                   ? <button className="ui button secondary" onClick={this.clickHandler}>Edit Tournament</button>
                   : null

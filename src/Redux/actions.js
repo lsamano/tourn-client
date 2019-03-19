@@ -138,22 +138,6 @@ export const getTournaments = () => {
   }
 }
 
-export const entryPostFetch = (entryInfo) => {
-  return (dispatch) => {
-    return fetch("", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Bearer ${localStorage.token}`
-      },
-      body: JSON.stringify({entryInfo})
-    })
-    .then(res => res.json())
-    .then(data => console.log("New Entry Added:", data))
-  }
-}
-
 export const getTeamFetch = (id) => {
   return (dispatch) => {
     console.log("THIS IS THE ID:", id);
@@ -260,3 +244,39 @@ export const userPatchFetch = (user) => {
     })
   }
 }
+
+export const entryPostFetch = entry => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/entries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({entry: entry})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Tourn Joined:", data)
+      dispatch(reloadTournament(data.tournament))
+      dispatch(doTheLoginThing(data.user))
+    })
+  }
+}
+
+// export const entryPostFetch = (entryInfo) => {
+//   return (dispatch) => {
+//     return fetch("", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Accept": "application/json",
+//         "Authorization": `Bearer ${localStorage.token}`
+//       },
+//       body: JSON.stringify({entryInfo})
+//     })
+//     .then(res => res.json())
+//     .then(data => console.log("New Entry Added:", data))
+//   }
+// }
