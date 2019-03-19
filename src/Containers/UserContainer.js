@@ -21,7 +21,7 @@ class UserContainer extends Component {
       <Switch>
         <Route path="/users/:id" render={routerProps => {
             console.log("These are your UserCont props", this.props);
-            return (this.props.userShown ? <UserShow user={this.props.userShown} /> : null)
+            return (this.props.userShown ? <UserShow userShown={this.props.userShown} /> : null)
           }
         }/>
         <Route path="/users" render={() =>(

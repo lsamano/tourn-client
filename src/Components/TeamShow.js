@@ -22,7 +22,7 @@ class TeamShow extends React.Component {
 
   render() {
     console.log("Team Show:", this.props);
-    const {teamShown} = this.props
+    const {teamShown, user} = this.props
     if (teamShown) {
       return (
         <Switch>
@@ -34,7 +34,14 @@ class TeamShow extends React.Component {
                 <div className="ui attached segment">
                   <p className="description">{moment(teamShown.created_at).format('llll')}</p>
                   <p>Captain: {teamShown.captain.username}</p>
-                  <Link to={`/teams/${teamShown.id}/signup`}><button className="ui button primary">Join This Team</button></Link>
+                  <Link to={`/teams/${teamShown.id}/signup`}>
+                    <button className="ui button primary">Join This Team</button>
+                  </Link>
+                  {teamShown.captain.id === user.id
+                    ? <Link to={`/teams/${teamShown.id}/signup`}>
+                        <button className="ui button secondary">Edit Team</button>
+                      </Link>
+                    : null }
                   <h3>Members ({teamShown.members.length})</h3>
                   {this.formatMembers()}
 

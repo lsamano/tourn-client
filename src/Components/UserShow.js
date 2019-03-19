@@ -23,24 +23,33 @@ class UserShow extends React.Component {
     }
 
   render() {
-    const {user} = this.props
-    console.log("User Being Shown:", user);
+    const {userShown, user} = this.props
+    console.log("User Being Shown:", userShown);
     return (
       <div>
         <h1 className="ui top attached inverted header red">
-          <img className="ui avatar image" alt="" src={user.avatar}/>{user.username}
+          <img className="ui avatar image" alt="" src={userShown.avatar}/>{userShown.username}
             <div className="sub header">----------</div>
           </h1>
           <div className="ui attached segment">
-            <p className="description">{user.bio}</p>
+            {userShown.id === user.id
+              ? <Link to={`/users/${user.id}/edit`}>
+                  <button className="ui button secondary">Edit Profile</button>
+                </Link>
+              : null }
+            <p className="description">{userShown.bio}</p>
             <h3>Teams:</h3>
-            {this.formatTeams(user.teams)}
+            {this.formatTeams(userShown.teams)}
             <h3>Hosted Tournaments:</h3>
-            {this.formatHostedTournaments(user.hosted_tourns)}
+            {this.formatHostedTournaments(userShown.hosted_tourns)}
           </div>
         </div>
       )
   }
 }
 
-export default UserShow;
+const mapStateToProps = state => ({
+  user: state.reducer.user
+})
+
+export default connect(mapStateToProps)(UserShow);
