@@ -195,3 +195,19 @@ export const teamPostFetch = (team) => {
     .then(data => console.log("New Team Added:", data))
   }
 }
+
+export const teamUpdateFetch = (team) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({team: team})
+    })
+    .then(res => res.json())
+    .then(data => console.log("Team Updated:", data))
+  }
+}

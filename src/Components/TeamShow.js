@@ -5,11 +5,22 @@ import moment from 'moment';
 // import TeamSignup from './TeamSignup';
 import TournCard from './TournCard';
 import {getTeamFetch} from '../Redux/actions';
+import TeamEdit from './TeamEdit';
 
 // <Route path="/teams/:id/signup" component={TeamSignup} />
 class TeamShow extends React.Component {
+  state = {
+    formVisible: false
+  }
+
   componentDidMount = () => {
     this.props.getTeamFetch(this.props.match.params.id);
+  }
+
+  clickHandler = () => {
+    this.setState({
+      formVisible: !this.state.formVisible
+    })
   }
 
   formatMembers = () => {
@@ -25,9 +36,8 @@ class TeamShow extends React.Component {
     const {teamShown, user} = this.props
     if (teamShown) {
       return (
-        <Switch>
-          <Route render={() => {
-              return <div>
+        <div>
+          {this.state.formVisible ? <TeamEdit teamShown={teamShown}/> : null}
                 <h1 className="ui top attached inverted header">{teamShown.name}
                   <div className="sub header"> {teamShown.tagline}</div>
                 </h1>
@@ -38,9 +48,7 @@ class TeamShow extends React.Component {
                     <button className="ui button primary">Join This Team</button>
                   </Link>
                   {teamShown.captain.id === user.id
-                    ? <Link to={`/teams/${teamShown.id}/signup`}>
-                        <button className="ui button secondary">Edit Team</button>
-                      </Link>
+                    ? <button className="ui button secondary" onClick={this.clickHandler}>Edit Team</button>
                     : null }
                   <h3>Members ({teamShown.members.length})</h3>
                   {this.formatMembers()}
@@ -50,9 +58,6 @@ class TeamShow extends React.Component {
 
                 </div>
               </div>
-            }
-          } />
-        </Switch>
       )
     } else {
       return null;
