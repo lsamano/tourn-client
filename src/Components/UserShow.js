@@ -4,6 +4,7 @@ import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
 import TournCard from './TournCard';
 import UserEdit from './UserEdit';
+import {Button, Icon} from 'semantic-ui-react';
 
 class UserShow extends React.Component {
   state = {
@@ -38,13 +39,15 @@ class UserShow extends React.Component {
     return (
       <div>
         {this.state.formVisible ? <UserEdit user={user} clickHandler={this.clickHandler}/> : null}
-        <h1 className="ui top attached inverted header red">
+        <h1 className="ui top attached inverted header">
           <img className="ui avatar image" alt="" src={userShown.avatar}/>{userShown.username}
             <div className="sub header">----------</div>
           </h1>
-          <div className="ui attached segment">
+          <div className="ui attached segment orange">
             {userShown.id === user.id
-              ? <button className="ui button secondary" onClick={this.clickHandler}>Edit Profile</button>
+              ? <Button icon onClick={this.clickHandler}>
+                  <Icon name='edit'/>
+                </Button>
               : null }
             <p className="description">{userShown.bio}</p>
             <h3>Teams:</h3>

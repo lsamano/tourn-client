@@ -11,6 +11,7 @@ import TournContainer from './Containers/TournContainer';
 import UserContainer from './Containers/UserContainer';
 import TeamContainer from './Containers/TeamContainer';
 import NoRouteMatch from './Components/NoRouteMatch';
+import { Grid } from 'semantic-ui-react';
 
 class App extends Component {
   componentDidMount = () => {
@@ -23,6 +24,9 @@ class App extends Component {
         <div className="app">
           <Route component={Nav}/>
           <div className="pusher">
+            <Grid>
+              <Grid.Row>
+                <Grid.Column width={10}>
             <Switch>
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
@@ -32,6 +36,10 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/" component={NoRouteMatch} />
             </Switch>
+              </Grid.Column>
+              <Grid.Column width={3}></Grid.Column>
+            </Grid.Row>
+          </Grid>
           </div>
         </div>
       );

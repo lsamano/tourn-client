@@ -6,6 +6,7 @@ import moment from 'moment';
 import TournCard from './TournCard';
 import {getTeamFetch} from '../Redux/actions';
 import TeamEdit from './TeamEdit';
+import {Button, Icon} from 'semantic-ui-react';
 
 // <Route path="/teams/:id/signup" component={TeamSignup} />
 class TeamShow extends React.Component {
@@ -44,12 +45,16 @@ class TeamShow extends React.Component {
                 <div className="ui attached segment">
                   <p className="description">{moment(teamShown.created_at).format('llll')}</p>
                   <p>Captain: {teamShown.captain.username}</p>
-                  <Link to={`/teams/${teamShown.id}/signup`}>
-                    <button className="ui button primary">Join This Team</button>
-                  </Link>
+                  {teamShown.members.filter(member => member.id === user.id).length > 0
+                    ? null
+                    : <button className="ui button primary">Join This Team</button>
+                  }
                   {teamShown.captain.id === user.id
-                    ? <button className="ui button secondary" onClick={this.clickHandler}>Edit Team</button>
-                    : null }
+                    ? <Button icon onClick={this.clickHandler}>
+                        <Icon name='edit'/>
+                      </Button>
+                    : null
+                  }
                   <h3>Members ({teamShown.members.length})</h3>
                   {this.formatMembers()}
 
