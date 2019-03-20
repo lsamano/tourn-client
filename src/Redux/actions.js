@@ -265,6 +265,26 @@ export const entryPostFetch = entry => {
   }
 }
 
+export const membershipPostFetch = membership => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/memberships", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({membership: membership})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Team Joined:", data)
+      dispatch(loadTeamShown(data.team))
+      dispatch(doTheLoginThing(data.user))
+    })
+  }
+}
+
 // export const entryPostFetch = (entryInfo) => {
 //   return (dispatch) => {
 //     return fetch("", {
