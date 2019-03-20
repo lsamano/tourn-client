@@ -104,6 +104,25 @@ const loadUserShown = (userShown) => {
   }
 }
 
+export const userPatchFetch = (user) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({user: user})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("User Updated:", data)
+      dispatch(doTheLoginThing(data))
+      dispatch(loadUserShown(data))
+    })
+  }
+}
 
 // Tournament Actions
 const loadTournaments = (tournaments) => ({
@@ -122,7 +141,10 @@ export const tournamentPostFetch = (tournament) => {
       body: JSON.stringify({tournament: tournament})
     })
     .then(res => res.json())
-    .then(data => console.log("New Tourn Added:", data))
+    .then(data => {
+      console.log("New Tourn Added:", data)
+      dispatch(doTheLoginThing(data.user))
+    })
   }
 }
 
@@ -157,6 +179,32 @@ export const getTeamFetch = (id) => {
   }
 }
 
+export const tournamentPatchFetch = (tournament) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:3000/api/v1/tournaments/${tournament.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({tournament: tournament})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Tournament Updated:", data)
+      dispatch(reloadTournament(data.tournament))
+      dispatch(doTheLoginThing(data.user))
+    })
+  }
+}
+
+const reloadTournament = tournament => ({
+  type: "RELOAD_TOURNAMENT",
+  payload: tournament
+})
+
+// Team Actions
 const loadTeamShown = (team) => {
   return {
     type: "LOAD_TEAM_SHOWN",
@@ -200,51 +248,7 @@ export const teamPatchFetch = (team) => {
   }
 }
 
-export const tournamentPatchFetch = (tournament) => {
-  return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/tournaments/${tournament.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Bearer ${localStorage.token}`
-      },
-      body: JSON.stringify({tournament: tournament})
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Tournament Updated:", data)
-      dispatch(reloadTournament(data.tournament))
-      dispatch(doTheLoginThing(data.user))
-    })
-  }
-}
-
-const reloadTournament = tournament => ({
-    type: "RELOAD_TOURNAMENT",
-    payload: tournament
-})
-
-export const userPatchFetch = (user) => {
-  return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Bearer ${localStorage.token}`
-      },
-      body: JSON.stringify({user: user})
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log("User Updated:", data)
-      dispatch(doTheLoginThing(data))
-      dispatch(loadUserShown(data))
-    })
-  }
-}
-
+// Entry and Membership
 export const entryPostFetch = entry => {
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/entries", {
@@ -284,19 +288,3 @@ export const membershipPostFetch = membership => {
     })
   }
 }
-
-// export const entryPostFetch = (entryInfo) => {
-//   return (dispatch) => {
-//     return fetch("", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Accept": "application/json",
-//         "Authorization": `Bearer ${localStorage.token}`
-//       },
-//       body: JSON.stringify({entryInfo})
-//     })
-//     .then(res => res.json())
-//     .then(data => console.log("New Entry Added:", data))
-//   }
-// }
