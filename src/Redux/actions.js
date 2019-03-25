@@ -145,7 +145,9 @@ export const tournamentPostFetch = (tournament) => {
     .then(res => res.json())
     .then(data => {
       console.log("New Tourn Added:", data)
+      dispatch(loadTournShown(data.tournament))
       dispatch(doTheLoginThing(data.user))
+      dispatch(push(`/tournaments/${data.tournament.id}`))
     })
   }
 }

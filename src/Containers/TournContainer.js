@@ -29,8 +29,8 @@ class TournContainer extends Component {
     // }/>
     return (
       <Switch>
-        <Route path="/tournaments/:id" component={TournShow}/>
         <Route path="/tournaments/new" component={NewTournamentForm} />
+        <Route path="/tournaments/:id" component={TournShow}/>
         <Route exact path="/tournaments" render={() =>(
           <div>
             <h2 className="ui header">All Tournaments</h2>
