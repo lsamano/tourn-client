@@ -1,8 +1,10 @@
 const initialState = {
   user: {
-    teams: []
+    // teams: []
   },
-  tournaments: []
+  tournaments: [],
+  teamShown: {},
+  tournShown: {}
 }
 
 export default function reducer(state = initialState, action) {
@@ -29,7 +31,9 @@ export default function reducer(state = initialState, action) {
               return tourn
             }
           })
-          return { ...state, tournaments: updatedTournaments}
+          return { ...state, tournaments: updatedTournaments, tournShown: action.payload}
+        case 'LOAD_TOURN_SHOWN':
+          return {...state, tournShown: action.payload}
 
       // Teams
         case 'LOAD_TEAM_SHOWN':

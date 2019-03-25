@@ -7,19 +7,22 @@ import ModalModalExample from './ModalModalExample';
 import TournCard from './TournCard';
 
 class Home extends Component {
-
   formatTournaments = tournaments => {
-    return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+    if (tournaments.length === 0) {
+      return "No Tournaments."
+    } else {
+      return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+    }
+
   }
 
   formatTeams = teams => {
-    return teams.map(team => <h4><Link to={`/teams/${team.id}`}>{team.name}</Link></h4>)
+    if (teams.length === 0) {
+      return "No Teams Yet. Join One!"
+    } else {
+      return teams.map(team => <h4><Link to={`/teams/${team.id}`}>{team.name}</Link></h4>)
+    }
   }
-
-  // filterHostedTournments = () => {
-  //   const filteredTournaments = this.props.tournaments.filter(tourn => tourn.host.id === this.props.user.id)
-  //   return this.formatTournaments(filteredTournaments)
-  // }
 
   render() {
     if (!localStorage.token) {
@@ -53,7 +56,7 @@ const mapStateToProps = state => {
     user: state.reducer.user,
     hosted_tourns: state.reducer.user.hosted_tourns,
     teams: state.reducer.user.teams,
-    tournaments: state.reducer.user.teams.flatMap(team => team.tournaments)
+    // tournaments: state.reducer.user.teams.flatMap(team => team.tournaments)
   }
 }
 //

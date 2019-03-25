@@ -39,7 +39,7 @@ class TeamShow extends React.Component {
   render() {
     console.log("Team Show:", this.props);
     const {teamShown, user} = this.props
-    if (teamShown) {
+    if (teamShown.id) {
       return (
         <div>
           {this.state.formVisible ? <TeamEdit teamShown={teamShown} clickHandler={this.clickHandler}/> : null}

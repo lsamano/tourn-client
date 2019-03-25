@@ -162,6 +162,31 @@ export const getTournaments = () => {
   }
 }
 
+export const getTournFetch = (id) => {
+  return (dispatch) => {
+    console.log("THIS IS THE TOURN ID:", id);
+    return fetch(`http://localhost:3000/api/v1/tournaments/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("fetched the tourn shown", data)
+        dispatch(loadTournShown(data))
+    })
+  }
+}
+
+const loadTournShown = tourn => ({
+  type: "LOAD_TOURN_SHOWN",
+  payload: tourn
+})
+
+// Team
 export const getTeamFetch = (id) => {
   return (dispatch) => {
     console.log("THIS IS THE ID:", id);
@@ -226,7 +251,12 @@ export const teamPostFetch = (team) => {
       body: JSON.stringify({team: team})
     })
     .then(res => res.json())
-    .then(data => console.log("New Team Added:", data))
+    .then(data => {
+      console.log("New Team Added:", data)
+      dispatch(loadTeamShown(data.team))
+      dispatch(doTheLoginThing(data.user))
+      dispatch(push(`/teams/${data.team.id}`))
+    })
   }
 }
 
@@ -291,6 +321,8 @@ export const membershipPostFetch = membership => {
   }
 }
 
+
+
 export const makeBracket = tournament => {
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/brackets", {
@@ -308,6 +340,8 @@ export const makeBracket = tournament => {
     .then(res => res.json())
     .then(data => {
       console.log("Bracket Created:", data)
+      // dispatch(loadTournShown(data))
+      dispatch(reloadTournament(data))
       dispatch(push(`/tournaments/${tournament.id}/bracket`))
       // dispatch(loadTeamShown(data.team))
       // dispatch(doTheLoginThing(data.user))
