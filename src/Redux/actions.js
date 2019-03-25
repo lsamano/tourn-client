@@ -1,3 +1,5 @@
+import { push } from 'connected-react-router'
+
 // User Actions (Login and Sign Up)
 const doTheLoginThing = userLogin => {
   return {
@@ -306,6 +308,7 @@ export const makeBracket = tournament => {
     .then(res => res.json())
     .then(data => {
       console.log("Bracket Created:", data)
+      dispatch(push(`/tournaments/${tournament.id}/bracket`))
       // dispatch(loadTeamShown(data.team))
       // dispatch(doTheLoginThing(data.user))
     })

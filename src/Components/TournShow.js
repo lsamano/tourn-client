@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
-import TournSignup from './TournSignup';
+import TournBracket from './TournBracket';
 import {connect} from 'react-redux';
 import TournamentEdit from './TournamentEdit';
 import TeamDropDown from './TeamDropDown';
@@ -38,7 +38,7 @@ class TournShow extends React.Component {
     const {tournament, user} = this.props
     return (
       <Switch>
-        <Route path=":id/signup" component={TournSignup} />
+        <Route path="/tournaments/:id/bracket" render={routerProps => <TournBracket tournament={tournament} />} />
         <Route render={() => {
             return <div>
               {this.state.formVisible ? <TournamentEdit tournament={tournament} clickHandler={this.clickHandler}/> : null}
