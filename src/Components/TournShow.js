@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import TournamentEdit from './TournamentEdit';
 import TeamDropDown from './TeamDropDown';
 import {Button, Icon} from 'semantic-ui-react';
+import {makeBracket} from '../Redux/actions';
 
 class TournShow extends React.Component {
   state = {
@@ -22,6 +23,15 @@ class TournShow extends React.Component {
 
   formatTeams = (teams) => {
     return teams.map(team =><div><Link to={`/teams/${team.id}`}>{team.name}</Link></div>)
+  }
+
+  makeBracket = () => {
+    const {tournament} = this.props
+    // check if appropriate # of entrants and then
+    if (tournament.teams.length === 8) {
+      // run the fetch from props
+      this.props.makeBracket(tournament)
+    }
   }
 
   render() {
@@ -45,6 +55,7 @@ class TournShow extends React.Component {
                 } Hosted by <Link to={`/users/${tournament.host.id}`}>{tournament.host.username}</Link></p>
                 <p className="description">{tournament.description}</p>
                 <TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
+                <Button onClick={this.makeBracket}>Make Bracket</Button>
                 <h3>Current Teams Entered:</h3>
                 {this.formatTeams(tournament.teams)}
               </div>
@@ -60,4 +71,8 @@ const mapStateToProps = state => ({
   user: state.reducer.user
 })
 
-export default connect(mapStateToProps)(TournShow);
+const mapDispatchToProps = dispatch => ({
+  makeBracket: (tournament) => dispatch(makeBracket(tournament))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TournShow);

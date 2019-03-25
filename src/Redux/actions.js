@@ -52,8 +52,8 @@ export const getProfileFetch = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          accepts: "application/json",
-          Authorization: `Bearer ${token}`
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
         }
       })
         .then(resp => resp.json())
@@ -285,6 +285,29 @@ export const membershipPostFetch = membership => {
       console.log("Team Joined:", data)
       dispatch(loadTeamShown(data.team))
       dispatch(doTheLoginThing(data.user))
+    })
+  }
+}
+
+export const makeBracket = tournament => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/brackets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      },
+      body: JSON.stringify({
+        tournament: tournament,
+        teams: tournament.teams
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Bracket Created:", data)
+      // dispatch(loadTeamShown(data.team))
+      // dispatch(doTheLoginThing(data.user))
     })
   }
 }
