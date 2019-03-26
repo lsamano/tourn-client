@@ -41,7 +41,7 @@ class UserShow extends React.Component {
         {this.state.formVisible ? <UserEdit user={user} clickHandler={this.clickHandler}/> : null}
         <h1 className="ui top attached inverted header">
           <img className="ui avatar image" alt="" src={userShown.avatar}/>{userShown.username}
-            <div className="sub header">----------</div>
+            <div className="sub header">Member Since {moment(userShown.created_at).format("LL")}</div>
           </h1>
           <div className="ui attached segment orange">
             {userShown.id === user.id

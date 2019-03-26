@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Switch, Route} from 'react-router-dom';
 
-import MyPlaceholder from '../Components/MyPlaceholder';
 import UserShow from '../Components/UserShow';
 import {getUserFetch} from '../Redux/actions';
 

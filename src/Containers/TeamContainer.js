@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Switch, Route} from 'react-router-dom';
 
-import MyPlaceholder from '../Components/MyPlaceholder';
 import TeamShow from '../Components/TeamShow';
 import NewTeamForm from '../Components/NewTeamForm';
 
