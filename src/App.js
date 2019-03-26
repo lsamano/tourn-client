@@ -7,6 +7,7 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Home from './Components/Home';
 import Nav from './Components/Nav';
+import NavTwo from './Components/NavTwo';
 import TournContainer from './Containers/TournContainer';
 import UserContainer from './Containers/UserContainer';
 import TeamContainer from './Containers/TeamContainer';
@@ -21,26 +22,28 @@ class App extends Component {
     render() {
       console.log("The props of App:", this.props);
       return (
-        <div className="app">
-          <Route component={Nav}/>
-          <div className="pusher">
+        <div className="ui container">
+
             <Grid>
               <Grid.Row>
+                <Grid.Column width={3}>
+                  <Route component={NavTwo}/>
+                </Grid.Column>
                 <Grid.Column width={10}>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/tournaments" component={TournContainer} />
-              <Route path="/users" component={UserContainer} />
-              <Route path="/teams" component={TeamContainer} />
-              <Route exact path="/" component={Home} />
-              <Route path="/" component={NoRouteMatch} />
-            </Switch>
+                  <div className="ui raised container segment">
+                    <Switch>
+                      <Route path="/login" component={Login} />
+                      <Route path="/signup" component={Signup} />
+                      <Route path="/tournaments" component={TournContainer} />
+                      <Route path="/users" component={UserContainer} />
+                      <Route path="/teams" component={TeamContainer} />
+                      <Route exact path="/" component={Home} />
+                      <Route path="/" component={NoRouteMatch} />
+                    </Switch>
+                  </div>
               </Grid.Column>
-              <Grid.Column width={3}></Grid.Column>
             </Grid.Row>
           </Grid>
-          </div>
         </div>
       );
     }

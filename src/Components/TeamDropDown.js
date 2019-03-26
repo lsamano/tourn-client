@@ -9,9 +9,11 @@ class TeamDropDown extends React.Component {
   }
 
   formattedTeams = () => {
-    return this.props.teams.map(team => {
-      return {key:team.id, text:team.name, value:team.id}
-    })
+    if (this.props.teams) {
+      return this.props.teams.map(team => {
+        return {key:team.id, text:team.name, value:team.id}
+      })
+    }
   }
 
   handleChange  = (event, {value}) => {

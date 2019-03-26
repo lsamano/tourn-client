@@ -62,8 +62,10 @@ class TournShow extends React.Component {
                     : null
                   } Hosted by <Link to={`/users/${tournament.host.id}`}>{tournament.host.username}</Link></p>
                   <p className="description">{tournament.description}</p>
-                  <TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
-                  <Button onClick={this.makeBracket}>Make Bracket</Button>
+                  {tournament.bracket
+                  ? <Link to="/tournaments/:id/bracket"><Button>See Bracket</Button></Link>
+                  : <React.Fragment><TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
+                    <Button onClick={this.makeBracket}>Make Bracket</Button></React.Fragment>}
                   <h3>Current Teams Entered:</h3>
                   {this.formatTeams(tournament.teams)}
                 </div>
