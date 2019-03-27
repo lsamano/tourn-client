@@ -71,7 +71,7 @@ const mapStateToProps = state => {
     // tournaments: state.reducer.user.teams.flatMap(team => team.tournaments)
   }
 }
-//
+// /
 // const mapDispatchToProps = dispatch => ({
 //     getTournaments: () => dispatch(getTournaments()),
 //     getProfileFetch: () => dispatch(getProfileFetch())
