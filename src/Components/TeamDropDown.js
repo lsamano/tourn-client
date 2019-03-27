@@ -25,7 +25,7 @@ class TeamDropDown extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    if (!this.props.enteredTeams.filter(team => team.id === this.state.team_id).length > 0) {
+    if (this.state.team_id && !this.props.enteredTeams.filter(team => team.id === this.state.team_id).length > 0) {
       const entryInfo = {...this.state, tournament_id: this.props.tournament.id}
       this.props.entryPostFetch(entryInfo);
     }
