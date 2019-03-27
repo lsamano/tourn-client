@@ -20,13 +20,6 @@ class TournContainer extends Component {
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }
-    // <Route path="/tournaments/:id" render={routerProps => {
-    //     let id = parseInt(routerProps.match.params.id);
-    //     let tournament = this.props.tournaments.find(tournament => tournament.id === id);
-    //     console.log(this.props.tournaments, tournament);
-    //     return (tournament ? <TournShow tournament={tournament} /> : null)
-    //   }
-    // }/>
     return (
       <Switch>
         <Route path="/tournaments/new" component={NewTournamentForm} />

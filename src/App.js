@@ -23,13 +23,12 @@ class App extends Component {
       console.log("The props of App:", this.props);
       return (
         <div className="ui container">
-
             <Grid>
               <Grid.Row>
                 <Grid.Column width={3}>
                   <Route component={NavTwo}/>
                 </Grid.Column>
-                <Grid.Column width={10}>
+                <Grid.Column width={15}>
                   <div className="ui raised container segment">
                     <Switch>
                       <Route path="/login" component={Login} />

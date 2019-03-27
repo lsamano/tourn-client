@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
 import TournBracket from './TournBracket';
+import TournDashboard from './TournDashboard';
 import {connect} from 'react-redux';
 import TournamentEdit from './TournamentEdit';
 import TeamDropDown from './TeamDropDown';
@@ -44,6 +45,7 @@ class TournShow extends React.Component {
     return (
       <Switch>
         <Route path="/tournaments/:id/bracket" component={TournBracket} />
+        <Route path="/tournaments/:id/dashboard" component={TournDashboard} />
         <Route render={() => {
             if (!tournament.id) {
               return <MyPlaceholder/>
@@ -63,7 +65,7 @@ class TournShow extends React.Component {
                   } Hosted by <Link to={`/users/${tournament.host.id}`}>{tournament.host.username}</Link></p>
                   <p className="description">{tournament.description}</p>
                   {tournament.bracket
-                  ? <Link to="/tournaments/:id/bracket"><Button>See Bracket</Button></Link>
+                  ? <Link to={`/tournaments/${tournament.id}/bracket`}><Button>See Bracket</Button></Link>
                   : <React.Fragment><TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
                     <Button onClick={this.makeBracket}>Make Bracket</Button></React.Fragment>}
                   <h3>Current Teams Entered:</h3>

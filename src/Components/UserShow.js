@@ -3,8 +3,10 @@ import {connect} from 'react-redux';
 import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
 import TournCard from './TournCard';
+import TeamCard from './TeamCard';
 import UserEdit from './UserEdit';
-import {Button, Icon} from 'semantic-ui-react';
+import {Button, Icon, Card} from 'semantic-ui-react';
+import MyPlaceholder from './MyPlaceholder';
 
 class UserShow extends React.Component {
   state = {
@@ -21,17 +23,41 @@ class UserShow extends React.Component {
     })
   }
 
+  // formatTeams = teams => {
+  //   return teams.map(team => <h4><Link to={`/teams/${team.id}`}>{team.name}</Link></h4>)
+  // }
+
   formatTeams = teams => {
-    return teams.map(team => <h4><Link to={`/teams/${team.id}`}>{team.name}</Link></h4>)
+    if (teams.length === 0) {
+      return "No Teams Yet. Join One!"
+    } else {
+      return (
+        <Card.Group>
+          {teams.map(team => <TeamCard key={team.id} team={team}/>)}
+        </Card.Group>
+      )
+    }
   }
 
   formatTournaments = tournaments => {
-      return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
-    }
+    return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+  }
 
   formatHostedTournaments = tournaments => {
-      return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+    if (tournaments.length === 0) {
+      return "No Tournaments."
+    } else {
+      return (
+
+        tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+      )
     }
+
+  }
+
+  // formatHostedTournaments = tournaments => {
+  //     return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+  //   }
 
   render() {
     const {userShown, user} = this.props
@@ -53,7 +79,9 @@ class UserShow extends React.Component {
             <h3>Teams:</h3>
             {this.formatTeams(userShown.teams)}
             <h3>Hosted Tournaments:</h3>
-            {this.formatHostedTournaments(userShown.hosted_tourns)}
+            <div className="ui middle aligned divided list">
+              {userShown.hosted_tourns ? this.formatTournaments(userShown.hosted_tourns) : <MyPlaceholder /> }
+            </div>
           </div>
         </div>
       )

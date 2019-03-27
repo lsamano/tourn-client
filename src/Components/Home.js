@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import MyPlaceholder from './MyPlaceholder';
-import ModalModalExample from './ModalModalExample';
+import DeletionModal from './DeletionModal';
+import TeamCard from './TeamCard';
+import { Card, List } from 'semantic-ui-react'
 
 import TournCard from './TournCard';
 
@@ -11,7 +13,10 @@ class Home extends Component {
     if (tournaments.length === 0) {
       return "No Tournaments."
     } else {
-      return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+      return (
+
+        tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+      )
     }
 
   }
@@ -20,7 +25,11 @@ class Home extends Component {
     if (teams.length === 0) {
       return "No Teams Yet. Join One!"
     } else {
-      return teams.map(team => <h4><Link to={`/teams/${team.id}`}>{team.name}</Link></h4>)
+      return (
+        <Card.Group>
+          {teams.map(team => <TeamCard key={team.id} team={team}/>)}
+        </Card.Group>
+      )
     }
   }
 
@@ -32,20 +41,23 @@ class Home extends Component {
     const {user, hosted_tourns, tournaments, teams} = this.props
     return (
       <div>
-        <h1><img className="ui avatar image" alt="" src={user.avatar}/>Welcome, {<Link to={`users/${user.id}`}>{user.username}</Link>}!</h1>
-        <h2 className="ui header">Your Teams:</h2>
-          <div className="ui middle aligned divided list">
+        <div className="ui container raised segment">
+          <h1><img className="ui avatar image" alt="" src={user.avatar}/>Welcome, {<Link to={`users/${user.id}`}>{user.username}</Link>}!</h1>
+        </div>
+        <div className="ui container raised segment">
+          <h2 className="ui header">Your Teams</h2>
+          <div className="ui middle aligned divided list team-overflow">
             {teams ? this.formatTeams(teams) : <MyPlaceholder /> }
           </div>
-        <h2 className="ui header">Your Hosted Tournaments:</h2>
+          <h2 className="ui header">Your Hosted Tournaments</h2>
           <div className="ui middle aligned divided list">
             {hosted_tourns ? this.formatTournaments(hosted_tourns) : <MyPlaceholder /> }
           </div>
-        <h2>Your Entered Tournaments:</h2>
+          <h2>Your Entered Tournaments</h2>
           <div className="ui middle aligned divided list">
             {tournaments ? this.formatTournaments(tournaments) : <MyPlaceholder /> }
           </div>
-      <ModalModalExample />
+        </div>
       </div>
     )
   }

@@ -3,10 +3,11 @@ import {connect} from 'react-redux';
 import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
 // import TeamSignup from './TeamSignup';
+import MemberCard from './MemberCard';
 import TournCard from './TournCard';
 import {getTeamFetch, membershipPostFetch} from '../Redux/actions';
 import TeamEdit from './TeamEdit';
-import {Button, Icon} from 'semantic-ui-react';
+import {Button, Icon, Card} from 'semantic-ui-react';
 
 // <Route path="/teams/:id/signup" component={TeamSignup} />
 class TeamShow extends React.Component {
@@ -29,7 +30,11 @@ class TeamShow extends React.Component {
   }
 
   formatMembers = () => {
-    return this.props.teamShown.members.map(member => <h4><Link to={`/users/${member.id}`}><img className="ui avatar image" alt="" src={member.avatar}/>{member.username}</Link></h4>)
+    return (
+      <Card.Group>
+        {this.props.teamShown.members.map(member => <MemberCard member={member} key={member.id} team={this.props.teamShown}/>)}
+      </Card.Group>
+    )
   }
 
   formatTournaments = tournaments => {
@@ -47,7 +52,7 @@ class TeamShow extends React.Component {
                   <div className="sub header"> {teamShown.tagline}</div>
                 </h1>
                 <div className="ui attached segment">
-                  <p className="description">{moment(teamShown.created_at).format('llll')}</p>
+                  <p className="description">Founded {moment(teamShown.created_at).format('llll')}</p>
                   <p>Captain: {teamShown.captain.username}</p>
                   {teamShown.members.filter(member => member.id === user.id).length > 0
                     ? null
@@ -60,8 +65,7 @@ class TeamShow extends React.Component {
                     : null
                   }
                   <h3>Members ({teamShown.members.length})</h3>
-                  {this.formatMembers()}
-
+                    {this.formatMembers()}
                   <h3>Entered Tournaments</h3>
                   {this.formatTournaments(teamShown.tournaments)}
 
