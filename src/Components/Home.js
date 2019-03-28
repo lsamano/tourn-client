@@ -66,13 +66,7 @@ const mapStateToProps = state => {
     user: state.reducer.user,
     hosted_tourns: state.reducer.user.hosted_tourns,
     teams: state.reducer.user.teams,
-    // tournaments: state.reducer.user.teams.flatMap(team => team.tournaments)
   }
 }
-// /
-// const mapDispatchToProps = dispatch => ({
-//     getTournaments: () => dispatch(getTournaments()),
-//     getProfileFetch: () => dispatch(getProfileFetch())
-// })
 
 export default connect(mapStateToProps)(Home);
