@@ -65,7 +65,7 @@ class TournamentEdit extends Component {
           />
           <Button type='submit'>Submit</Button>
         </Form>
-        <DeletionModal />
+        <DeletionModal id={this.props.tournament.id} />
       </React.Fragment>
     )
   }

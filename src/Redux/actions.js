@@ -165,6 +165,27 @@ export const getTournaments = () => {
   }
 }
 
+export const tournamentDeleteFetch = id => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/tournaments/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${localStorage.token}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("Deletion Complete:", data)
+      dispatch(loadTournaments(data.tournaments))
+      dispatch(addFilteredTournaments(data.tournaments))
+      dispatch(doTheLoginThing(data.user))
+      dispatch(push("/tournaments"))
+    })
+  }
+}
+
 const addFilteredTournaments = tournaments => ({
   type: 'ADD_FILTERED_TOURNAMENTS',
   payload: tournaments

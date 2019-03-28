@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import { Button, Modal } from 'semantic-ui-react'
+import { tournamentDeleteFetch } from '../Redux/actions'
 
 class DeletionModal extends Component {
   state = { open: false }
@@ -8,7 +10,10 @@ class DeletionModal extends Component {
     this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
   }
 
-  close = () => this.setState({ open: false })
+  close = () => {
+    this.setState({ open: false })
+    this.props.tournamentDeleteFetch(this.props.id)
+  }
 
   render() {
     const { open, closeOnEscape, closeOnDimmerClick } = this.state
@@ -45,4 +50,8 @@ class DeletionModal extends Component {
   }
 }
 
-export default DeletionModal
+const mapDispatchToProps = dispatch => ({
+  tournamentDeleteFetch: (id) => dispatch(tournamentDeleteFetch(id))
+})
+
+export default connect(null, mapDispatchToProps)(DeletionModal)
