@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {teamPatchFetch} from '../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
-import DeletionModal from './DeletionModal';
 
 class TeamEdit extends Component {
   state = {
@@ -60,7 +59,6 @@ class TeamEdit extends Component {
         </Form.Field>
         <Button type='submit'>Submit</Button>
       </Form>
-      <DeletionModal />
       </React.Fragment>
     )
   }

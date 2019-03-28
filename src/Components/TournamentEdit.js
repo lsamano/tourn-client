@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {tournamentPatchFetch} from '../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 import { DateTimeInput } from 'semantic-ui-calendar-react';
+import DeletionModal from './DeletionModal';
 
 class TournamentEdit extends Component {
   state = {
@@ -34,35 +35,38 @@ class TournamentEdit extends Component {
 
   render() {
     return (
-      <Form onSubmit={ event => this.handleSubmit(event) }>
-        <h1>Edit Tournament</h1>
-        <Form.Field>
-          <label>Title</label>
-          <input
-            placeholder='Title'
-            name="title"
-            value={this.state.title}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <Form.Field>
-          <label>Description</label>
-          <textarea
-            name="description"
-            placeholder='Description'
-            value={this.state.description}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <DateTimeInput
-          name="start_dt"
-          placeholder="Date & Start Time"
-          value={this.state.start_dt}
-          iconPosition="left"
-          onChange={this.handleDateChange}
-        />
-        <Button type='submit'>Submit</Button>
-      </Form>
+      <React.Fragment>
+        <Form onSubmit={ event => this.handleSubmit(event) }>
+          <h1>Edit Tournament</h1>
+          <Form.Field>
+            <label>Title</label>
+            <input
+              placeholder='Title'
+              name="title"
+              value={this.state.title}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <Form.Field>
+            <label>Description</label>
+            <textarea
+              name="description"
+              placeholder='Description'
+              value={this.state.description}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <DateTimeInput
+            name="start_dt"
+            placeholder="Date & Start Time"
+            value={this.state.start_dt}
+            iconPosition="left"
+            onChange={this.handleDateChange}
+          />
+          <Button type='submit'>Submit</Button>
+        </Form>
+        <DeletionModal />
+      </React.Fragment>
     )
   }
 }

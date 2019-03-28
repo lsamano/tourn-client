@@ -2,33 +2,39 @@ import React from 'react'
 import {connect} from 'react-redux';
 import Search from './Search'
 import TournCard from './TournCard';
+import {updateSearch} from '../Redux/actions';
+import { Segment, Dimmer, Loader, Image } from 'semantic-ui-react'
 
 class TournIndex extends React.Component {
-  state ={
-    filteredTournaments: [],
-    searchTerm: ""
-  }
+  // state ={
+  //   filteredTournaments: this.props.tournaments,
+  //   searchTerm: ""
+  // }
 
   changeHandler = searchTerm => {
-    const filteredTournaments = this.props.tournaments.filter(tourn => tourn.title.includes(searchTerm))
-    this.setState({
-      searchTerm: searchTerm,
-      filteredTournaments: filteredTournaments
-    }, ()=>console.log(searchTerm))
+    this.props.updateSearch(searchTerm, this.props.tournaments)
   }
 
   formatTournaments = () => {
-    return this.state.filteredTournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
+    return this.props.filteredTournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
   }
 
   render() {
+    console.log("filteredTournaments:", this.props.filteredTournaments);
     return (
       <div>
       <h2 className="ui header">All Tournaments</h2>
-      <Search changeHandler={this.changeHandler}/>
-      <div className="ui middle aligned divided list">
-      {this.formatTournaments()}
-      </div>
+      <Search changeHandler={this.changeHandler} searchTerm={this.props.searchTerm}/>
+
+      {this.props.filteredTournaments.length > 0
+        ? <div className="ui middle aligned divided list">{this.formatTournaments()}</div>
+        :     <Segment className="height-container">
+                <Dimmer active>
+                  <Loader>Loading</Loader>
+                </Dimmer>
+              </Segment>
+      }
+
       </div>
     )
   }
@@ -36,7 +42,13 @@ class TournIndex extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  tournaments: state.reducer.tournaments
+  tournaments: state.reducer.tournaments,
+  filteredTournaments: state. reducer.filteredTournaments,
+  searchTerm: state.reducer.searchTerm
 })
 
-export default connect(mapStateToProps)(TournIndex);
+const mapDispatchToProps = dispatch => ({
+  updateSearch: (searchTerm, tournaments) => dispatch(updateSearch(searchTerm, tournaments))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TournIndex);

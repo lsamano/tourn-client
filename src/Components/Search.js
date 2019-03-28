@@ -7,6 +7,7 @@ const Search = props => (
   icon={<Icon name='search' inverted circular link />}
   placeholder='Search...'
   onChange={(event, {value}) => props.changeHandler(value)}
+  value={props.searchTerm}
    />
 )
 

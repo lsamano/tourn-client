@@ -49,13 +49,11 @@ class Home extends Component {
           <div className="ui middle aligned divided list team-overflow">
             {teams ? this.formatTeams(teams) : <MyPlaceholder /> }
           </div>
+        </div>
+        <div className="ui container raised segment">
           <h2 className="ui header">Your Hosted Tournaments</h2>
           <div className="ui middle aligned divided list">
             {hosted_tourns ? this.formatTournaments(hosted_tourns) : <MyPlaceholder /> }
-          </div>
-          <h2>Your Entered Tournaments</h2>
-          <div className="ui middle aligned divided list">
-            {tournaments ? this.formatTournaments(tournaments) : <MyPlaceholder /> }
           </div>
         </div>
       </div>

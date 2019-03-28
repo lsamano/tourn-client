@@ -52,7 +52,7 @@ class NavTwo extends Component {
         </Menu.Item>
 
         <Menu.Item>
-          <Menu.Header>-----</Menu.Header>
+          <Menu.Header>Create</Menu.Header>
 
           <Menu.Menu>
             <Menu.Item
@@ -77,17 +77,10 @@ class NavTwo extends Component {
               active={activeItem === 'all_tournaments'}
               onClick={this.handleItemClick}
             />
-            <Menu.Item
-              name='search'
-              active={activeItem === 'search'}
-              onClick={this.handleItemClick}
-            />
           </Menu.Menu>
         </Menu.Item>
 
         <Menu.Item>
-          <Menu.Header>-----</Menu.Header>
-
           <Menu.Menu>
             <Menu.Item
               name='login'
@@ -112,12 +105,17 @@ class NavTwo extends Component {
           <Menu.Header>Support</Menu.Header>
 
           <Menu.Menu>
+            <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick}>
+              FAQs
+            </Menu.Item>
+            <Menu.Item name='terms_and_conditions' active={activeItem === 'terms_and_conditions'} onClick={this.handleItemClick}>
+              Terms and Conditions
+            </Menu.Item>
             <Menu.Item name='email' active={activeItem === 'email'} onClick={this.handleItemClick}>
               E-mail Support
             </Menu.Item>
-
-            <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick}>
-              FAQs
+            <Menu.Item name='contact_us' active={activeItem === 'contact_us'} onClick={this.handleItemClick}>
+              Contact Us
             </Menu.Item>
           </Menu.Menu>
         </Menu.Item>

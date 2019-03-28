@@ -22,7 +22,11 @@ class Signup extends Component {
   handleSubmit = event => {
     event.preventDefault();
     console.log("Now starting the fetch...");
-    this.props.signupFetch(this.state);
+    if (this.state.avatar === "") {
+      this.props.signupFetch({...this.state, avatar: "https://robohash.org/default.png?size=300x300&set=set4"});
+    } else {
+      this.props.signupFetch(this.state);
+    }
   }
 
   render() {

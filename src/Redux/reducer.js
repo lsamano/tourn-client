@@ -3,6 +3,8 @@ const initialState = {
     // teams: []
   },
   tournaments: [],
+  filteredTournaments: [],
+  searchTerm: "",
   teamShown: {},
   tournShown: {}
 }
@@ -34,6 +36,10 @@ export default function reducer(state = initialState, action) {
           return { ...state, tournaments: updatedTournaments, tournShown: action.payload}
         case 'LOAD_TOURN_SHOWN':
           return {...state, tournShown: action.payload}
+        case 'ADD_FILTERED_TOURNAMENTS':
+          return {...state, filteredTournaments: action.payload}
+        case 'AFFECT_STORE':
+          return {...state, searchTerm: action.payload}
 
       // Teams
         case 'LOAD_TEAM_SHOWN':

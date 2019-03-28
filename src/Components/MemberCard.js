@@ -8,7 +8,7 @@ const MemberCard = ({member, team}) => {
     <Card link>
       <Image src={member.avatar}/>
       <Card.Content>
-        <Card.Header><Link to={`/members/${member.id}`}>{member.username}</Link></Card.Header>
+        <Card.Header><Link to={`/users/${member.id}`}>{member.username}</Link></Card.Header>
         <Card.Meta>{team.captain.id === member.id ? <div>CAPTAIN</div> : <div>MEMBER</div>}</Card.Meta>
         <Card.Description>{member.bio}</Card.Description>
       </Card.Content>

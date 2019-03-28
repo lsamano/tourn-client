@@ -48,12 +48,14 @@ class TeamShow extends React.Component {
       return (
         <div>
           {this.state.formVisible ? <TeamEdit teamShown={teamShown} clickHandler={this.clickHandler}/> : null}
-                <h1 className="ui top attached inverted header">{teamShown.name}
+                <h1 className="ui top attached inverted header">
+                  <img className="ui avatar image" alt="" src={teamShown.logo}/>
+                  {teamShown.name}
                   <div className="sub header"> {teamShown.tagline}</div>
                 </h1>
                 <div className="ui attached segment">
-                  <p className="description">Founded {moment(teamShown.created_at).format('llll')}</p>
-                  <p>Captain: {teamShown.captain.username}</p>
+                  <p className="description">Founded {moment(teamShown.created_at).format('ll')}</p>
+                  <p>Captain: <Link to={`/users/${teamShown.captain.id}`}>{teamShown.captain.username}</Link></p>
                   {teamShown.members.filter(member => member.id === user.id).length > 0
                     ? null
                     : <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>

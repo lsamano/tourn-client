@@ -159,10 +159,29 @@ export const getTournaments = () => {
     .then(data => {
       console.log("fetched the tournaments", data)
       dispatch(loadTournaments(data.tournaments))
+      dispatch(addFilteredTournaments(data.tournaments))
     })
     .catch(console.error)
   }
 }
+
+const addFilteredTournaments = tournaments => ({
+  type: 'ADD_FILTERED_TOURNAMENTS',
+  payload: tournaments
+})
+
+export const updateSearch = (searchTerm, tournaments) => {
+  return dispatch => {
+    dispatch(affectStore(searchTerm))
+    const filteredTournaments = tournaments.filter(tourn => tourn.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    dispatch(addFilteredTournaments(filteredTournaments))
+  }
+}
+
+const affectStore = searchTerm => ({
+  type: 'AFFECT_STORE',
+  payload: searchTerm
+})
 
 export const getTournFetch = (id) => {
   return (dispatch) => {

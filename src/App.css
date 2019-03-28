@@ -42,6 +42,14 @@
   overflow-x: scroll;
 } */
 
+/* div ui raised container segment {
+  height:500px;
+} */
+
+.height-container {
+  height: 85vh;
+}
+
 /* body {
   background-color: #efebe8;
 } */
