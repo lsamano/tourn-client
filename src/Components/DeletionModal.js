@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { Button, Modal } from 'semantic-ui-react'
-import { tournamentDeleteFetch } from '../Redux/actions'
+import { tournamentDeleteFetch } from '../redux/actions'
 
 class DeletionModal extends Component {
   state = { open: false }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {tournamentPostFetch} from '../../Redux/actions';
+import {tournamentPostFetch} from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 // import {doTheSignupThing} from '../Redux/actions';
-import {signupFetch} from '../../Redux/actions';
+import {signupFetch} from '../../redux/actions';
 import { Button, Checkbox, Form, Grid } from 'semantic-ui-react';
 
 class Signup extends Component {

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getProfileFetch} from './Redux/actions';
+import {getProfileFetch} from './redux/actions';
 import Login from './Components/User/Login';
 import Signup from './Components/User/Signup';
 import Home from './Components/Home';
-import NavTwo from './Components/NavTwo';
+import Nav from './Components/Nav';
 import TournContainer from './Containers/TournContainer';
 import UserContainer from './Containers/UserContainer';
 import TeamContainer from './Containers/TeamContainer';
@@ -26,7 +26,7 @@ class App extends Component {
               <Grid.Row>
                 <Grid.Column width={3}>
                   <div className="ui container">
-                    <Route component={NavTwo}/>
+                    <Route component={Nav}/>
                   </div>
                 </Grid.Column>
                 <Grid.Column width={15}>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {teamPostFetch} from '../../Redux/actions';
+import {teamPostFetch} from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 
 class NewTeamForm extends Component {

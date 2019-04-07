@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import Search from '../Search'
 import TournCard from './TournCard';
-import { updateSearch } from '../../Redux/actions';
+import { updateSearch } from '../../redux/actions';
 import { Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 class TournIndex extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {entryPostFetch} from '../../Redux/actions';
+import {entryPostFetch} from '../../redux/actions';
 
 class TournSignup extends React.Component {
   state = {

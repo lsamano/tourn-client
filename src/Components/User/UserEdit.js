@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {userPatchFetch} from '../../Redux/actions';
+import {userPatchFetch} from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 
 class UserEdit extends Component {
