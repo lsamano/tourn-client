@@ -21,7 +21,7 @@ class TournIndex extends React.Component {
       <h2 className="ui header">All Tournaments</h2>
       <Search changeHandler={this.changeHandler} searchTerm={this.props.searchTerm}/>
 
-      {this.props.filteredTournaments.length > 0
+      {this.props.tournaments.length > 0
         ? <div className="ui middle aligned divided list">{this.formatTournaments()}</div>
         :     <Segment className="height-container">
                 <Dimmer active>
