@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import MyPlaceholder from './MyPlaceholder';
-import TeamCard from './Team/TeamCard';
+import TeamCard from './team/TeamCard';
 import { Card } from 'semantic-ui-react'
 
 import TournCard from './TournCard';

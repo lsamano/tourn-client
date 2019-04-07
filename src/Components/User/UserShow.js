@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
-import TournCard from '../Tournament/TournCard';
-import TeamCard from '../Team/TeamCard';
+import TournCard from '../tournament/TournCard';
+import TeamCard from '../team/TeamCard';
 import UserEdit from './UserEdit';
 import { Button, Icon, Card, Image } from 'semantic-ui-react';
 import MyPlaceholder from '../MyPlaceholder';

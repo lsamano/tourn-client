@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 // import TeamSignup from './TeamSignup';
 import MemberCard from './MemberCard';
-import TournCard from '../Tournament/TournCard';
+import TournCard from '../tournament/TournCard';
 import {getTeamFetch, membershipPostFetch} from '../../redux/actions';
 import TeamEdit from './TeamEdit';
 import {Button, Icon, Card} from 'semantic-ui-react';
