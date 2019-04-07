@@ -5,7 +5,7 @@ import moment from 'moment';
 import TournCard from './TournCard';
 import TeamCard from './TeamCard';
 import UserEdit from './UserEdit';
-import {Button, Icon, Card} from 'semantic-ui-react';
+import {Button, Icon, Card, Image} from 'semantic-ui-react';
 import MyPlaceholder from './MyPlaceholder';
 
 class UserShow extends React.Component {
@@ -66,7 +66,7 @@ class UserShow extends React.Component {
       <div>
         {this.state.formVisible ? <UserEdit user={user} clickHandler={this.clickHandler}/> : null}
         <h1 className="ui top attached inverted header">
-          <img className="ui avatar image" alt="" src={userShown.avatar}/>{userShown.username}
+          <Image src={userShown.avatar} avatar />{userShown.username}
             <div className="sub header">Member Since {moment(userShown.created_at).format("LL")}</div>
           </h1>
           <div className="ui attached segment orange">

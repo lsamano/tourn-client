@@ -8,6 +8,7 @@ import DeletionModal from './DeletionModal';
 class TournamentEdit extends Component {
   state = {
     title: this.props.tournament.title,
+    image: this.props.tournament.image,
     description: this.props.tournament.description,
     start_dt: this.props.tournament.start_dt
   }
@@ -44,6 +45,15 @@ class TournamentEdit extends Component {
               placeholder='Title'
               name="title"
               value={this.state.title}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <Form.Field>
+            <label>Image</label>
+            <input
+              name="image"
+              placeholder='Image (URL)'
+              value={this.state.image}
               onChange={(event) => this.handleChange(event)}
               />
           </Form.Field>

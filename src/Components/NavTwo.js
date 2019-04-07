@@ -52,7 +52,7 @@ class NavTwo extends Component {
               name='my_profile'
               active={activeItem === 'my_profile'}
               onClick={this.handleItemClick}
-              />
+              >My Profile<Icon name='user' /></Menu.Item>
               <Menu.Item
                 name='logout'
                 active={activeItem === 'logout'}
@@ -62,6 +62,7 @@ class NavTwo extends Component {
 
           <Menu.Item>
             <Menu.Header>Create</Menu.Header>
+          </Menu.Item>
 
             <Menu.Menu>
               <Menu.Item
@@ -75,10 +76,10 @@ class NavTwo extends Component {
                 onClick={this.handleItemClick}
               />
             </Menu.Menu>
-          </Menu.Item>
 
           <Menu.Item>
             <Menu.Header>Explore</Menu.Header>
+          </Menu.Item>
 
             <Menu.Menu>
               <Menu.Item
@@ -87,11 +88,11 @@ class NavTwo extends Component {
                 onClick={this.handleItemClick}
               />
             </Menu.Menu>
-          </Menu.Item>
+
 
           <Menu.Item >
-
             <Menu.Header>Support</Menu.Header>
+          </Menu.Item>
 
             <Menu.Menu>
               <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick}>
@@ -107,7 +108,6 @@ class NavTwo extends Component {
                 Contact Us
               </Menu.Item>
             </Menu.Menu>
-          </Menu.Item>
         </React.Fragment>
           : <React.Fragment>
           <Menu.Item>
