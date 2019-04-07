@@ -1,8 +1,9 @@
 import React from 'react';
 import Tree from 'react-d3-tree';
 import {connect} from 'react-redux';
-import { Header, Placeholder, Button } from 'semantic-ui-react';
+import { Header, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading'
 
 class TournBracket extends React.Component {
   render() {
@@ -13,7 +14,7 @@ class TournBracket extends React.Component {
       return (
         <div>
           <Header as='h1'>{tournament.title}</Header>
-          <div id="treeWrapper" style={{height: '50em'}}>
+          <div id="treeWrapper" style={{height: '80vh'}}>
             <Tree data={bracket} pathFunc="elbow" orientation="vertical" collapsible={false} />
           </div>
           <Link to={`/tournaments/${tournament.id}`}><Button>See Tournament Info</Button></Link>
@@ -22,7 +23,7 @@ class TournBracket extends React.Component {
         </div>
       )
     } else {
-      return <Placeholder><Placeholder.Image square /></Placeholder>
+      return (<Loading />)
     }
   }
 }

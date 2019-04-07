@@ -54,7 +54,7 @@ class TournShow extends React.Component {
                 {this.state.formVisible ? <TournamentEdit tournament={tournament} clickHandler={this.clickHandler}/> : null}
                 <Link to="/tournaments">See All Tournaments</Link>
                 <h1 className="ui top attached inverted header">
-                  <Image src={tournament.image}/>
+                  <Image avatar src={tournament.image}/>
                   {tournament.title}
                   <div className="sub header">{moment(tournament.start_dt).format('llll')}</div>
                 </h1>

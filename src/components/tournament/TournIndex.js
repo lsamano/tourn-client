@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Search from '../Search'
 import TournCard from './TournCard';
 import { updateSearch } from '../../redux/actions';
-import { Segment, Dimmer, Loader } from 'semantic-ui-react'
+import Loading from '../Loading'
 
 class TournIndex extends React.Component {
   changeHandler = searchTerm => {
@@ -23,11 +23,7 @@ class TournIndex extends React.Component {
 
       {this.props.tournaments.length > 0
         ? <div className="ui middle aligned divided list">{this.formatTournaments()}</div>
-        :     <Segment className="height-container">
-                <Dimmer active>
-                  <Loader>Loading</Loader>
-                </Dimmer>
-              </Segment>
+        : <Loading />
       }
 
       </div>
