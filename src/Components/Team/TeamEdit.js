@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {teamPostFetch} from '../Redux/actions';
+import {teamPatchFetch} from '../../Redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 
-class NewTeamForm extends Component {
+class TeamEdit extends Component {
   state = {
-    name: "",
-    tagline: "",
-    logo: ""
+    name: this.props.teamShown.name,
+    tagline: this.props.teamShown.tagline,
+    logo: this.props.teamShown.logo
   }
 
   handleChange = event => {
@@ -18,22 +18,18 @@ class NewTeamForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Now starting the Post fetch for a team...");
-    const teamInfo = {...this.state, captain_id: this.props.user.id}
-    console.log("This will be sent to teamPostFetch:", teamInfo);
-    if (this.state.logo === "") {
-      this.props.teamPostFetch({...teamInfo, logo: "https://robohash.org/default.png?size=300x300&set=set1"});
-
-    } else {
-      this.props.teamPostFetch(teamInfo);
-
-    }
+    console.log("Now starting the Patch fetch for a team...");
+    const teamInfo = {...this.state, captain_id: this.props.user.id, id: this.props.teamShown.id}
+    console.log("This will be sent to teamPatchFetch:", teamInfo);
+    this.props.clickHandler();
+    this.props.teamPatchFetch(teamInfo);
   }
 
   render() {
     return (
+      <React.Fragment>
       <Form onSubmit={ event => this.handleSubmit(event) }>
-        <h1>New Team Form</h1>
+        <h1>Edit My Team</h1>
         <Form.Field>
           <label>Name</label>
           <input
@@ -63,6 +59,7 @@ class NewTeamForm extends Component {
         </Form.Field>
         <Button type='submit'>Submit</Button>
       </Form>
+      </React.Fragment>
     )
   }
 }
@@ -72,7 +69,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    teamPostFetch: (tournInfo) => dispatch(teamPostFetch(tournInfo))
+    teamPatchFetch: (tournInfo) => dispatch(teamPatchFetch(tournInfo))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewTeamForm);
+export default connect(mapStateToProps, mapDispatchToProps)(TeamEdit);

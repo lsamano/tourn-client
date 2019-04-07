@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import TournCard from '../Components/TournCard';
-import TournShow from '../Components/TournShow';
-import TournIndex from '../Components/TournIndex';
-import NewTournamentForm from '../Components/NewTournamentForm';
+import TournCard from '../Components/Tournament/TournCard';
+import TournShow from '../Components/Tournament/TournShow';
+import TournIndex from '../Components/Tournament/TournIndex';
+import NewTournamentForm from '../Components/Tournament/NewTournamentForm';
 import {Redirect, Switch, Route} from 'react-router-dom';
 import {getTournaments} from '../Redux/actions';
 

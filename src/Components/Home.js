@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import MyPlaceholder from './MyPlaceholder';
 import DeletionModal from './DeletionModal';
-import TeamCard from './TeamCard';
+import TeamCard from './Team/TeamCard';
 import { Card, List } from 'semantic-ui-react'
 
 import TournCard from './TournCard';

@@ -4,8 +4,8 @@ import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
 // import TeamSignup from './TeamSignup';
 import MemberCard from './MemberCard';
-import TournCard from './TournCard';
-import {getTeamFetch, membershipPostFetch} from '../Redux/actions';
+import TournCard from '../Tournament/TournCard';
+import {getTeamFetch, membershipPostFetch} from '../../Redux/actions';
 import TeamEdit from './TeamEdit';
 import {Button, Icon, Card} from 'semantic-ui-react';
 
