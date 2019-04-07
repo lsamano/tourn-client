@@ -69,8 +69,14 @@ export const getProfileFetch = () => {
       })
         .then(resp => resp.json())
         .then(data => {
-          console.log("fetched the profile", data)
-          dispatch(doTheLoginThing(data.user))
+          if (data.message) {
+            localStorage.removeItem("token")
+            console.log("invalid token", data);
+            dispatch(push('/login'))
+          } else {
+            console.log("fetched the profile", data)
+            dispatch(doTheLoginThing(data.user))
+          }
         });
     }
   }
