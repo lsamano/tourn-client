@@ -24,12 +24,12 @@ class App extends Component {
         <div className="ui container">
             <Grid>
               <Grid.Row>
-                <Grid.Column width={3}>
+                <Grid.Column width={2}>
                   <div className="ui container">
                     <Route component={Nav}/>
                   </div>
                 </Grid.Column>
-                <Grid.Column width={15}>
+                <Grid.Column width={13}>
                   <div className="ui raised container segment">
                     <Switch>
                       <Route path="/login" component={Login} />
