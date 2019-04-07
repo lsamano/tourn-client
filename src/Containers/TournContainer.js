@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import TournShow from '../Components/Tournament/TournShow';
-import TournIndex from '../Components/Tournament/TournIndex';
-import NewTournamentForm from '../Components/Tournament/NewTournamentForm';
+import TournShow from '../components/Tournament/TournShow';
+import TournIndex from '../components/Tournament/TournIndex';
+import NewTournamentForm from '../components/Tournament/NewTournamentForm';
 import {Redirect, Switch, Route} from 'react-router-dom';
 import {getTournaments} from '../redux/actions';
 

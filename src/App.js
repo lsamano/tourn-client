@@ -3,14 +3,14 @@ import './App.css';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getProfileFetch} from './redux/actions';
-import Login from './Components/User/Login';
-import Signup from './Components/User/Signup';
-import Home from './Components/Home';
-import Nav from './Components/Nav';
-import TournContainer from './Containers/TournContainer';
-import UserContainer from './Containers/UserContainer';
-import TeamContainer from './Containers/TeamContainer';
-import NoRouteMatch from './Components/NoRouteMatch';
+import Login from './components/User/Login';
+import Signup from './components/User/Signup';
+import Home from './components/Home';
+import Nav from './components/Nav';
+import TournContainer from './containers/TournContainer';
+import UserContainer from './containers/UserContainer';
+import TeamContainer from './containers/TeamContainer';
+import NoRouteMatch from './components/NoRouteMatch';
 import { Grid } from 'semantic-ui-react';
 
 class App extends Component {

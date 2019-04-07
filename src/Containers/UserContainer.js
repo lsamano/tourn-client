@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Switch, Route} from 'react-router-dom';
 
-import UserShow from '../Components/User/UserShow';
+import UserShow from '../components/user/UserShow';
 import {getUserFetch} from '../redux/actions';
 
 class UserContainer extends Component {
