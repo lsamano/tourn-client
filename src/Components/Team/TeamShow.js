@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Switch, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import moment from 'moment';
 // import TeamSignup from './TeamSignup';
 import MemberCard from './MemberCard';

@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Redirect, Link} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import MyPlaceholder from './MyPlaceholder';
-import DeletionModal from './DeletionModal';
 import TeamCard from './Team/TeamCard';
-import { Card, List } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 
 import TournCard from './TournCard';
 
@@ -13,10 +12,7 @@ class Home extends Component {
     if (tournaments.length === 0) {
       return "No Tournaments."
     } else {
-      return (
-
-        tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
-      )
+      return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
     }
 
   }
@@ -38,7 +34,7 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
     console.log("Home Props:", this.props);
-    const {user, hosted_tourns, tournaments, teams} = this.props
+    const {user, hosted_tourns, teams} = this.props
     return (
       <div>
         <div className="ui container raised segment">

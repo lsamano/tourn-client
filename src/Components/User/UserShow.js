@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Switch, Route, Link} from 'react-router-dom';
 import moment from 'moment';
 import TournCard from '../Tournament/TournCard';
 import TeamCard from '../Team/TeamCard';
 import UserEdit from './UserEdit';
-import {Button, Icon, Card, Image} from 'semantic-ui-react';
+import { Button, Icon, Card, Image } from 'semantic-ui-react';
 import MyPlaceholder from '../MyPlaceholder';
 
 class UserShow extends React.Component {
