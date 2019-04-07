@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-// import {doTheUserEditThing} from '../Redux/actions';
-import {userPatchFetch} from '../Redux/actions';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
+// import {doTheSignupThing} from '../Redux/actions';
+import {signupFetch} from '../../redux/actions';
+import { Button, Checkbox, Form, Grid } from 'semantic-ui-react';
 
-class UserEdit extends Component {
+class Signup extends Component {
   state = {
-    username: this.props.user.username,
-    password: this.props.user.password,
-    bio: this.props.user.bio,
-    avatar: this.props.user.avatar
+    username: "",
+    password: "",
+    bio: "",
+    avatar: ""
   }
 
   handleChange = event => {
@@ -21,14 +21,27 @@ class UserEdit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.clickHandler();
-    this.props.userPatchFetch({...this.state, id: this.props.user.id});
+    console.log("Now starting the fetch...");
+    if (this.state.avatar === "") {
+      this.props.signupFetch({...this.state, avatar: "https://robohash.org/default.png?size=300x300&set=set4"});
+    } else {
+      this.props.signupFetch(this.state);
+    }
   }
 
   render() {
+    // must fix below to set up routes
+    if (this.props.user.id) {
+      return <Redirect to="/" />
+    }
     return (
+      <Grid columns={4}>
+        <Grid.Row>
+          <Grid.Column>
+          </Grid.Column>
+          <Grid.Column>
             <Form onSubmit={ event => this.handleSubmit(event) }>
-              <h1>Update Profile</h1>
+              <h1>Sign Up</h1>
               <Form.Field>
                 <label>Username</label>
                 <input
@@ -66,8 +79,14 @@ class UserEdit extends Component {
                   onChange={(event) => this.handleChange(event)}
                   />
               </Form.Field>
+              <Form.Field>
+                <Checkbox label='I agree to the Terms and Conditions' />
+              </Form.Field>
               <Button type='submit'>Submit</Button>
             </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     )
   }
 }
@@ -79,7 +98,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    userPatchFetch: (userObj) => dispatch(userPatchFetch(userObj))
+    signupFetch: (userObj) => dispatch(signupFetch(userObj))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

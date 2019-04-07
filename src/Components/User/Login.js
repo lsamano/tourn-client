@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {loginFetch} from '../Redux/actions';
+import {loginFetch} from '../../redux/actions';
 import { Button, Form, Grid } from 'semantic-ui-react';
 import {withRouter} from 'react-router';
+import ErrorMessage from '../ErrorMessage';
 
 class Login extends Component {
   state = {
@@ -21,9 +22,6 @@ class Login extends Component {
     event.preventDefault();
     console.log("Now starting the fetch...");
     this.props.loginFetch(this.state);
-    // browserHistory.push('/home')
-    // store.dispatch(push('/home'))
-    // this.props.push('/home');
   }
 
   render() {
@@ -60,6 +58,10 @@ class Login extends Component {
               </Form.Field>
               <Button type='submit'>Submit</Button>
             </Form>
+            { this.props.errorMessage
+              ? <ErrorMessage message={this.props.errorMessage}/>
+              : null
+            }
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -69,7 +71,8 @@ class Login extends Component {
 
 const mapStateToProps = (state) => ({
     user: state.reducer.user,
-    pathname: state.router.location.pathname
+    pathname: state.router.location.pathname,
+    errorMessage: state.reducer.errorMessage
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import TournCard from '../Components/TournCard';
-import TournShow from '../Components/TournShow';
-import TournIndex from '../Components/TournIndex';
-import NewTournamentForm from '../Components/NewTournamentForm';
+import TournShow from '../components/tournament/TournShow';
+import TournIndex from '../components/tournament/TournIndex';
+import NewTournamentForm from '../components/tournament/NewTournamentForm';
 import {Redirect, Switch, Route} from 'react-router-dom';
-import {getTournaments} from '../Redux/actions';
+import {getTournaments} from '../redux/actions';
 
 class TournContainer extends Component {
   componentDidMount = () => {

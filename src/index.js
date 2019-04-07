@@ -13,7 +13,7 @@ import thunk from 'redux-thunk';
 
 import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history'
-import createRootReducer from './Redux/rootReducer'
+import createRootReducer from './redux/rootReducer'
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 

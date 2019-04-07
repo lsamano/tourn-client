@@ -1,16 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import Search from './Search'
+import Search from '../Search'
 import TournCard from './TournCard';
-import {updateSearch} from '../Redux/actions';
-import { Segment, Dimmer, Loader, Image } from 'semantic-ui-react'
+import { updateSearch } from '../../redux/actions';
+import { Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 class TournIndex extends React.Component {
-  // state ={
-  //   filteredTournaments: this.props.tournaments,
-  //   searchTerm: ""
-  // }
-
   changeHandler = searchTerm => {
     this.props.updateSearch(searchTerm, this.props.tournaments)
   }
@@ -26,7 +21,7 @@ class TournIndex extends React.Component {
       <h2 className="ui header">All Tournaments</h2>
       <Search changeHandler={this.changeHandler} searchTerm={this.props.searchTerm}/>
 
-      {this.props.filteredTournaments.length > 0
+      {this.props.tournaments.length > 0
         ? <div className="ui middle aligned divided list">{this.formatTournaments()}</div>
         :     <Segment className="height-container">
                 <Dimmer active>
@@ -43,7 +38,7 @@ class TournIndex extends React.Component {
 
 const mapStateToProps = state => ({
   tournaments: state.reducer.tournaments,
-  filteredTournaments: state. reducer.filteredTournaments,
+  filteredTournaments: state.reducer.filteredTournaments,
   searchTerm: state.reducer.searchTerm
 })
 

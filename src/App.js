@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getProfileFetch} from './Redux/actions';
-import Login from './Components/Login';
-import Signup from './Components/Signup';
-import Home from './Components/Home';
-import NavTwo from './Components/NavTwo';
-import TournContainer from './Containers/TournContainer';
-import UserContainer from './Containers/UserContainer';
-import TeamContainer from './Containers/TeamContainer';
-import NoRouteMatch from './Components/NoRouteMatch';
+import {getProfileFetch} from './redux/actions';
+import Login from './components/user/Login';
+import Signup from './components/user/Signup';
+import Home from './components/Home';
+import Nav from './components/Nav';
+import TournContainer from './containers/TournContainer';
+import UserContainer from './containers/UserContainer';
+import TeamContainer from './containers/TeamContainer';
+import NoRouteMatch from './components/NoRouteMatch';
 import { Grid } from 'semantic-ui-react';
 
 class App extends Component {
@@ -24,12 +24,12 @@ class App extends Component {
         <div className="ui container">
             <Grid>
               <Grid.Row>
-                <Grid.Column width={3}>
+                <Grid.Column width={2}>
                   <div className="ui container">
-                    <Route component={NavTwo}/>
+                    <Route component={Nav}/>
                   </div>
                 </Grid.Column>
-                <Grid.Column width={15}>
+                <Grid.Column width={13}>
                   <div className="ui raised container segment">
                     <Switch>
                       <Route path="/login" component={Login} />

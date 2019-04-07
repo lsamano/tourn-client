@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {tournamentPatchFetch} from '../Redux/actions';
+import {tournamentPatchFetch} from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 import { DateTimeInput } from 'semantic-ui-calendar-react';
-import DeletionModal from './DeletionModal';
+import DeletionModal from '../DeletionModal';
 
 class TournamentEdit extends Component {
   state = {

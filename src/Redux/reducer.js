@@ -6,12 +6,14 @@ const initialState = {
   filteredTournaments: [],
   searchTerm: "",
   teamShown: {},
-  tournShown: {}
+  tournShown: {},
+  errorMessage: ""
 }
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-
+        case 'ADD_ERROR_MESSAGE':
+          return {...state, errorMessage: action.payload};
       // Auth and Sign Up
         case 'LOGIN_USER':
           return { ...state, user: action.payload};

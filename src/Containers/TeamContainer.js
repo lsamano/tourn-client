@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect, Switch, Route} from 'react-router-dom';
 
-import TeamShow from '../Components/TeamShow';
-import NewTeamForm from '../Components/NewTeamForm';
+import TeamShow from '../components/team/TeamShow';
+import NewTeamForm from '../components/team/NewTeamForm';
 
 class TeamContainer extends Component {
   // componentDidMount = () => {

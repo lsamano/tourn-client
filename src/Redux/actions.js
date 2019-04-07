@@ -1,5 +1,10 @@
 import { push } from 'connected-react-router'
 
+const addErrorMessage = message => ({
+  type: "ADD_ERROR_MESSAGE",
+  payload: message
+})
+
 // User Actions (Login and Sign Up)
 const doTheLoginThing = userLogin => {
   return {
@@ -20,9 +25,13 @@ export const loginFetch = (userObj) => {
     })
     .then(resp => resp.json())
     .then(data => {
-      console.log("Hey, the fetch worked?", data)
-      localStorage.setItem("token", data.jwt)
-      dispatch(doTheLoginThing(data.user))
+      console.log("Login Fetch data:", data)
+      if (data.message) {
+        dispatch(addErrorMessage(data.message))
+      } else {
+        localStorage.setItem("token", data.jwt)
+        dispatch(doTheLoginThing(data.user))
+      }
     })
   }
 }

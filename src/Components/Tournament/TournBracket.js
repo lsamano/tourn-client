@@ -1,9 +1,8 @@
 import React from 'react';
 import Tree from 'react-d3-tree';
 import {connect} from 'react-redux';
-import MyPlaceholder from './MyPlaceholder';
-import {Header, Placeholder, Button} from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
+import { Header, Placeholder, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class TournBracket extends React.Component {
   render() {

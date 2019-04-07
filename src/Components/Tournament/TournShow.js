@@ -7,8 +7,8 @@ import {connect} from 'react-redux';
 import TournamentEdit from './TournamentEdit';
 import TeamDropDown from './TeamDropDown';
 import {Button, Icon, Image, Header} from 'semantic-ui-react';
-import {makeBracket, getTournFetch} from '../Redux/actions';
-import MyPlaceholder from './MyPlaceholder';
+import {makeBracket, getTournFetch} from '../../redux/actions';
+import MyPlaceholder from '../MyPlaceholder';
 
 class TournShow extends React.Component {
   state = {
