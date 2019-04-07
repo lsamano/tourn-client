@@ -6,7 +6,6 @@ import {getProfileFetch} from './Redux/actions';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Home from './Components/Home';
-import Nav from './Components/Nav';
 import NavTwo from './Components/NavTwo';
 import TournContainer from './Containers/TournContainer';
 import UserContainer from './Containers/UserContainer';
@@ -26,7 +25,9 @@ class App extends Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={3}>
-                  <Route component={NavTwo}/>
+                  <div className="ui container">
+                    <Route component={NavTwo}/>
+                  </div>
                 </Grid.Column>
                 <Grid.Column width={15}>
                   <div className="ui raised container segment">

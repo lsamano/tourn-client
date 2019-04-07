@@ -54,8 +54,7 @@ class TeamShow extends React.Component {
                   <div className="sub header"> {teamShown.tagline}</div>
                 </h1>
                 <div className="ui attached segment">
-                  <p className="description">Founded {moment(teamShown.created_at).format('ll')}</p>
-                  <p>Captain: <Link to={`/users/${teamShown.captain.id}`}>{teamShown.captain.username}</Link></p>
+                  <p className="description">Founded {moment(teamShown.created_at).format('ll')} by <Link to={`/users/${teamShown.captain.id}`}>{teamShown.captain.username}</Link></p>
                   {teamShown.members.filter(member => member.id === user.id).length > 0
                     ? null
                     : <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>
@@ -69,8 +68,9 @@ class TeamShow extends React.Component {
                   <h3>Members ({teamShown.members.length})</h3>
                     {this.formatMembers()}
                   <h3>Entered Tournaments</h3>
-                  {this.formatTournaments(teamShown.tournaments)}
-
+                  <div className="ui middle aligned divided list">
+                    {this.formatTournaments(teamShown.tournaments)}
+                  </div>
                 </div>
               </div>
       )

@@ -7,6 +7,7 @@ import { DateTimeInput } from 'semantic-ui-calendar-react';
 class NewTournamentForm extends Component {
   state = {
     title: "",
+    image: "",
     description: "",
     start_dt: ""
   }
@@ -41,6 +42,15 @@ class NewTournamentForm extends Component {
             placeholder='Title'
             name="title"
             value={this.state.title}
+            onChange={(event) => this.handleChange(event)}
+            />
+        </Form.Field>
+        <Form.Field>
+          <label>Image</label>
+          <input
+            name="image"
+            placeholder='Image (URL)'
+            value={this.state.image}
             onChange={(event) => this.handleChange(event)}
             />
         </Form.Field>

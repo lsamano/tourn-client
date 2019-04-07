@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 class TournDashboard extends React.Component {
   render() {
     return (
-      <div>Hi</div>
+      <div>WIP</div>
     )
   }
 }

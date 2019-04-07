@@ -6,7 +6,7 @@ import TournDashboard from './TournDashboard';
 import {connect} from 'react-redux';
 import TournamentEdit from './TournamentEdit';
 import TeamDropDown from './TeamDropDown';
-import {Button, Icon} from 'semantic-ui-react';
+import {Button, Icon, Image, Header} from 'semantic-ui-react';
 import {makeBracket, getTournFetch} from '../Redux/actions';
 import MyPlaceholder from './MyPlaceholder';
 
@@ -53,7 +53,9 @@ class TournShow extends React.Component {
               return <div>
                 {this.state.formVisible ? <TournamentEdit tournament={tournament} clickHandler={this.clickHandler}/> : null}
                 <Link to="/tournaments">See All Tournaments</Link>
-                <h1 className="ui top attached inverted header">{tournament.title}
+                <h1 className="ui top attached inverted header">
+                  <Image src={tournament.image}/>
+                  {tournament.title}
                   <div className="sub header">{moment(tournament.start_dt).format('llll')}</div>
                 </h1>
                 <div className="ui attached segment">
@@ -63,13 +65,14 @@ class TournShow extends React.Component {
                       </Button>
                     : null
                   } Hosted by <Link to={`/users/${tournament.host.id}`}>{tournament.host.username}</Link></p>
+                <Header>Description</Header>
                   <p className="description">{tournament.description}</p>
                   {tournament.bracket
                   ? <Link to={`/tournaments/${tournament.id}/bracket`}><Button>See Bracket</Button></Link>
                   : <React.Fragment><TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
                     <Button onClick={this.makeBracket}>Make Bracket</Button></React.Fragment>}
-                  <h3>Current Teams Entered:</h3>
-                  {this.formatTeams(tournament.teams)}
+                  <h3>Current Teams Entered</h3>
+                  {tournament.teams.length > 0 ? this.formatTeams(tournament.teams) : "No Teams Entered. Be the first!"}
                 </div>
               </div>
             }
