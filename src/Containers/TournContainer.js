@@ -5,7 +5,7 @@ import TournIndex from '../components/tournament/TournIndex';
 import NewTournamentForm from '../components/tournament/NewTournamentForm';
 import {Redirect, Switch, Route} from 'react-router-dom';
 import {getTournaments} from '../redux/actions';
-
+//
 class TournContainer extends Component {
   componentDidMount = () => {
     this.props.getTournaments();
