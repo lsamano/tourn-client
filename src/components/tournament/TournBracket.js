@@ -8,7 +8,7 @@ import Loading from '../Loading'
 class TournBracket extends React.Component {
   render() {
     console.log("Current Props of TournBracket:", this.props);
-    const {tournament} = this.props
+    const {tournament, user} = this.props
     if (tournament.bracket) {
       const bracket = [tournament.bracket.node]
       return (
@@ -18,7 +18,10 @@ class TournBracket extends React.Component {
             <Tree data={bracket} pathFunc="elbow" orientation="vertical" collapsible={false} />
           </div>
           <Link to={`/tournaments/${tournament.id}`}><Button>See Tournament Info</Button></Link>
-          <Link to={`dashboard`}><Button>Manage Tournament</Button></Link>
+          {tournament.host.id === user.id
+            ? <Link to={`dashboard`}><Button>Manage Tournament</Button></Link>
+            : null
+          }
 
         </div>
       )
@@ -29,7 +32,8 @@ class TournBracket extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  tournament: state.reducer.tournShown
+  tournament: state.reducer.tournShown,
+  user: state.reducer.user
 })
 
 export default connect(mapStateToProps)(TournBracket);

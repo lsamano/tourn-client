@@ -69,8 +69,11 @@ class TournShow extends React.Component {
                   <p className="description">{tournament.description}</p>
                   {tournament.bracket
                   ? <Link to={`/tournaments/${tournament.id}/bracket`}><Button>See Bracket</Button></Link>
-                  : <React.Fragment><TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
-                    <Button onClick={this.makeBracket}>Make Bracket</Button></React.Fragment>}
+                  : (tournament.host.id === user.id
+                    ? <Button onClick={this.makeBracket}>Make Bracket</Button>
+                    : <TeamDropDown teams={user.teams} tournament={tournament} enteredTeams={tournament.teams}/>
+                    )
+                  }
                   <h3>Current Teams Entered</h3>
                   {tournament.teams.length > 0 ? this.formatTeams(tournament.teams) : "No Teams Entered. Be the first!"}
                 </div>

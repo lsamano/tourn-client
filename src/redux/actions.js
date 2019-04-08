@@ -6,7 +6,7 @@ const addErrorMessage = message => ({
 })
 
 // User Actions (Login and Sign Up)
-const doTheLoginThing = userLogin => {
+const loginUser = userLogin => {
   return {
     type: "LOGIN_USER",
     payload: userLogin
@@ -30,7 +30,7 @@ export const loginFetch = (userObj) => {
         dispatch(addErrorMessage(data.message))
       } else {
         localStorage.setItem("token", data.jwt)
-        dispatch(doTheLoginThing(data.user))
+        dispatch(loginUser(data.user))
       }
     })
   }
@@ -50,7 +50,7 @@ export const signupFetch = userInfo => {
       .then(data => {
         console.log("The signup fetch worked?", data)
         localStorage.setItem("token", data.jwt);
-        dispatch(doTheLoginThing(data.user))
+        dispatch(loginUser(data.user))
       });
   }
 }
@@ -75,7 +75,7 @@ export const getProfileFetch = () => {
             dispatch(push('/login'))
           } else {
             console.log("fetched the profile", data)
-            dispatch(doTheLoginThing(data.user))
+            dispatch(loginUser(data.user))
           }
         });
     }
@@ -135,7 +135,7 @@ export const userPatchFetch = (user) => {
     .then(res => res.json())
     .then(data => {
       console.log("User Updated:", data)
-      dispatch(doTheLoginThing(data))
+      dispatch(loginUser(data))
       dispatch(loadUserShown(data))
     })
   }
@@ -161,7 +161,7 @@ export const tournamentPostFetch = (tournament) => {
     .then(data => {
       console.log("New Tourn Added:", data)
       dispatch(loadTournShown(data.tournament))
-      dispatch(doTheLoginThing(data.user))
+      dispatch(loginUser(data.user))
       dispatch(push(`/tournaments/${data.tournament.id}`))
     })
   }
@@ -195,7 +195,7 @@ export const tournamentDeleteFetch = id => {
       console.log("Deletion Complete:", data)
       dispatch(loadTournaments(data.tournaments))
       dispatch(addFilteredTournaments(data.tournaments))
-      dispatch(doTheLoginThing(data.user))
+      dispatch(loginUser(data.user))
       dispatch(push("/tournaments"))
     })
   }
@@ -278,7 +278,7 @@ export const tournamentPatchFetch = (tournament) => {
     .then(data => {
       console.log("Tournament Updated:", data)
       dispatch(reloadTournament(data.tournament))
-      dispatch(doTheLoginThing(data.user))
+      dispatch(loginUser(data.user))
     })
   }
 }
@@ -311,7 +311,7 @@ export const teamPostFetch = (team) => {
     .then(data => {
       console.log("New Team Added:", data)
       dispatch(loadTeamShown(data.team))
-      dispatch(doTheLoginThing(data.user))
+      dispatch(loginUser(data.user))
       dispatch(push(`/teams/${data.team.id}`))
     })
   }
@@ -332,7 +332,7 @@ export const teamPatchFetch = (team) => {
     .then(data => {
       console.log("Team Updated:", data)
       dispatch(loadTeamShown(data.team))
-      dispatch(doTheLoginThing(data.user))
+      dispatch(loginUser(data.user))
     })
   }
 }
@@ -353,7 +353,7 @@ export const entryPostFetch = entry => {
     .then(data => {
       console.log("Tourn Joined:", data)
       dispatch(reloadTournament(data.tournament))
-      dispatch(doTheLoginThing(data.user))
+      dispatch(loginUser(data.user))
     })
   }
 }
@@ -373,12 +373,10 @@ export const membershipPostFetch = membership => {
     .then(data => {
       console.log("Team Joined:", data)
       dispatch(loadTeamShown(data.team))
-      dispatch(doTheLoginThing(data.user))
+      dispatch(loginUser(data.user))
     })
   }
 }
-
-
 
 export const makeBracket = tournament => {
   return dispatch => {
@@ -397,11 +395,8 @@ export const makeBracket = tournament => {
     .then(res => res.json())
     .then(data => {
       console.log("Bracket Created:", data)
-      // dispatch(loadTournShown(data))
       dispatch(reloadTournament(data))
       dispatch(push(`/tournaments/${tournament.id}/bracket`))
-      // dispatch(loadTeamShown(data.team))
-      // dispatch(doTheLoginThing(data.user))
     })
   }
 }
