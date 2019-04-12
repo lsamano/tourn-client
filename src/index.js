@@ -6,7 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Route } from 'react-router-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -15,19 +15,29 @@ import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history'
 import createRootReducer from './redux/rootReducer'
 
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+// import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 export const history = createBrowserHistory()
 
 const store = createStore(
     createRootReducer(history),
-    composeWithDevTools(
+    compose(
       applyMiddleware(
         routerMiddleware(history),
         thunk
       )
     ),
   )
+
+// const store = createStore(
+//     createRootReducer(history),
+//     composeWithDevTools(
+//       applyMiddleware(
+//         routerMiddleware(history),
+//         thunk
+//       )
+//     ),
+//   )
 
 ReactDOM.render(
     <Provider store={store}>
