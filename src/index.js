@@ -15,7 +15,7 @@ import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history'
 import createRootReducer from './redux/rootReducer'
 
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 export const history = createBrowserHistory()
 
