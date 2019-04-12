@@ -5,7 +5,7 @@ const addErrorMessage = message => ({
   payload: message
 })
 
-// User Actions (Login and Sign Up)
+/// User Actions (Login and Sign Up)
 const loginUser = userLogin => {
   return {
     type: "LOGIN_USER",
