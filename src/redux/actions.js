@@ -15,7 +15,7 @@ const loginUser = userLogin => {
 
 export const loginFetch = (userObj) => {
   return (dispatch) => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/login", {
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/login", {
     method: "POST",
     body: JSON.stringify({user: userObj}),
     headers: {
@@ -38,7 +38,7 @@ export const loginFetch = (userObj) => {
 
 export const signupFetch = userInfo => {
   return (dispatch) => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/users", {
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const getProfileFetch = () => {
   return (dispatch) => {
     let token = localStorage.token;
     if (token) {
-      return fetch("https://still-woodland-53444.herokuapp.com/api/v1/profile", {
+      return fetch("https://tourn-backend.herokuapp.com/api/v1/profile", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const logOutUser = () => {
 export const getUserFetch = (id) => {
   return (dispatch) => {
     console.log("THIS IS THE ID:", id);
-    return fetch(`https://still-woodland-53444.herokuapp.com/api/v1/users/${id}`, {
+    return fetch(`https://tourn-backend.herokuapp.com/api/v1/users/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -123,7 +123,7 @@ const loadUserShown = (userShown) => {
 
 export const userPatchFetch = (user) => {
   return (dispatch) => {
-    return fetch(`https://still-woodland-53444.herokuapp.com/api/v1/users/${user.id}`, {
+    return fetch(`https://tourn-backend.herokuapp.com/api/v1/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -148,7 +148,7 @@ const loadTournaments = (tournaments) => ({
 
 export const tournamentPostFetch = (tournament) => {
   return (dispatch) => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/tournaments", {
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/tournaments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -169,7 +169,7 @@ export const tournamentPostFetch = (tournament) => {
 
 export const getTournaments = () => {
   return (dispatch) => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/tournaments")
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/tournaments")
     .then(res => res.json())
     .then(data => {
       console.log("fetched the tournaments", data)
@@ -182,7 +182,7 @@ export const getTournaments = () => {
 
 export const tournamentDeleteFetch = id => {
   return dispatch => {
-    return fetch(`https://still-woodland-53444.herokuapp.com/api/v1/tournaments/${id}`, {
+    return fetch(`https://tourn-backend.herokuapp.com/api/v1/tournaments/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -222,7 +222,7 @@ const affectStore = searchTerm => ({
 export const getTournFetch = (id) => {
   return (dispatch) => {
     console.log("THIS IS THE TOURN ID:", id);
-    return fetch(`https://still-woodland-53444.herokuapp.com/api/v1/tournaments/${id}`, {
+    return fetch(`https://tourn-backend.herokuapp.com/api/v1/tournaments/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -247,7 +247,7 @@ const loadTournShown = tourn => ({
 export const getTeamFetch = (id) => {
   return (dispatch) => {
     console.log("THIS IS THE ID:", id);
-    return fetch(`https://still-woodland-53444.herokuapp.com/api/v1/teams/${id}`, {
+    return fetch(`https://tourn-backend.herokuapp.com/api/v1/teams/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -265,7 +265,7 @@ export const getTeamFetch = (id) => {
 
 export const tournamentPatchFetch = (tournament) => {
   return (dispatch) => {
-    return fetch(`https://still-woodland-53444.herokuapp.com/api/v1/tournaments/${tournament.id}`, {
+    return fetch(`https://tourn-backend.herokuapp.com/api/v1/tournaments/${tournament.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -298,7 +298,7 @@ const loadTeamShown = (team) => {
 
 export const teamPostFetch = (team) => {
   return (dispatch) => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/teams", {
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/teams", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -319,7 +319,7 @@ export const teamPostFetch = (team) => {
 
 export const teamPatchFetch = (team) => {
   return (dispatch) => {
-    return fetch(`https://still-woodland-53444.herokuapp.com/api/v1/teams/${team.id}`, {
+    return fetch(`https://tourn-backend.herokuapp.com/api/v1/teams/${team.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -340,7 +340,7 @@ export const teamPatchFetch = (team) => {
 // Entry and Membership
 export const entryPostFetch = entry => {
   return dispatch => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/entries", {
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -360,7 +360,7 @@ export const entryPostFetch = entry => {
 
 export const membershipPostFetch = membership => {
   return dispatch => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/memberships", {
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/memberships", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -380,7 +380,7 @@ export const membershipPostFetch = membership => {
 
 export const makeBracket = tournament => {
   return dispatch => {
-    return fetch("https://still-woodland-53444.herokuapp.com/api/v1/brackets", {
+    return fetch("https://tourn-backend.herokuapp.com/api/v1/brackets", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
