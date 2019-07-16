@@ -9,12 +9,12 @@ Tourn is an online tournament organizer for eSports. It is meant as a clone of w
 - [Sources](#sources)
 
 ## Technologies
-### Frontend
+#### Frontend
 - [React.js](https://reactjs.org/)
 - [Redux](https://redux.js.org/basics/usage-with-react)
 - [Semantic UI (React)](https://react.semantic-ui.com/)
 
-### Backend
+#### Backend
 - [Ruby on Rails](https://rubyonrails.org/)
 - ActiveRecord
 - PostgreSQL
