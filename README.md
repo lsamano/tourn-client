@@ -40,7 +40,8 @@ $ rails s
 ## Features
 - Create an account
 - Form a team
-- Join a tournament 
+- Search for tournaments by name
+- Have your team join a tournament 
 - Host a tournament
 
 ## Sources
