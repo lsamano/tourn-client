@@ -45,4 +45,4 @@ $ rails s
 - Host a tournament
 
 ## Sources
-This project was bootstrapped with create-react-app.
+This project was bootstrapped with [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started).
