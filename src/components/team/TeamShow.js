@@ -5,7 +5,7 @@ import moment from 'moment';
 // import TeamSignup from './TeamSignup';
 import MemberCard from './MemberCard';
 import TournCard from '../tournament/TournCard';
-import {getTeamFetch, membershipPostFetch} from '../../redux/actions';
+import {getTeamFetch, membershipPostFetch, membershipDeleteFetch} from '../../redux/actions';
 import TeamEdit from './TeamEdit';
 import {Button, Icon, Card} from 'semantic-ui-react';
 
@@ -27,6 +27,10 @@ class TeamShow extends React.Component {
 
   joinClickHandler = () => {
     this.props.membershipPostFetch({team_id: this.props.teamShown.id, user_id:this.props.user.id})
+  }
+
+  quitClickHandler = () => {
+    this.props.membershipDeleteFetch(this.props.teamShown.id)
   }
 
   formatMembers = () => {
@@ -55,7 +59,7 @@ class TeamShow extends React.Component {
                 <div className="ui attached segment">
                   <p className="description">Founded {moment(teamShown.created_at).format('ll')} by <Link to={`/users/${teamShown.captain.id}`}>{teamShown.captain.username}</Link></p>
                   {teamShown.members.filter(member => member.id === user.id).length > 0
-                    ? null
+                    ? <button className="ui button red" onClick={this.quitClickHandler}>Leave This Team</button>
                     : <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>
                   }
                   {teamShown.captain.id === user.id
@@ -86,7 +90,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getTeamFetch: (id) => dispatch(getTeamFetch(id)),
-  membershipPostFetch: (membershipObj) => dispatch(membershipPostFetch(membershipObj))
+  membershipPostFetch: (membershipObj) => dispatch(membershipPostFetch(membershipObj)),
+  membershipDeleteFetch: (team_id) => dispatch(membershipDeleteFetch(team_id))
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamShow);
