@@ -15,7 +15,6 @@ class TournIndex extends React.Component {
   }
 
   render() {
-    console.log("filteredTournaments:", this.props.filteredTournaments);
     return (
       <div>
       <h2 className="ui header">All Tournaments</h2>

@@ -6,7 +6,6 @@ import NewTeamForm from '../components/team/NewTeamForm';
 
 class TeamContainer extends Component {
   render() {
-    console.log("Team container rendered", this.props);
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }

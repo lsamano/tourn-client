@@ -19,7 +19,6 @@ class App extends Component {
   }
 
     render() {
-      console.log("The props of App:", this.props);
       return (
         <div className="ui container">
             <Grid>

@@ -33,7 +33,6 @@ class Home extends Component {
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }
-    console.log("Home Props:", this.props);
     const {user, hosted_tourns, teams} = this.props
     return (
       <div>

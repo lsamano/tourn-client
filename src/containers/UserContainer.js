@@ -12,14 +12,12 @@ class UserContainer extends Component {
   }
 
   render() {
-    console.log("User container rendered", this.props);
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }
     return (
       <Switch>
         <Route path="/users/:id" render={routerProps => {
-            console.log("These are your UserCont props", this.props);
             return (this.props.userShown ? <UserShow userShown={this.props.userShown} /> : null)
           }
         }/>

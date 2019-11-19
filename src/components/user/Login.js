@@ -20,7 +20,6 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Now starting the fetch...");
     this.props.loginFetch(this.state);
   }
 
@@ -28,7 +27,6 @@ class Login extends Component {
     if (localStorage.token) {
       return <Redirect to="/" />
     }
-    console.log("These are the Login props", this.props);
     return (
       <Grid columns={4}>
         <Grid.Row>

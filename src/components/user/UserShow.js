@@ -60,7 +60,6 @@ class UserShow extends React.Component {
 
   render() {
     const {userShown, user} = this.props
-    console.log("User Being Shown:", userShown);
     return (
       <div>
         {this.state.formVisible ? <UserEdit user={user} clickHandler={this.clickHandler}/> : null}

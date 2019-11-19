@@ -10,7 +10,6 @@ class NavTwo extends Component {
       localStorage.removeItem("token")
       this.props.signOutUser()
     } else {
-      console.log("Your Name", name)
       this.setState({ activeItem: name })
       switch (name) {
         case 'home':

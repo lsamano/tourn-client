@@ -12,7 +12,6 @@ class TournContainer extends Component {
   }
 
   render() {
-    console.log("Tourn container rendered", this.props);
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }

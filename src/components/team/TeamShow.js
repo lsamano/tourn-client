@@ -42,7 +42,6 @@ class TeamShow extends React.Component {
     }
 
   render() {
-    console.log("Team Show:", this.props);
     const {teamShown, user} = this.props
     if (teamShown.id) {
       return (

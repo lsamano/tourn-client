@@ -25,7 +25,6 @@ export const loginFetch = (userObj) => {
     })
     .then(resp => resp.json())
     .then(data => {
-      console.log("Login Fetch data:", data)
       if (data.message) {
         dispatch(addErrorMessage(data.message))
       } else {
@@ -48,7 +47,6 @@ export const signupFetch = userInfo => {
     })
       .then(resp => resp.json())
       .then(data => {
-        console.log("The signup fetch worked?", data)
         localStorage.setItem("token", data.jwt);
         dispatch(loginUser(data.user))
       });
@@ -71,10 +69,8 @@ export const getProfileFetch = () => {
         .then(data => {
           if (data.message) {
             localStorage.removeItem("token")
-            console.log("invalid token", data);
             dispatch(push('/login'))
           } else {
-            console.log("fetched the profile", data)
             dispatch(loginUser(data.user))
           }
         });
@@ -97,7 +93,6 @@ const logOutUser = () => {
 // User Show
 export const getUserFetch = (id) => {
   return (dispatch) => {
-    console.log("THIS IS THE ID:", id);
     return fetch(`https://tourn-backend.herokuapp.com/api/v1/users/${id}`, {
       method: "GET",
       headers: {
@@ -108,7 +103,6 @@ export const getUserFetch = (id) => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log("fetched the user shown", data)
         dispatch(loadUserShown(data))
     })
   }
@@ -134,7 +128,6 @@ export const userPatchFetch = (user) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("User Updated:", data)
       dispatch(loginUser(data))
       dispatch(loadUserShown(data))
     })
@@ -159,7 +152,6 @@ export const tournamentPostFetch = (tournament) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("New Tourn Added:", data)
       dispatch(loadTournShown(data.tournament))
       dispatch(loginUser(data.user))
       dispatch(push(`/tournaments/${data.tournament.id}`))
@@ -172,7 +164,6 @@ export const getTournaments = () => {
     return fetch("https://tourn-backend.herokuapp.com/api/v1/tournaments")
     .then(res => res.json())
     .then(data => {
-      console.log("fetched the tournaments", data)
       dispatch(loadTournaments(data.tournaments))
       dispatch(addFilteredTournaments(data.tournaments))
     })
@@ -192,7 +183,6 @@ export const tournamentDeleteFetch = id => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Deletion Complete:", data)
       dispatch(loadTournaments(data.tournaments))
       dispatch(addFilteredTournaments(data.tournaments))
       dispatch(loginUser(data.user))
@@ -221,7 +211,6 @@ const affectStore = searchTerm => ({
 
 export const getTournFetch = (id) => {
   return (dispatch) => {
-    console.log("THIS IS THE TOURN ID:", id);
     return fetch(`https://tourn-backend.herokuapp.com/api/v1/tournaments/${id}`, {
       method: "GET",
       headers: {
@@ -232,7 +221,6 @@ export const getTournFetch = (id) => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log("fetched the tourn shown", data)
         dispatch(loadTournShown(data))
     })
   }
@@ -246,7 +234,6 @@ const loadTournShown = tourn => ({
 // Team
 export const getTeamFetch = (id) => {
   return (dispatch) => {
-    console.log("THIS IS THE ID:", id);
     return fetch(`https://tourn-backend.herokuapp.com/api/v1/teams/${id}`, {
       method: "GET",
       headers: {
@@ -257,7 +244,6 @@ export const getTeamFetch = (id) => {
     })
     .then(res => res.json())
     .then(data => {
-        console.log("fetched the team shown", data)
         dispatch(loadTeamShown(data))
     })
   }
@@ -276,7 +262,6 @@ export const tournamentPatchFetch = (tournament) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Tournament Updated:", data)
       dispatch(reloadTournament(data.tournament))
       dispatch(loginUser(data.user))
     })
@@ -309,7 +294,6 @@ export const teamPostFetch = (team) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("New Team Added:", data)
       dispatch(loadTeamShown(data.team))
       dispatch(loginUser(data.user))
       dispatch(push(`/teams/${data.team.id}`))
@@ -330,7 +314,6 @@ export const teamPatchFetch = (team) => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Team Updated:", data)
       dispatch(loadTeamShown(data.team))
       dispatch(loginUser(data.user))
     })
@@ -351,7 +334,6 @@ export const entryPostFetch = entry => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Tourn Joined:", data)
       dispatch(reloadTournament(data.tournament))
       dispatch(loginUser(data.user))
     })
@@ -371,7 +353,6 @@ export const membershipPostFetch = membership => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Team Joined:", data)
       dispatch(loadTeamShown(data.team))
       dispatch(loginUser(data.user))
     })
@@ -394,7 +375,6 @@ export const makeBracket = tournament => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log("Bracket Created:", data)
       dispatch(reloadTournament(data))
       dispatch(push(`/tournaments/${tournament.id}/bracket`))
     })
