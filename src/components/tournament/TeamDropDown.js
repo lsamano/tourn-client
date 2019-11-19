@@ -17,7 +17,6 @@ class TeamDropDown extends React.Component {
   }
 
   handleChange  = (event, {value}) => {
-    console.log(value);
     this.setState({
       team_id: value
     })

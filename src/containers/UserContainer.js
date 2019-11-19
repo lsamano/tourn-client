@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect, Switch, Route} from 'react-router-dom';
 
 import UserShow from '../components/user/UserShow';
+import NoRouteMatch from '../components/NoRouteMatch';
 import {getUserFetch} from '../redux/actions';
 
 class UserContainer extends Component {
@@ -18,7 +19,7 @@ class UserContainer extends Component {
     return (
       <Switch>
         <Route path="/users/:id" render={routerProps => {
-            return (this.props.userShown ? <UserShow userShown={this.props.userShown} /> : null)
+            return (this.props.userShown && !this.props.userShown.status ? <UserShow userShown={this.props.userShown} /> : <NoRouteMatch/> )
           }
         }/>
         <Route path="/users" render={() =>(

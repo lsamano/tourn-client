@@ -13,20 +13,20 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case 'ADD_ERROR_MESSAGE':
-          return {...state, errorMessage: action.payload};
+          return { ...state, errorMessage: action.payload };
       // Auth and Sign Up
         case 'LOGIN_USER':
-          return { ...state, user: action.payload};
+          return { ...state, user: action.payload, errorMessage: "" };
         case 'LOGOUT_USER':
-          return { ...state, user: { teams: []}};
+          return { ...state, user: {} };
 
       // User Show
         case 'LOAD_USER_SHOWN':
-          return { ...state, userShown: action.payload};
+          return { ...state, userShown: action.payload };
 
       // Tournaments
         case "LOAD_TOURNAMENTS":
-          return { ...state, tournaments: action.payload};
+          return { ...state, tournaments: action.payload };
         case 'RELOAD_TOURNAMENT':
           const updatedTournaments = state.tournaments.map(tourn => {
             if (tourn.id === action.payload.id) {

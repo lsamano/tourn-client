@@ -7,7 +7,6 @@ import Loading from '../Loading'
 
 class TournBracket extends React.Component {
   render() {
-    console.log("Current Props of TournBracket:", this.props);
     const {tournament, user} = this.props
     if (tournament.bracket) {
       const bracket = [tournament.bracket.node]

@@ -75,7 +75,7 @@ class UserShow extends React.Component {
               : null }
             <p className="description">{userShown.bio}</p>
             <h3>Teams:</h3>
-            {this.formatTeams(userShown.teams)}
+            {userShown.teams ? this.formatTeams(userShown.teams) : <MyPlaceholder /> }
             <h3>Hosted Tournaments:</h3>
             <div className="ui middle aligned divided list">
               {userShown.hosted_tourns ? this.formatTournaments(userShown.hosted_tourns) : <MyPlaceholder /> }

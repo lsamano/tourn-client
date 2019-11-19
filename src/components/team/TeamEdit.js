@@ -18,9 +18,7 @@ class TeamEdit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Now starting the Patch fetch for a team...");
     const teamInfo = {...this.state, captain_id: this.props.user.id, id: this.props.teamShown.id}
-    console.log("This will be sent to teamPatchFetch:", teamInfo);
     this.props.clickHandler();
     this.props.teamPatchFetch(teamInfo);
   }

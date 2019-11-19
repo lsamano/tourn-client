@@ -28,7 +28,7 @@ class TournShow extends React.Component {
 
 
   formatTeams = (teams) => {
-    return teams.map(team =><div><Link to={`/teams/${team.id}`}>{team.name}</Link></div>)
+    return teams.map(team =><div key={team.id}><Link to={`/teams/${team.id}`}>{team.name}</Link></div>)
   }
 
   makeBracket = () => {
