@@ -1,13 +1,13 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 // import TeamSignup from './TeamSignup';
 import MemberCard from './MemberCard';
 import TournCard from '../tournament/TournCard';
-import {getTeamFetch, membershipPostFetch, membershipDeleteFetch} from '../../redux/actions';
+import { getTeamFetch, membershipPostFetch, membershipDeleteFetch, sendTeamRequestFetch } from '../../redux/actions';
 import TeamEdit from './TeamEdit';
-import {Button, Icon, Card} from 'semantic-ui-react';
+import { Button, Icon, Card } from 'semantic-ui-react';
 
 // <Route path="/teams/:id/signup" component={TeamSignup} />
 class TeamShow extends React.Component {
@@ -31,6 +31,11 @@ class TeamShow extends React.Component {
 
   quitClickHandler = () => {
     this.props.membershipDeleteFetch(this.props.teamShown.id)
+  }
+
+  requestClickHandler = () => {
+    // send fetch request to make a team request
+    this.props.sendTeamRequestFetch(this.props.teamShown.id)
   }
 
   formatMembers = () => {
@@ -60,7 +65,10 @@ class TeamShow extends React.Component {
                   <p className="description">Founded {moment(teamShown.created_at).format('ll')} by <Link to={`/users/${teamShown.captain.id}`}>{teamShown.captain.username}</Link></p>
                   {teamShown.members.filter(member => member.id === user.id).length > 0
                     ? <button className="ui button red" onClick={this.quitClickHandler}>Leave This Team</button>
-                    : <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>
+                    : <Fragment>
+                    <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>
+                    <button className="ui button green" onClick={this.requestClickHandler}>Request to Join</button>
+                    </Fragment>
                   }
                   {teamShown.captain.id === user.id
                     ? <Button icon onClick={this.clickHandler}>
@@ -89,9 +97,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTeamFetch: (id) => dispatch(getTeamFetch(id)),
-  membershipPostFetch: (membershipObj) => dispatch(membershipPostFetch(membershipObj)),
-  membershipDeleteFetch: (team_id) => dispatch(membershipDeleteFetch(team_id))
+  getTeamFetch: id => dispatch(getTeamFetch(id)),
+  membershipPostFetch: membershipObj => dispatch(membershipPostFetch(membershipObj)),
+  membershipDeleteFetch: team_id => dispatch(membershipDeleteFetch(team_id)),
+  sendTeamRequestFetch: team_id => dispatch(sendTeamRequestFetch(team_id))
 
 })
 
