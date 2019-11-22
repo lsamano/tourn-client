@@ -5,7 +5,7 @@ import moment from 'moment';
 // import TeamSignup from './TeamSignup';
 import MemberCard from './MemberCard';
 import TournCard from '../tournament/TournCard';
-import { getTeamFetch, membershipPostFetch, membershipDeleteFetch, sendTeamRequestFetch } from '../../redux/actions';
+import { getTeamFetch, membershipPostFetch, membershipDeleteFetch, sendJoinRequestFetch } from '../../redux/actions';
 import TeamEdit from './TeamEdit';
 import { Button, Icon, Card } from 'semantic-ui-react';
 
@@ -35,7 +35,7 @@ class TeamShow extends React.Component {
 
   requestClickHandler = () => {
     // send fetch request to make a team request
-    this.props.sendTeamRequestFetch(this.props.teamShown.id)
+    this.props.sendJoinRequestFetch(this.props.teamShown.id)
   }
 
   formatMembers = () => {
@@ -100,7 +100,7 @@ const mapDispatchToProps = dispatch => ({
   getTeamFetch: id => dispatch(getTeamFetch(id)),
   membershipPostFetch: membershipObj => dispatch(membershipPostFetch(membershipObj)),
   membershipDeleteFetch: team_id => dispatch(membershipDeleteFetch(team_id)),
-  sendTeamRequestFetch: team_id => dispatch(sendTeamRequestFetch(team_id))
+  sendJoinRequestFetch: team_id => dispatch(sendJoinRequestFetch(team_id))
 
 })
 

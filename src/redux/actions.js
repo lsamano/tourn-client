@@ -402,18 +402,18 @@ export const makeBracket = tournament => {
   }
 }
 
-export const sendTeamRequestFetch = team_id => dispatch => {
-  return fetch("http://localhost:3000/api/v1/team_requests", {
+export const sendJoinRequestFetch = team_id => dispatch => {
+  return fetch("http://localhost:3000/api/v1/join_requests", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
       "Authorization": `Bearer ${localStorage.token}`
     },
-    body: JSON.stringify({ team_request: { team_id } })
+    body: JSON.stringify({ join_request: { team_id } })
   })
   .then(res => res.json())
-  .then(newTeamRequest => {
+  .then(newJoinRequest => {
     // dispatch({type: ""})
   })
 }
