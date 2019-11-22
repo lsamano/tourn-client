@@ -413,7 +413,8 @@ export const sendJoinRequestFetch = team_id => dispatch => {
     body: JSON.stringify({ join_request: { team_id } })
   })
   .then(res => res.json())
-  .then(newJoinRequest => {
-    // dispatch({type: ""})
+  .then(data => {
+    dispatch(loadTeamShown(data.team))
+    dispatch(loginUser(data.user))
   })
 }

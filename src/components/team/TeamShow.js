@@ -2,14 +2,12 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-// import TeamSignup from './TeamSignup';
 import MemberCard from './MemberCard';
 import TournCard from '../tournament/TournCard';
 import { getTeamFetch, membershipPostFetch, membershipDeleteFetch, sendJoinRequestFetch } from '../../redux/actions';
 import TeamEdit from './TeamEdit';
 import { Button, Icon, Card } from 'semantic-ui-react';
 
-// <Route path="/teams/:id/signup" component={TeamSignup} />
 class TeamShow extends React.Component {
   state = {
     formVisible: false
@@ -67,8 +65,11 @@ class TeamShow extends React.Component {
                     ? <button className="ui button red" onClick={this.quitClickHandler}>Leave This Team</button>
                     : <Fragment>
                     <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>
-                    <button className="ui button green" onClick={this.requestClickHandler}>Request to Join</button>
                     </Fragment>
+                  }
+                  { user.join_requests && user.join_requests.some(req => req.team_id === teamShown.id)
+                    ? <button className="ui button gray" disabled> You Have Requested to Join This Team</button>
+                    : <button className="ui button green" onClick={this.requestClickHandler}>Request to Join</button>
                   }
                   {teamShown.captain.id === user.id
                     ? <Button icon onClick={this.clickHandler}>
