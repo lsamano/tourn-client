@@ -7,6 +7,7 @@ const initialState = {
   searchTerm: "",
   teamShown: {},
   tournShown: {},
+  userShown: {},
   errorMessage: ""
 }
 
