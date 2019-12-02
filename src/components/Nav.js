@@ -16,6 +16,8 @@ class NavTwo extends Component {
           return this.props.push('/');
         case 'all_tournaments':
           return this.props.push('/tournaments')
+        case 'all_teams':
+          return this.props.push('/teams')
         case 'host_tournament':
           return this.props.push('/tournaments/new')
         case 'new_team':
@@ -88,6 +90,11 @@ class NavTwo extends Component {
               <Menu.Item
                 name='all_tournaments'
                 active={activeItem === 'all_tournaments'}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
+                name='all_teams'
+                active={activeItem === 'all_teams'}
                 onClick={this.handleItemClick}
               />
             </Menu.Menu>

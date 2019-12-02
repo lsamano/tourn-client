@@ -17,7 +17,9 @@ class TournIndex extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="ui header">All Tournaments</h2>
+        <h2 className="ui header">
+          All Tournaments
+        </h2>
         <Search changeHandler={this.changeHandler} searchTerm={this.props.searchTerm}/>
 
         { this.props.tournaments.length > 0

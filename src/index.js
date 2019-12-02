@@ -19,19 +19,11 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 export const history = createBrowserHistory()
 
-// const store = createStore(
-//     createRootReducer(history),
-//     compose(
-//       applyMiddleware(
-//         routerMiddleware(history),
-//         thunk
-//       )
-//     ),
-//   )
+const composingTool = composeWithDevTools || compose
 
 const store = createStore(
     createRootReducer(history),
-    composeWithDevTools(
+    composingTool(
       applyMiddleware(
         routerMiddleware(history),
         thunk

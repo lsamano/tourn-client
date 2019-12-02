@@ -1,9 +1,9 @@
 import { push } from 'connected-react-router'
 
 // Deployed backend URI
-const backendUri = "https://tourn-backend.herokuapp.com/api/v1"
+// const backendUri = "https://tourn-backend.herokuapp.com/api/v1"
 
-// const backendUri = "http://localhost:3000/api/v1"
+const backendUri = "http://localhost:3000/api/v1"
 
 const addErrorMessage = message => ({
   type: "ADD_ERROR_MESSAGE",
@@ -420,4 +420,20 @@ export const sendJoinRequestFetch = team_id => dispatch => {
     dispatch(loadTeamShown(data.team))
     dispatch(loginUser(data.user))
   })
+}
+
+const loadTeams = teams => ({
+  type: "LOAD_TEAMS",
+  payload: teams
+})
+
+export const getTeams = () => dispatch => {
+  return fetch(`${backendUri}/teams`, {
+    headers: {
+      "Accept": "application/json",
+      "Authorization": `Bearer ${localStorage.token}`
+    }
+  })
+  .then(res => res.json())
+  .then(teams => dispatch(loadTeams(teams)))
 }
