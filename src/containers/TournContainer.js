@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TournShow from '../components/tournament/TournShow';
 import TournIndex from '../components/tournament/TournIndex';
 import NewTournamentForm from '../components/tournament/NewTournamentForm';
-import {Redirect, Switch, Route} from 'react-router-dom';
-import {getTournaments} from '../redux/actions';
+import { Redirect, Switch, Route } from 'react-router-dom';
+import { getTournaments } from '../redux/actions';
 
 class TournContainer extends Component {
   componentDidMount = () => {
-    this.props.getTournaments();
+    this.props.getTournaments()
   }
 
   render() {

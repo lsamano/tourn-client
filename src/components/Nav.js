@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Menu, Icon, Image } from 'semantic-ui-react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import {signOutUser} from '../redux/actions';
+import { signOutUser } from '../redux/actions';
 
 class NavTwo extends Component {
-  handleItemClick =  (e, { name }) => {
+  handleItemClick =  ( e, { name } ) => {
     if (name === "logout") {
       localStorage.removeItem("token")
       this.props.signOutUser()
@@ -34,7 +34,11 @@ class NavTwo extends Component {
     return (
       <Menu vertical inverted fixed="left">
         <Menu.Item>
-          <Menu.Header><h1><Icon name="winner" size="big"/> Tourn</h1></Menu.Header>
+          <Menu.Header>
+            <h1>
+              <Icon name="winner" size="big"/> Tourn
+            </h1>
+          </Menu.Header>
         </Menu.Item>
         { this.props.user.id
           ? <React.Fragment>

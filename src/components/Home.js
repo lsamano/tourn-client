@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import MyPlaceholder from './MyPlaceholder';
 import TeamCard from './team/TeamCard';
@@ -23,7 +23,7 @@ class Home extends Component {
     } else {
       return (
         <Card.Group>
-          {teams.map(team => <TeamCard key={team.id} team={team}/>)}
+          { teams.map(team => <TeamCard key={team.id} team={team}/>) }
         </Card.Group>
       )
     }
@@ -36,12 +36,15 @@ class Home extends Component {
       return (
         <Feed >
           { requests.map(req => (
-            <Feed.Event key={req.id} image={req.logo}>
-              <Feed.Content><Link to={`/teams/${req.team_id}`}>{req.team_name}</Link></Feed.Content>
-            </Feed.Event>
-          )
-      )
-    }
+              <Feed.Event key={req.id} image={req.logo}>
+                <Feed.Content>
+                  <Link to={`/teams/${req.team_id}`}>
+                    { req.team_name }
+                  </Link>
+                </Feed.Content>
+              </Feed.Event>
+            ))
+          }
         </Feed>
       )
     }
@@ -51,7 +54,7 @@ class Home extends Component {
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }
-    const {user, hosted_tourns, teams} = this.props
+    const { user, hosted_tourns, teams } = this.props
     return (
       <div>
         <div className="ui container raised segment">
@@ -61,20 +64,33 @@ class Home extends Component {
         <div className="ui container raised segment">
           <h2 className="ui header">Your Pending Join Requests</h2>
           <div className="ui middle aligned divided list team-overflow">
-            {user.join_requests ? this.formatRequests(user.join_requests) : <MyPlaceholder /> }
+            { user.join_requests
+              ? this.formatRequests(user.join_requests)
+              : <MyPlaceholder />
+            }
           </div>
         </div>
 
         <div className="ui container raised segment">
-          <h2 className="ui header">Your Teams</h2>
+          <h2 className="ui header">
+            Your Teams
+          </h2>
           <div className="ui middle aligned divided list team-overflow">
-            {teams ? this.formatTeams(teams) : <MyPlaceholder /> }
+            { teams
+              ? this.formatTeams(teams)
+              : <MyPlaceholder />
+            }
           </div>
         </div>
         <div className="ui container raised segment">
-          <h2 className="ui header">Your Hosted Tournaments</h2>
+          <h2 className="ui header">
+            Your Hosted Tournaments
+          </h2>
           <div className="ui middle aligned divided list">
-            {hosted_tourns ? this.formatTournaments(hosted_tourns) : <MyPlaceholder /> }
+            { hosted_tourns
+              ? this.formatTournaments(hosted_tourns)
+              : <MyPlaceholder />
+            }
           </div>
         </div>
       </div>

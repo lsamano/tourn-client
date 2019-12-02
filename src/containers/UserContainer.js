@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Redirect, Switch, Route} from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect, Switch, Route } from 'react-router-dom';
 
 import UserShow from '../components/user/UserShow';
 import NoRouteMatch from '../components/NoRouteMatch';
-import {getUserFetch} from '../redux/actions';
+import { getUserFetch } from '../redux/actions';
 
 class UserContainer extends Component {
   componentDidMount = () => {
+    // Need to refactor to acquire the id a different way
     const id = this.props.location.pathname.substring(7)
     this.props.getUserFetch(id);
   }

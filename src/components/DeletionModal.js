@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { Button, Modal } from 'semantic-ui-react'
 import { tournamentDeleteFetch } from '../redux/actions'
 
@@ -20,7 +20,12 @@ class DeletionModal extends Component {
 
     return (
       <div>
-        <Button color="red" onClick={this.closeConfigShow(true, false)}>Delete This Tournament</Button>
+        <Button
+          color="red"
+          onClick={this.closeConfigShow(true, false)}
+        >
+          Delete This Tournament
+        </Button>
 
         <Modal
           open={open}
@@ -28,9 +33,13 @@ class DeletionModal extends Component {
           closeOnDimmerClick={closeOnDimmerClick}
           onClose={this.close}
         >
-          <Modal.Header>Delete This Tournament</Modal.Header>
+          <Modal.Header>
+            Delete This Tournament
+          </Modal.Header>
           <Modal.Content>
-            <p>Are you sure you want to delete this tournament?</p>
+            <p>
+              Are you sure you want to delete this tournament?
+            </p>
           </Modal.Content>
           <Modal.Actions>
             <Button onClick={this.close} negative>
