@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {userPatchFetch} from '../../redux/actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { userPatchFetch } from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 
 class UserEdit extends Component {
@@ -25,7 +25,7 @@ class UserEdit extends Component {
 
   render() {
     return (
-            <Form onSubmit={ event => this.handleSubmit(event) }>
+            <Form onSubmit={ this.handleSubmit }>
               <h1>Update Profile</h1>
               <Form.Field>
                 <label>Username</label>
@@ -33,7 +33,7 @@ class UserEdit extends Component {
                   placeholder='Username'
                   name="username"
                   value={this.state.username}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Form.Field>
@@ -43,7 +43,7 @@ class UserEdit extends Component {
                   name="password"
                   placeholder='Password'
                   value={this.state.password}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Form.Field>
@@ -52,7 +52,7 @@ class UserEdit extends Component {
                   name="avatar"
                   placeholder='Avatar (URL)'
                   value={this.state.avatar}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Form.Field>
@@ -61,7 +61,7 @@ class UserEdit extends Component {
                   name="bio"
                   placeholder='Bio'
                   value={this.state.bio}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Button type='submit'>Submit</Button>
