@@ -1,6 +1,9 @@
 import { push } from 'connected-react-router'
 
-// https://tourn-backend.herokuapp.com
+// Deployed backend URI
+const backendUri = "https://tourn-backend.herokuapp.com/api/v1"
+
+// const backendUri = "http://localhost:3000/api/v1"
 
 const addErrorMessage = message => ({
   type: "ADD_ERROR_MESSAGE",
@@ -17,7 +20,7 @@ const loginUser = userLogin => {
 
 export const loginFetch = (userObj) => {
   return (dispatch) => {
-    return fetch("http://localhost:3000/api/v1/login", {
+    return fetch(`${backendUri}/login`, {
     method: "POST",
     body: JSON.stringify({user: userObj}),
     headers: {
@@ -39,7 +42,7 @@ export const loginFetch = (userObj) => {
 
 export const signupFetch = userInfo => {
   return (dispatch) => {
-    return fetch("http://localhost:3000/api/v1/users", {
+    return fetch(`${backendUri}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +62,7 @@ export const getProfileFetch = () => {
   return (dispatch) => {
     let token = localStorage.token;
     if (token) {
-      return fetch("http://localhost:3000/api/v1/profile", {
+      return fetch(`${backendUri}/profile`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +98,7 @@ const logOutUser = () => {
 // User Show
 export const getUserFetch = (id) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users/${id}`, {
+    return fetch(`${backendUri}/users/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +122,7 @@ const loadUserShown = (userShown) => {
 
 export const userPatchFetch = (user) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+    return fetch(`${backendUri}/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -143,7 +146,7 @@ const loadTournaments = (tournaments) => ({
 
 export const tournamentPostFetch = (tournament) => {
   return (dispatch) => {
-    return fetch("http://localhost:3000/api/v1/tournaments", {
+    return fetch(`${backendUri}/tournaments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -163,7 +166,7 @@ export const tournamentPostFetch = (tournament) => {
 
 export const getTournaments = () => {
   return (dispatch) => {
-    return fetch("http://localhost:3000/api/v1/tournaments")
+    return fetch(`${backendUri}/tournaments`)
     .then(res => res.json())
     .then(data => {
       dispatch(loadTournaments(data.tournaments))
@@ -175,7 +178,7 @@ export const getTournaments = () => {
 
 export const tournamentDeleteFetch = id => {
   return dispatch => {
-    return fetch(`http://localhost:3000/api/v1/tournaments/${id}`, {
+    return fetch(`${backendUri}/tournaments/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -213,7 +216,7 @@ const affectStore = searchTerm => ({
 
 export const getTournFetch = (id) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/tournaments/${id}`, {
+    return fetch(`${backendUri}/tournaments/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -236,7 +239,7 @@ const loadTournShown = tourn => ({
 // Team
 export const getTeamFetch = (id) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/teams/${id}`, {
+    return fetch(`${backendUri}/teams/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -253,7 +256,7 @@ export const getTeamFetch = (id) => {
 
 export const tournamentPatchFetch = (tournament) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/tournaments/${tournament.id}`, {
+    return fetch(`${backendUri}/tournaments/${tournament.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -285,7 +288,7 @@ const loadTeamShown = (team) => {
 
 export const teamPostFetch = (team) => {
   return (dispatch) => {
-    return fetch("http://localhost:3000/api/v1/teams", {
+    return fetch(`${backendUri}/teams`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -305,7 +308,7 @@ export const teamPostFetch = (team) => {
 
 export const teamPatchFetch = (team) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3000/api/v1/teams/${team.id}`, {
+    return fetch(`${backendUri}/teams/${team.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -325,7 +328,7 @@ export const teamPatchFetch = (team) => {
 // Entry and Membership
 export const entryPostFetch = entry => {
   return dispatch => {
-    return fetch("http://localhost:3000/api/v1/entries", {
+    return fetch(`${backendUri}/entries`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -344,7 +347,7 @@ export const entryPostFetch = entry => {
 
 export const membershipPostFetch = membership => {
   return dispatch => {
-    return fetch("http://localhost:3000/api/v1/memberships", {
+    return fetch(`${backendUri}/memberships`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -364,7 +367,7 @@ export const membershipPostFetch = membership => {
 // Uses team_id to find membership to delete
 export const membershipDeleteFetch = team_id => {
   return dispatch => {
-    return fetch(`http://localhost:3000/api/v1/memberships/${team_id}`, {
+    return fetch(`${backendUri}/memberships/${team_id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -382,7 +385,7 @@ export const membershipDeleteFetch = team_id => {
 
 export const makeBracket = tournament => {
   return dispatch => {
-    return fetch("http://localhost:3000/api/v1/brackets", {
+    return fetch(`${backendUri}/brackets`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -403,7 +406,7 @@ export const makeBracket = tournament => {
 }
 
 export const sendJoinRequestFetch = team_id => dispatch => {
-  return fetch("http://localhost:3000/api/v1/join_requests", {
+  return fetch(`${backendUri}/join_requests`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

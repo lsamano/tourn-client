@@ -25,7 +25,7 @@ class UserContainer extends Component {
         }/>
         <Route path="/users" render={() =>(
           <div>
-          Seeing all users might be strange, no?
+            Seeing all users might be strange, no?
           </div>
         )}/>
       </Switch>
