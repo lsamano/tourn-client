@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import MemberCard from './MemberCard';
 import TournCard from '../tournament/TournCard';
-import { getTeamFetch, membershipPostFetch, membershipDeleteFetch, sendJoinRequestFetch } from '../../redux/actions';
+import {
+  getTeamFetch,
+  membershipPostFetch,
+  membershipDeleteFetch,
+  sendJoinRequestFetch
+} from '../../redux/actions';
 import TeamEdit from './TeamEdit';
 import { Button, Icon, Card } from 'semantic-ui-react';
 
@@ -49,7 +54,7 @@ class TeamShow extends React.Component {
     }
 
   render() {
-    const {teamShown, user} = this.props
+    const { teamShown, user } = this.props
     if (teamShown.id) {
       return (
         <div>

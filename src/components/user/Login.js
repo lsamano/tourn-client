@@ -27,6 +27,7 @@ class Login extends Component {
     if (localStorage.token) {
       return <Redirect to="/" />
     }
+
     return (
       <Grid columns={4}>
         <Grid.Row>

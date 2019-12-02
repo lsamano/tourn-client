@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {teamPostFetch} from '../../redux/actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { teamPostFetch } from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 
 class NewTeamForm extends Component {
@@ -18,15 +18,14 @@ class NewTeamForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Now starting the Post fetch for a team...");
     const teamInfo = {...this.state, captain_id: this.props.user.id}
-    console.log("This will be sent to teamPostFetch:", teamInfo);
     if (this.state.logo === "") {
-      this.props.teamPostFetch({...teamInfo, logo: "https://robohash.org/default.png?size=300x300&set=set1"});
-
+      this.props.teamPostFetch({
+        ...teamInfo,
+        logo: "https://robohash.org/default.png?size=300x300&set=set1"
+      })
     } else {
-      this.props.teamPostFetch(teamInfo);
-
+      this.props.teamPostFetch(teamInfo)
     }
   }
 
