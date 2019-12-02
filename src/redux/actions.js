@@ -435,5 +435,5 @@ export const getTeams = () => dispatch => {
     }
   })
   .then(res => res.json())
-  .then(teams => dispatch(loadTeams(teams)))
+  .then(data => dispatch(loadTeams(data.teams)))
 }
