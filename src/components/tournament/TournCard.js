@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Image, List } from 'semantic-ui-react';
 
-const TournCard = ({tournament}) => {
+const TournCard = ({ tournament }) => {
   return (
     <List.Item>
       <Image avatar src={tournament.image} size="small"/>
@@ -11,7 +11,9 @@ const TournCard = ({tournament}) => {
         <List.Description>
           <p>Format: Single Elimination</p>
           {tournament.description}
-          <p><Link to={`/tournaments/${tournament.id}`}>See Tournament Info</Link></p>
+          <p>
+            <Link to={`/tournaments/${tournament.id}`}>See Tournament Info</Link>
+          </p>
         </List.Description>
       </List.Content>
     </List.Item>
