@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Search from '../Search'
+import TeamIndexCard from './TeamIndexCard';
+import { Card } from 'semantic-ui-react';
 
 
 const TeamIndex = (props) => {
@@ -11,14 +13,24 @@ const TeamIndex = (props) => {
   const changeHandler = searchTerm => {
     setSearchTerm(searchTerm)
   }
+
+  const formatTeamCards = teams => (
+    teams.map(team => <TeamIndexCard key={team.id} team={team} />)
+  )
+
   return (
     <div>
       <h1>Search for a Team</h1>
       <Search changeHandler={changeHandler} searchTerm={searchTerm}/>
       <h1>Newest Teams</h1>
+        <Card.Group>
+          { formatTeamCards(teams.slice(-4)) }
+        </Card.Group>
       <h1>Strongest Teams</h1>
       <h1>All Teams</h1>
-
+        <Card.Group>
+          { formatTeamCards(teams) }
+        </Card.Group>
     </div>
   )
 }
