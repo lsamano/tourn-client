@@ -20,7 +20,7 @@ class NavTwo extends Component {
           return this.props.push('/teams')
         case 'host_tournament':
           return this.props.push('/tournaments/new')
-        case 'new_team':
+        case 'register_new_team':
           return this.props.push('/teams/new')
         case 'my_profile':
           return this.props.push(`/users/${this.props.user.id}`)
@@ -66,23 +66,6 @@ class NavTwo extends Component {
           </Menu.Menu>
 
           <Menu.Item>
-            <Menu.Header>Create</Menu.Header>
-          </Menu.Item>
-
-            <Menu.Menu>
-              <Menu.Item
-                name='host_tournament'
-                active={activeItem === 'host_tournament'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='new_team'
-                active={activeItem === 'new_team'}
-                onClick={this.handleItemClick}
-              />
-            </Menu.Menu>
-
-          <Menu.Item>
             <Menu.Header>Explore</Menu.Header>
           </Menu.Item>
 
@@ -99,6 +82,22 @@ class NavTwo extends Component {
               />
             </Menu.Menu>
 
+            <Menu.Item>
+              <Menu.Header>Create</Menu.Header>
+            </Menu.Item>
+
+              <Menu.Menu>
+                <Menu.Item
+                  name='host_tournament'
+                  active={activeItem === 'host_tournament'}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name='register_new_team'
+                  active={activeItem === 'register_new_team'}
+                  onClick={this.handleItemClick}
+                />
+              </Menu.Menu>
 
           <Menu.Item >
             <Menu.Header>Support</Menu.Header>

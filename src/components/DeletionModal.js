@@ -10,8 +10,10 @@ class DeletionModal extends Component {
     this.setState({ closeOnEscape, closeOnDimmerClick, open: true })
   }
 
-  close = () => {
-    this.setState({ open: false })
+  close = () => this.setState({ open: false })
+
+  closeAndDelete = () => {
+    this.close()
     this.props.tournamentDeleteFetch(this.props.id)
   }
 
@@ -22,7 +24,7 @@ class DeletionModal extends Component {
       <div>
         <Button
           color="red"
-          onClick={this.closeConfigShow(true, false)}
+          onClick={this.closeConfigShow(true, true)}
         >
           Delete This Tournament
         </Button>
@@ -46,7 +48,7 @@ class DeletionModal extends Component {
               No
             </Button>
             <Button
-              onClick={this.close}
+              onClick={this.closeAndDelete}
               positive
               labelPosition='right'
               icon='checkmark'

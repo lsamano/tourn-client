@@ -20,7 +20,7 @@ const TeamIndex = (props) => {
 
   return (
     <div>
-      <h1>Search for a Team</h1>
+      <h2 className="ui header">Search for a Team</h2>
       <Search changeHandler={changeHandler} searchTerm={searchTerm}/>
       <h1>Newest Teams</h1>
         <Card.Group>
