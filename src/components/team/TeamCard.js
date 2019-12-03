@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { Card, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-const TeamCard = ({ team, user }) => {
+const TeamCard = ({ team, userShown }) => {
   return (
       <Card link>
         <Image src={team.logo} />
         <Card.Content>
         <Card.Meta>
           {
-            team.captain_id === user.id
+            team.captain_id === userShown.id
             ? <div>CAPTAIN of</div>
             : <div>MEMBER of</div>
           }
@@ -24,7 +24,7 @@ const TeamCard = ({ team, user }) => {
 }
 
 const mapStateToProps = state => ({
-  user: state.reducer.user
+  userShown: state.reducer.userShown
 })
 
 export default connect(mapStateToProps)(TeamCard);
