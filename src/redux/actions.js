@@ -204,7 +204,7 @@ const addFilteredTournaments = tournaments => ({
 export const updateSearch = (searchTerm, tournaments) => {
   return dispatch => {
     dispatch(affectStore(searchTerm))
-    const filteredTournaments = tournaments.filter(tourn => tourn.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredTournaments = tournaments.filter(tourn => tourn.title.toLowerCase().includes(searchTerm.toLowerCase().trim()))
     dispatch(addFilteredTournaments(filteredTournaments))
   }
 }
@@ -417,6 +417,10 @@ export const sendJoinRequestFetch = team_id => dispatch => {
   })
   .then(res => res.json())
   .then(data => {
+    console.log("hello", data);
+    if (data.error) {
+      return null
+    }
     dispatch(loadTeamShown(data.team))
     dispatch(loginUser(data.user))
   })

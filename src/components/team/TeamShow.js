@@ -53,13 +53,24 @@ class TeamShow extends React.Component {
       return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
     }
 
+  renderJoinButton = () => {
+    const { teamShown, user } = this.props
+    if (user.join_requests && user.join_requests.some(req => req.team_id === teamShown.id)) {
+      return <button className="ui button gray" disabled> You Have Requested to Join This Team</button>
+    } else if (user.teams && user.teams.some(team => team.id === teamShown.id)) {
+      return <button className="ui button gray" disabled> You Are On This Team</button>
+    } else {
+      return <button className="ui button green" onClick={this.requestClickHandler}>Request to Join</button>
+    }
+  }
+
   render() {
     const { teamShown, user } = this.props
     const currentTeamToShow = parseInt(this.props.match.params.id)
 
     // This comparison ensures the page doesn't load the last team shown
     // (while the fetch is in progress) if the user is trying to view a
-    // different team 
+    // different team
     if (teamShown.id === currentTeamToShow) {
       return (
         <div>
@@ -77,10 +88,7 @@ class TeamShow extends React.Component {
                     <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>
                     </Fragment>
                   }
-                  { user.join_requests && user.join_requests.some(req => req.team_id === teamShown.id)
-                    ? <button className="ui button gray" disabled> You Have Requested to Join This Team</button>
-                    : <button className="ui button green" onClick={this.requestClickHandler}>Request to Join</button>
-                  }
+                  { this.renderJoinButton() }
                   {teamShown.captain.id === user.id
                     ? <Button icon onClick={this.clickHandler}>
                         <Icon name='edit'/>

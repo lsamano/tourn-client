@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { teamPostFetch } from '../../redux/actions';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Container } from 'semantic-ui-react';
 
 class NewTeamForm extends Component {
   state = {
@@ -31,37 +31,39 @@ class NewTeamForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={ event => this.handleSubmit(event) }>
-        <h1>New Team Form</h1>
-        <Form.Field>
-          <label>Name</label>
-          <input
-            placeholder='Name'
-            name="name"
-            value={this.state.name}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <Form.Field>
-          <label>Tagline</label>
-          <input
-            name="tagline"
-            placeholder='Tagline'
-            value={this.state.tagline}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <Form.Field>
-          <label>Logo</label>
-          <input
-            name="logo"
-            placeholder='Logo (URL)'
-            value={this.state.logo}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
-      </Form>
+      <Container text>
+        <Form onSubmit={ event => this.handleSubmit(event) }>
+          <h1>Register a New Team</h1>
+          <Form.Field>
+            <label>Name</label>
+            <input
+              placeholder='Name'
+              name="name"
+              value={this.state.name}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <Form.Field>
+            <label>Tagline</label>
+            <input
+              name="tagline"
+              placeholder='Tagline'
+              value={this.state.tagline}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <Form.Field>
+            <label>Logo</label>
+            <input
+              name="logo"
+              placeholder='Logo (URL)'
+              value={this.state.logo}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <Button type='submit'>Submit</Button>
+        </Form>
+      </Container>
     )
   }
 }

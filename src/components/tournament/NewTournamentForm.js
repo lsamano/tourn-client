@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { tournamentPostFetch } from '../../redux/actions';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Container } from 'semantic-ui-react';
 import { DateTimeInput } from 'semantic-ui-calendar-react';
 
 class NewTournamentForm extends Component {
@@ -34,44 +34,46 @@ class NewTournamentForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={ event => this.handleSubmit(event) }>
-        <h1>New Tournament Form</h1>
-        <Form.Field>
-          <label>Title</label>
-          <input
-            placeholder='Title'
-            name="title"
-            value={this.state.title}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <Form.Field>
-          <label>Image</label>
-          <input
-            name="image"
-            placeholder='Image (URL)'
-            value={this.state.image}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <Form.Field>
-          <label>Description</label>
-          <textarea
-            name="description"
-            placeholder='Description'
-            value={this.state.description}
-            onChange={(event) => this.handleChange(event)}
-            />
-        </Form.Field>
-        <DateTimeInput
-          name="start_dt"
-          placeholder="Date & Start Time"
-          value={this.state.start_dt}
-          iconPosition="left"
-          onChange={this.handleDateChange}
-        />
-        <Button type='submit'>Submit</Button>
-      </Form>
+      <Container text>
+        <Form onSubmit={ event => this.handleSubmit(event) }>
+          <h1>New Tournament Form</h1>
+          <Form.Field>
+            <label>Title</label>
+            <input
+              placeholder='Title'
+              name="title"
+              value={this.state.title}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <Form.Field>
+            <label>Image</label>
+            <input
+              name="image"
+              placeholder='Image (URL)'
+              value={this.state.image}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <Form.Field>
+            <label>Description</label>
+            <textarea
+              name="description"
+              placeholder='Description'
+              value={this.state.description}
+              onChange={(event) => this.handleChange(event)}
+              />
+          </Form.Field>
+          <DateTimeInput
+            name="start_dt"
+            placeholder="Date & Start Time"
+            value={this.state.start_dt}
+            iconPosition="left"
+            onChange={this.handleDateChange}
+          />
+          <Button type='submit'>Submit</Button>
+        </Form>
+      </Container>
     )
   }
 }
