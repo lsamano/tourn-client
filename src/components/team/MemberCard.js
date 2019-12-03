@@ -1,15 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Card, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-const MemberCard = ({ member, team }) => {
+const MemberCard = ({ member, team, history }) => {
+  const handleClick = (event, data) => {
+    // data is Card's onClick data; it is not used here
+    history.push(`/users/${member.id}`)
+  }
   return (
-    <Card link>
+    <Card link onClick={handleClick}>
       <Image src={ member.avatar }/>
       <Card.Content>
         <Card.Header>
-          <Link to={`/users/${member.id}`}>{ member.username }</Link>
+          { member.username }
         </Card.Header>
         <Card.Meta>
           {
@@ -30,4 +34,4 @@ const mapStateToProps = state => ({
   user: state.reducer.user
 })
 
-export default connect(mapStateToProps)(MemberCard);
+export default withRouter(connect(mapStateToProps)(MemberCard));
