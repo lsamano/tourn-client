@@ -42,6 +42,13 @@ class TournShow extends React.Component {
 
   render() {
     const { tournament, user } = this.props
+
+    const currentTournToShow = parseInt(this.props.match.params.id)
+
+    // This comparison ensures the page doesn't load the last team shown
+    // (while the fetch is in progress) if the user is trying to view a
+    // different team
+    if (tournament.id === currentTournToShow) {
     return (
       <Switch>
         <Route path="/tournaments/:id/bracket" component={TournBracket} />
@@ -83,6 +90,9 @@ class TournShow extends React.Component {
         } />
       </Switch>
     )
+  } else {
+    return null
+  }
   }
 }
 

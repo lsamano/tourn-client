@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Card, Image } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const TeamIndexCard = ({ team, history }) => {
-  const handleClick = event => {
+  const handleClick = (event, data) => {
+    // data is Card's onClick data; it is not used here
     history.push(`/teams/${team.id}`)
   }
 
@@ -26,8 +26,8 @@ const TeamIndexCard = ({ team, history }) => {
   )
 }
 
-// TeamIndexCard.propTypes = {
-//   : PropTypes.
-// };
+TeamIndexCard.propTypes = {
+  team: PropTypes.object
+};
 
 export default withRouter(TeamIndexCard)

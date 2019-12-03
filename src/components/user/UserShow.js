@@ -46,6 +46,12 @@ class UserShow extends React.Component {
 
   render() {
     const { userShown, user } = this.props
+    const currentUserToShow = parseInt(this.props.match.params.id)
+
+    // This comparison ensures the page doesn't load the last team shown
+    // (while the fetch is in progress) if the user is trying to view a
+    // different team
+    if (userShown.id === currentUserToShow) {
     return (
       <div>
         { this.state.formVisible
@@ -77,6 +83,9 @@ class UserShow extends React.Component {
           </div>
         </div>
       )
+    } else {
+      return null
+    }
   }
 }
 

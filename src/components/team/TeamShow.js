@@ -55,7 +55,12 @@ class TeamShow extends React.Component {
 
   render() {
     const { teamShown, user } = this.props
-    if (teamShown.id) {
+    const currentTeamToShow = parseInt(this.props.match.params.id)
+
+    // This comparison ensures the page doesn't load the last team shown
+    // (while the fetch is in progress) if the user is trying to view a
+    // different team 
+    if (teamShown.id === currentTeamToShow) {
       return (
         <div>
           {this.state.formVisible ? <TeamEdit teamShown={teamShown} clickHandler={this.clickHandler}/> : null}
