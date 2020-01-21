@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import moment from 'moment';
 import MemberCard from './MemberCard';
 import TournCard from '../tournament/TournCard';
+import TeamDashboard from './TeamDashboard';
 import {
   getTeamFetch,
   membershipPostFetch,
@@ -73,8 +74,11 @@ class TeamShow extends React.Component {
     // different team
     if (teamShown.id === currentTeamToShow) {
       return (
-        <div>
-          {this.state.formVisible ? <TeamEdit teamShown={teamShown} clickHandler={this.clickHandler}/> : null}
+        <Switch>
+          <Route path="/teams/:id/dashboard" component={TeamDashboard} />
+          <Route render={() => {
+              return (<div>
+                {this.state.formVisible ? <TeamEdit teamShown={teamShown} clickHandler={this.clickHandler}/> : null}
                 <h1 className="ui top attached inverted header">
                   <img className="ui avatar image" alt="" src={teamShown.logo}/>
                   {teamShown.name}
@@ -86,23 +90,25 @@ class TeamShow extends React.Component {
                     ? <button className="ui button red" onClick={this.quitClickHandler}>Leave This Team</button>
                     : <Fragment>
                     <button className="ui button primary" onClick={this.joinClickHandler}>Join This Team</button>
-                    </Fragment>
-                  }
-                  { this.renderJoinButton() }
-                  {teamShown.captain.id === user.id
-                    ? <Button icon onClick={this.clickHandler}>
-                        <Icon name='edit'/>
-                      </Button>
-                    : null
-                  }
-                  <h3>Members ({teamShown.members.length})</h3>
-                    {this.formatMembers()}
-                  <h3>Entered Tournaments</h3>
-                  <div className="ui middle aligned divided list">
-                    {this.formatTournaments(teamShown.tournaments)}
-                  </div>
-                </div>
+                  </Fragment>
+                }
+                { this.renderJoinButton() }
+                {teamShown.captain.id === user.id
+                  ? <Button icon onClick={this.clickHandler}>
+                  <Icon name='edit'/>
+                </Button>
+                : null
+              }
+              <h3>Members ({teamShown.members.length})</h3>
+              {this.formatMembers()}
+              <h3>Entered Tournaments</h3>
+              <div className="ui middle aligned divided list">
+                {this.formatTournaments(teamShown.tournaments)}
               </div>
+            </div>
+          </div>)
+        }} />
+      </Switch>
       )
     } else {
       return null;
