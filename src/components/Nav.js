@@ -24,10 +24,30 @@ class NavTwo extends Component {
           return this.props.push('/teams/new')
         case 'my_profile':
           return this.props.push(`/users/${this.props.user.id}`)
+        case 'my_team':
+          return this.props.push()
         default:
           return this.props.push(`/${name}`);
       }
     }
+  }
+
+  handleTeamClick = ( e, { name } ) => {
+    this.setState({ activeItem: name })
+    return this.props.push(`/teams/${name}`)
+  }
+
+  formatTeamsNav = () => {
+    const { activeItem } = this.state || {}
+    return this.props.user.teams.map(team =>
+      <Menu.Item
+        name={`${team.id}`}
+        active={activeItem === `${team.id}`}
+        onClick={this.handleTeamClick}
+        key={team.id} >
+        {team.name}
+      </Menu.Item>
+    )
   }
 
   render() {
@@ -63,6 +83,14 @@ class NavTwo extends Component {
                 active={activeItem === 'logout'}
                 onClick={this.handleItemClick}
               />
+          </Menu.Menu>
+
+          <Menu.Item>
+            <Menu.Header>My Teams</Menu.Header>
+          </Menu.Item>
+
+          <Menu.Menu>
+            {this.formatTeamsNav()}
           </Menu.Menu>
 
           <Menu.Item>

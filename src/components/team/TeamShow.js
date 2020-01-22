@@ -111,6 +111,7 @@ class TeamShow extends React.Component {
       </Switch>
       )
     } else {
+      this.props.getTeamFetch(currentTeamToShow)
       return null;
     }
   }
