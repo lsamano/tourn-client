@@ -1,8 +1,8 @@
 # Tourn
 
-Tourn is an online tournament organizer for eSports. It is meant as a clone of websites such as challonge.com and smash.gg. 
+Tourn is an online tournament organizer for eSports. It is meant as a reimagining of websites such as challonge.com and smash.gg. 
 
-See the live demo [here](https://tourn-tournaments.herokuapp.com/).
+See the live demo at [https://tourn-tournaments.herokuapp.com/](https://tourn-tournaments.herokuapp.com/).
 
 ## Table of Contents
 - [Technologies](#technologies)
