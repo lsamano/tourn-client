@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Menu, Icon, Image } from 'semantic-ui-react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import {signOutUser} from '../redux/actions';
+import { signOutUser } from '../redux/actions';
 
 class NavTwo extends Component {
-  handleItemClick =  (e, { name }) => {
+  handleItemClick =  ( e, { name } ) => {
     if (name === "logout") {
       localStorage.removeItem("token")
       this.props.signOutUser()
@@ -16,16 +16,38 @@ class NavTwo extends Component {
           return this.props.push('/');
         case 'all_tournaments':
           return this.props.push('/tournaments')
+        case 'all_teams':
+          return this.props.push('/teams')
         case 'host_tournament':
           return this.props.push('/tournaments/new')
-        case 'new_team':
+        case 'register_new_team':
           return this.props.push('/teams/new')
         case 'my_profile':
           return this.props.push(`/users/${this.props.user.id}`)
+        case 'my_team':
+          return this.props.push()
         default:
           return this.props.push(`/${name}`);
       }
     }
+  }
+
+  handleTeamClick = ( e, { name } ) => {
+    this.setState({ activeItem: name })
+    return this.props.push(`/teams/${name}`)
+  }
+
+  formatTeamsNav = () => {
+    const { activeItem } = this.state || {}
+    return this.props.user.teams.map(team =>
+      <Menu.Item
+        name={`${team.id}`}
+        active={activeItem === `${team.id}`}
+        onClick={this.handleTeamClick}
+        key={team.id} >
+        {team.name}
+      </Menu.Item>
+    )
   }
 
   render() {
@@ -34,7 +56,11 @@ class NavTwo extends Component {
     return (
       <Menu vertical inverted fixed="left">
         <Menu.Item>
-          <Menu.Header><h1><Icon name="winner" size="big"/> Tourn</h1></Menu.Header>
+          <Menu.Header>
+            <h1>
+              <Icon name="winner" size="big"/> Tourn
+            </h1>
+          </Menu.Header>
         </Menu.Item>
         { this.props.user.id
           ? <React.Fragment>
@@ -60,21 +86,12 @@ class NavTwo extends Component {
           </Menu.Menu>
 
           <Menu.Item>
-            <Menu.Header>Create</Menu.Header>
+            <Menu.Header>My Teams</Menu.Header>
           </Menu.Item>
 
-            <Menu.Menu>
-              <Menu.Item
-                name='host_tournament'
-                active={activeItem === 'host_tournament'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='new_team'
-                active={activeItem === 'new_team'}
-                onClick={this.handleItemClick}
-              />
-            </Menu.Menu>
+          <Menu.Menu>
+            {this.formatTeamsNav()}
+          </Menu.Menu>
 
           <Menu.Item>
             <Menu.Header>Explore</Menu.Header>
@@ -86,8 +103,29 @@ class NavTwo extends Component {
                 active={activeItem === 'all_tournaments'}
                 onClick={this.handleItemClick}
               />
+              <Menu.Item
+                name='all_teams'
+                active={activeItem === 'all_teams'}
+                onClick={this.handleItemClick}
+              />
             </Menu.Menu>
 
+            <Menu.Item>
+              <Menu.Header>Create</Menu.Header>
+            </Menu.Item>
+
+              <Menu.Menu>
+                <Menu.Item
+                  name='host_tournament'
+                  active={activeItem === 'host_tournament'}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name='register_new_team'
+                  active={activeItem === 'register_new_team'}
+                  onClick={this.handleItemClick}
+                />
+              </Menu.Menu>
 
           <Menu.Item >
             <Menu.Header>Support</Menu.Header>

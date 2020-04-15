@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
-import {entryPostFetch} from '../../redux/actions';
-import {connect} from 'react-redux';
+import { entryPostFetch } from '../../redux/actions';
+import { connect } from 'react-redux';
 
 class TeamDropDown extends React.Component {
   state = {

@@ -11,6 +11,7 @@ import TournContainer from './containers/TournContainer';
 import UserContainer from './containers/UserContainer';
 import TeamContainer from './containers/TeamContainer';
 import NoRouteMatch from './components/NoRouteMatch';
+import TermsPage from './components/TermsPage';
 import { Grid } from 'semantic-ui-react';
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
                       <Route path="/tournaments" component={TournContainer} />
                       <Route path="/users" component={UserContainer} />
                       <Route path="/teams" component={TeamContainer} />
+                      <Route path="/terms_and_conditions" component={TermsPage} />
                       <Route exact path="/" component={Home} />
                       <Route path="/" component={NoRouteMatch} />
                     </Switch>

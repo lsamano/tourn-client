@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {teamPatchFetch} from '../../redux/actions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { teamPatchFetch } from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
 
 class TeamEdit extends Component {

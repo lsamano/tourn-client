@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import TournCard from '../tournament/TournCard';
 import TeamCard from '../team/TeamCard';
@@ -12,19 +12,11 @@ class UserShow extends React.Component {
     formVisible: false
   }
 
-  componentDidMount = () => {
-    // this.props.getTeamFetch(this.props.match.params.id);
-  }
-
   clickHandler = () => {
     this.setState({
       formVisible: !this.state.formVisible
     })
   }
-
-  // formatTeams = teams => {
-  //   return teams.map(team => <h4><Link to={`/teams/${team.id}`}>{team.name}</Link></h4>)
-  // }
 
   formatTeams = teams => {
     if (teams.length === 0) {
@@ -47,42 +39,53 @@ class UserShow extends React.Component {
       return "No Tournaments."
     } else {
       return (
-
         tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
       )
     }
-
   }
 
-  // formatHostedTournaments = tournaments => {
-  //     return tournaments.map(tourn => <TournCard key={tourn.id} tournament={tourn} />)
-  //   }
-
   render() {
-    const {userShown, user} = this.props
+    const { userShown, user } = this.props
+    const currentUserToShow = parseInt(this.props.match.params.id)
+
+    // This comparison ensures the page doesn't load the last team shown
+    // (while the fetch is in progress) if the user is trying to view a
+    // different team
+    if (userShown.id === currentUserToShow) {
     return (
       <div>
-        {this.state.formVisible ? <UserEdit user={user} clickHandler={this.clickHandler}/> : null}
+        { this.state.formVisible
+          && <UserEdit user={user} clickHandler={this.clickHandler}/>
+        }
         <h1 className="ui top attached inverted header">
-          <Image src={userShown.avatar} avatar />{userShown.username}
-            <div className="sub header">Member Since {moment(userShown.created_at).format("LL")}</div>
+          <Image src={userShown.avatar} avatar />{ userShown.username }
+            <div className="sub header">
+              Member Since {moment(userShown.created_at).format("LL")}
+            </div>
           </h1>
           <div className="ui attached segment orange">
-            {userShown.id === user.id
+            { userShown.id === user.id
               ? <Button icon onClick={this.clickHandler}>
                   <Icon name='edit'/>
                 </Button>
-              : null }
-            <p className="description">{userShown.bio}</p>
+              : null
+            }
+            <p className="description">{ userShown.bio }</p>
             <h3>Teams:</h3>
             {userShown.teams ? this.formatTeams(userShown.teams) : <MyPlaceholder /> }
             <h3>Hosted Tournaments:</h3>
             <div className="ui middle aligned divided list">
-              {userShown.hosted_tourns ? this.formatTournaments(userShown.hosted_tourns) : <MyPlaceholder /> }
+              { userShown.hosted_tourns
+                ? this.formatTournaments(userShown.hosted_tourns)
+                : <MyPlaceholder />
+              }
             </div>
           </div>
         </div>
       )
+    } else {
+      return null
+    }
   }
 }
 

@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <Segment className="height-container">
             <Dimmer active>
-              <Loader>Loading</Loader>
+              <Loader> Loading </Loader>
             </Dimmer>
           </Segment>
   )

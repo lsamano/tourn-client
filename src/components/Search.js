@@ -6,7 +6,7 @@ const Search = props => (
   fluid
   icon={<Icon name='search' inverted circular link />}
   placeholder='Search...'
-  onChange={(event, {value}) => props.changeHandler(value)}
+  onChange={( event, {value} ) => props.changeHandler(value)}
   value={props.searchTerm}
    />
 )

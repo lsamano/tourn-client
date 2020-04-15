@@ -1,13 +1,13 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import moment from 'moment';
 import TournBracket from './TournBracket';
 import TournDashboard from './TournDashboard';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import TournamentEdit from './TournamentEdit';
 import TeamDropDown from './TeamDropDown';
-import {Button, Icon, Image, Header} from 'semantic-ui-react';
-import {makeBracket, getTournFetch} from '../../redux/actions';
+import { Button, Icon, Image, Header } from 'semantic-ui-react';
+import { makeBracket, getTournFetch } from '../../redux/actions';
 import MyPlaceholder from '../MyPlaceholder';
 
 class TournShow extends React.Component {
@@ -32,7 +32,7 @@ class TournShow extends React.Component {
   }
 
   makeBracket = () => {
-    const {tournament} = this.props
+    const { tournament } = this.props
     // check if appropriate # of entrants and then
     if (tournament.teams.length === 8) {
       // run the fetch from props
@@ -41,7 +41,14 @@ class TournShow extends React.Component {
   }
 
   render() {
-    const {tournament, user} = this.props
+    const { tournament, user } = this.props
+
+    const currentTournToShow = parseInt(this.props.match.params.id)
+
+    // This comparison ensures the page doesn't load the last team shown
+    // (while the fetch is in progress) if the user is trying to view a
+    // different team
+    if (tournament.id === currentTournToShow) {
     return (
       <Switch>
         <Route path="/tournaments/:id/bracket" component={TournBracket} />
@@ -83,6 +90,9 @@ class TournShow extends React.Component {
         } />
       </Switch>
     )
+  } else {
+    return null
+  }
   }
 }
 

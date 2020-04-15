@@ -1,13 +1,14 @@
 import React from 'react';
 import Tree from 'react-d3-tree';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Header, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading'
 
 class TournBracket extends React.Component {
   render() {
-    const {tournament, user} = this.props
+    const { tournament, user } = this.props
+
     if (tournament.bracket) {
       const bracket = [tournament.bracket.node]
       return (

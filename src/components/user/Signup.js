@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
-// import {doTheSignupThing} from '../Redux/actions';
-import {signupFetch} from '../../redux/actions';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signupFetch } from '../../redux/actions';
 import { Button, Checkbox, Form, Grid } from 'semantic-ui-react';
 
 class Signup extends Component {
@@ -21,7 +20,6 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Now starting the fetch...");
     if (this.state.avatar === "") {
       this.props.signupFetch({...this.state, avatar: "https://robohash.org/default.png?size=300x300&set=set4"});
     } else {
@@ -30,7 +28,6 @@ class Signup extends Component {
   }
 
   render() {
-    // must fix below to set up routes
     if (this.props.user.id) {
       return <Redirect to="/" />
     }
@@ -40,7 +37,7 @@ class Signup extends Component {
           <Grid.Column>
           </Grid.Column>
           <Grid.Column>
-            <Form onSubmit={ event => this.handleSubmit(event) }>
+            <Form onSubmit={ this.handleSubmit }>
               <h1>Sign Up</h1>
               <Form.Field>
                 <label>Username</label>
@@ -48,7 +45,7 @@ class Signup extends Component {
                   placeholder='Username'
                   name="username"
                   value={this.state.username}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Form.Field>
@@ -58,7 +55,7 @@ class Signup extends Component {
                   name="password"
                   placeholder='Password'
                   value={this.state.password}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Form.Field>
@@ -67,7 +64,7 @@ class Signup extends Component {
                   name="avatar"
                   placeholder='Avatar (URL)'
                   value={this.state.avatar}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Form.Field>
@@ -76,7 +73,7 @@ class Signup extends Component {
                   name="bio"
                   placeholder='Bio'
                   value={this.state.bio}
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={ this.handleChange }
                   />
               </Form.Field>
               <Form.Field>

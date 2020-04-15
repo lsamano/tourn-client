@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Search from '../Search'
 import TournCard from './TournCard';
 import { updateSearch } from '../../redux/actions';
@@ -17,17 +17,18 @@ class TournIndex extends React.Component {
   render() {
     return (
       <div>
-      <h2 className="ui header">All Tournaments</h2>
-      <Search changeHandler={this.changeHandler} searchTerm={this.props.searchTerm}/>
+        <h2 className="ui header">
+          All Tournaments
+        </h2>
+        <Search changeHandler={this.changeHandler} searchTerm={this.props.searchTerm}/>
 
-      {this.props.tournaments.length > 0
-        ? <div className="ui middle aligned divided list">{this.formatTournaments()}</div>
-        : <Loading />
-      }
-
-      </div>
-    )
-  }
+        { this.props.tournaments.length > 0
+          ? <div className="ui middle aligned divided list">{this.formatTournaments()}</div>
+          : <Loading />
+        }
+    </div>
+  )
+}
 
 }
 

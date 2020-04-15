@@ -3,10 +3,12 @@ const initialState = {
     // teams: []
   },
   tournaments: [],
+  teams: [],
   filteredTournaments: [],
   searchTerm: "",
   teamShown: {},
   tournShown: {},
+  userShown: {},
   errorMessage: ""
 }
 
@@ -35,17 +37,19 @@ export default function reducer(state = initialState, action) {
               return tourn
             }
           })
-          return { ...state, tournaments: updatedTournaments, tournShown: action.payload}
+          return { ...state, tournaments: updatedTournaments, tournShown: action.payload }
         case 'LOAD_TOURN_SHOWN':
-          return {...state, tournShown: action.payload}
+          return { ...state, tournShown: action.payload }
         case 'ADD_FILTERED_TOURNAMENTS':
-          return {...state, filteredTournaments: action.payload}
+          return { ...state, filteredTournaments: action.payload }
         case 'AFFECT_STORE':
-          return {...state, searchTerm: action.payload}
+          return { ...state, searchTerm: action.payload }
 
       // Teams
         case 'LOAD_TEAM_SHOWN':
-          return { ...state, teamShown: action.payload};
+          return { ...state, teamShown: action.payload };
+        case 'LOAD_TEAMS':
+          return { ...state, teams: action.payload }
 
         default:
             return state;

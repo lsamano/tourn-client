@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {loginFetch} from '../../redux/actions';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginFetch } from '../../redux/actions';
 import { Button, Form, Grid } from 'semantic-ui-react';
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
 import ErrorMessage from '../ErrorMessage';
 
 class Login extends Component {
@@ -27,6 +27,7 @@ class Login extends Component {
     if (localStorage.token) {
       return <Redirect to="/" />
     }
+
     return (
       <Grid columns={4}>
         <Grid.Row>
