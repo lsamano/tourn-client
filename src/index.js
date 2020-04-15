@@ -15,29 +15,18 @@ import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
 import { createBrowserHistory } from 'history'
 import createRootReducer from './redux/rootReducer'
 
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-
 export const history = createBrowserHistory()
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-    createRootReducer(history),
-    compose(
-      applyMiddleware(
-        routerMiddleware(history),
-        thunk
-      )
-    ),
+  createRootReducer(history),
+  composeEnhancers(
+    applyMiddleware(
+      routerMiddleware(history),
+      thunk
+    )
   )
-
-// const store = createStore(
-//     createRootReducer(history),
-//     composeWithDevTools(
-//       applyMiddleware(
-//         routerMiddleware(history),
-//         thunk
-//       )
-//     ),
-//   )
+);
 
 ReactDOM.render(
     <Provider store={store}>
