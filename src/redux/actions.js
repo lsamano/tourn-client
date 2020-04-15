@@ -1,9 +1,9 @@
 import { push } from 'connected-react-router'
 
 // Deployed backend URI
-// const backendUri = "https://tourn-backend.herokuapp.com/api/v1"
+const backendUri = "https://tourn-backend.herokuapp.com/api/v1"
 
-const backendUri = "http://localhost:3000/api/v1"
+// const backendUri = "http://localhost:3000/api/v1"
 
 const addErrorMessage = message => ({
   type: "ADD_ERROR_MESSAGE",
