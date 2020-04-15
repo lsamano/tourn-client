@@ -19,25 +19,25 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 export const history = createBrowserHistory()
 
-// const store = createStore(
-//     createRootReducer(history),
-//     compose(
-//       applyMiddleware(
-//         routerMiddleware(history),
-//         thunk
-//       )
-//     ),
-//   )
-
 const store = createStore(
     createRootReducer(history),
-    composeWithDevTools(
+    compose(
       applyMiddleware(
         routerMiddleware(history),
         thunk
       )
     ),
   )
+
+// const store = createStore(
+//     createRootReducer(history),
+//     composeWithDevTools(
+//       applyMiddleware(
+//         routerMiddleware(history),
+//         thunk
+//       )
+//     ),
+//   )
 
 ReactDOM.render(
     <Provider store={store}>
