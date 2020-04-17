@@ -6,21 +6,25 @@ import { approveJoinRequest } from '../../redux/actions';
 
 // import PropTypes from 'prop-types';
 
-const TeamDashboard = (props) => {
+const TeamDashboard = ({ joinRequests, approveJoinRequest, teamShown }) => {
 
   const formatJoinReqs = () => {
-    return props.joinRequests.map(req => (
+    if (joinRequests.length === 0) {
+      return "No Pending Join Requests."
+    }
+    return joinRequests.map(req => (
       <div key={req.id}>
       <Link to={`/users/${req.user.id}`}>{req.user.username}</Link> is requesting to join.
-      <Button icon color='green' onClick={() => props.approveJoinRequest(req.id)}><Icon name='check'/>Accept</Button>
+      <Button icon color='green' onClick={() => approveJoinRequest(req.id)}><Icon name='check'/>Accept</Button>
       <Button icon color='red'><Icon name='x'/>Deny</Button>
       </div>
     ))
   }
-  console.log(props);
+  
   return (
     <div>
-      <h1>{props.teamShown.name} Dashboard</h1>
+      <h1>{teamShown.name} Dashboard</h1>
+      <Link to={`/teams/${teamShown.id}`}>View Public Profile</Link>
       <h2>
         Incoming Join Requests
       </h2>
