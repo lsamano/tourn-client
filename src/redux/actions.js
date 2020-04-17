@@ -406,6 +406,24 @@ export const makeBracket = tournament => {
   }
 }
 
+export const approveJoinRequest = join_request_id => dispatch => {
+  return fetch(`${backendUri}/join_requests/${join_request_id}`, {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Authorization": `Bearer ${localStorage.token}`
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.message) {
+      console.log(data);
+    } else {
+      dispatch(loadTeamShown(data.team))
+    }
+  })
+}
+
 export const sendJoinRequestFetch = team_id => dispatch => {
   return fetch(`${backendUri}/join_requests`, {
     method: "POST",

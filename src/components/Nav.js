@@ -34,7 +34,7 @@ class NavTwo extends Component {
 
   handleTeamClick = ( e, { name } ) => {
     this.setState({ activeItem: name })
-    return this.props.push(`/teams/${name}`)
+    return this.props.push(`/teams/${name}/dashboard`)
   }
 
   formatTeamsNav = () => {
