@@ -1,27 +1,20 @@
 import React, { Component } from 'react'
-import { Menu, Icon, Image } from 'semantic-ui-react'
+import { Menu, Icon, Image, Dropdown } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { signOutUser } from '../redux/actions';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 class NavTwo extends Component {
-  handleItemClick =  ( e, { name } ) => {
-    if (name === "logout") {
-      localStorage.removeItem("token")
-      this.props.signOutUser()
-    } else {
-      this.setState({ activeItem: name })
-    }
+  handleLogout =  ( e, { name } ) => {
+    localStorage.removeItem("token")
+    this.props.signOutUser()
   }
 
   formatTeamsNav = () => {
-    const { activeItem } = this.state || {}
     return this.props.user.teams.map(team =>
       <Menu.Item
         name={`${team.id}`}
-        as={Link} to={`/teams/${team.id}/dashboard`}
-        active={activeItem === `${team.id}`}
-        onClick={this.handleItemClick}
+        as={NavLink} to={`/teams/${team.id}/dashboard`}
         key={team.id} >
         {team.name}
       </Menu.Item>
@@ -29,8 +22,7 @@ class NavTwo extends Component {
   }
 
   render() {
-    const { activeItem } = this.state || {}
-
+    const myself = {image: { avatar: true, src: this.props.user.avatar }}
     return (
       <Menu vertical inverted fixed="left">
         <Menu.Item>
@@ -42,27 +34,26 @@ class NavTwo extends Component {
         </Menu.Item>
         { this.props.user.id
           ? <React.Fragment>
-            <Menu.Item>
-              <Menu.Header><h3><Image src={this.props.user.avatar} avatar/> {this.props.user.username}</h3></Menu.Header>
-            </Menu.Item>
+          <Dropdown item text={
+              <>
+                <img src="https://robohash.org/gre7z84z6y4era6.jpg?size=300x300&amp;set=set4&amp;bgset=bg2" class="ui avatar image"/>
+                {this.props.user.username}
+              </>
+            } lazyLoad >
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to={`/users/${this.props.user.id}`} icon="user" text="View Profile"/>
+              <Dropdown.Item icon="settings" text="Settings"/>
+              <Dropdown.Item icon="sign-out" text="Logout" onClick={this.handleLogout}/>
+            </Dropdown.Menu>
+          </Dropdown>
+
             <Menu.Menu>
             <Menu.Item
               name='home'
-              as={Link} to="/"
-              active={activeItem === 'home'}
-              onClick={this.handleItemClick}
-              >Home<Icon name='home' /></Menu.Item>
-            <Menu.Item
-              name='my_profile'
-              as={Link} to={`/users/${this.props.user.id}`}
-              active={activeItem === 'my_profile'}
-              onClick={this.handleItemClick}
-              >My Profile<Icon name='user' /></Menu.Item>
-            <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
-              onClick={this.handleItemClick}
-            />
+              as={NavLink} to="/"
+              exact >
+              Home<Icon name='home' />
+            </Menu.Item>
           </Menu.Menu>
 
           <Menu.Item>
@@ -80,15 +71,11 @@ class NavTwo extends Component {
             <Menu.Menu>
               <Menu.Item
                 name='all_tournaments'
-                as={Link} to="/tournaments"
-                active={activeItem === 'all_tournaments'}
-                onClick={this.handleItemClick}
+                as={NavLink} to="/tournaments" exact
               />
               <Menu.Item
                 name='all_teams'
-                as={Link} to="/teams"
-                active={activeItem === 'all_teams'}
-                onClick={this.handleItemClick}
+                as={NavLink} to="/teams" exact
               />
             </Menu.Menu>
 
@@ -99,15 +86,11 @@ class NavTwo extends Component {
               <Menu.Menu>
                 <Menu.Item
                   name='host_tournament'
-                  as={Link} to="/tournaments/new"
-                  active={activeItem === 'host_tournament'}
-                  onClick={this.handleItemClick}
+                  as={NavLink} to="/tournaments/new"
                 />
                 <Menu.Item
                   name='register_new_team'
-                  as={Link} to="/teams/new"
-                  active={activeItem === 'register_new_team'}
-                  onClick={this.handleItemClick}
+                  as={NavLink} to="/teams/new"
                 />
               </Menu.Menu>
 
@@ -118,32 +101,23 @@ class NavTwo extends Component {
             <Menu.Menu>
               <Menu.Item
                 name='faq'
-                as={Link} to="/faq"
-                active={activeItem === 'faq'}
-                onClick={this.handleItemClick}>
-                FAQs
-              </Menu.Item>
+                as={NavLink} to="/faq"
+                content="FAQs"
+                />
               <Menu.Item
                 name='terms_and_conditions'
-                as={Link} to="/terms_and_conditions"
-                active={activeItem === 'terms_and_conditions'}
-                onClick={this.handleItemClick}>
-                Terms and Conditions
-              </Menu.Item>
+                as={NavLink} to="/terms_and_conditions"
+                />
               <Menu.Item
                 name='email'
-                as={Link} to="/email"
-                active={activeItem === 'email'}
-                onClick={this.handleItemClick}>
-                E-mail Support
-              </Menu.Item>
+                as={NavLink} to="/email"
+                content="Email Support"
+                />
+
               <Menu.Item
                 name='contact_us'
-                as={Link} to="/contact_us"
-                active={activeItem === 'contact_us'}
-                onClick={this.handleItemClick}>
-                Contact Us
-              </Menu.Item>
+                as={NavLink} to="/contact_us"
+                />
             </Menu.Menu>
         </React.Fragment>
           : <React.Fragment>
@@ -151,15 +125,13 @@ class NavTwo extends Component {
             <Menu.Menu>
               <Menu.Item
                 name='login'
-                as={Link} to="/login"
-                active={activeItem === 'login'}
-                onClick={this.handleItemClick}
+                as={NavLink} to="/login"
+
               />
               <Menu.Item
                 name='signup'
-                as={Link} to="/signup"
-                active={activeItem === 'signup'}
-                onClick={this.handleItemClick}
+                as={NavLink} to="/signup"
+
               />
             </Menu.Menu>
           </Menu.Item>
