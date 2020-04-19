@@ -35,7 +35,7 @@ class App extends Component {
                       <Route path="/login" component={Login} />
                       <Route path="/signup" component={Signup} />
                       <Route path="/tournaments" component={TournContainer} />
-                      <Route path="/users" component={UserContainer} />
+                      <Route path="/users/:id" component={UserContainer} />
                       <Route path="/teams" component={TeamContainer} />
                       <Route path="/terms_and_conditions" component={TermsPage} />
                       <Route exact path="/" component={Home} />

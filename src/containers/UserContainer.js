@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
 import UserShow from '../components/user/UserShow';
+import Settings from '../components/user/Settings';
 import NoRouteMatch from '../components/NoRouteMatch';
 import { getUserFetch } from '../redux/actions';
 
 class UserContainer extends Component {
   componentDidMount = () => {
-    // Need to refactor to acquire the id a different way
-    const id = this.props.location.pathname.substring(7)
+    const id = this.props.match.params.id
     this.props.getUserFetch(id);
+  }
+
+  renderUserShow = routerProps => {
+    return (this.props.userShown && !this.props.userShown.status ? <UserShow userShown={this.props.userShown} {...routerProps} /> : <NoRouteMatch/> )
   }
 
   render() {
@@ -19,10 +23,8 @@ class UserContainer extends Component {
     }
     return (
       <Switch>
-        <Route path="/users/:id" render={routerProps => {
-            return (this.props.userShown && !this.props.userShown.status ? <UserShow userShown={this.props.userShown} {...routerProps} /> : <NoRouteMatch/> )
-          }
-        }/>
+        <Route path="/users/:id/edit" component={Settings} />
+        <Route path="/users/:id" render={this.renderUserShow} />
         <Route path="/users" render={() =>(
           <div>
             Seeing all users might be strange, no?

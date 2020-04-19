@@ -36,13 +36,13 @@ class NavTwo extends Component {
           ? <React.Fragment>
           <Dropdown item text={
               <>
-                <img src="https://robohash.org/gre7z84z6y4era6.jpg?size=300x300&amp;set=set4&amp;bgset=bg2" class="ui avatar image"/>
+                <img src="https://robohash.org/gre7z84z6y4era6.jpg?size=300x300&amp;set=set4&amp;bgset=bg2" className="ui avatar image"/>
                 {this.props.user.username}
               </>
             } lazyLoad >
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to={`/users/${this.props.user.id}`} icon="user" text="View Profile"/>
-              <Dropdown.Item icon="settings" text="Settings"/>
+              <Dropdown.Item as={Link} to={`/users/${this.props.user.id}/edit`} icon="settings" text="Settings"/>
               <Dropdown.Item icon="sign-out" text="Logout" onClick={this.handleLogout}/>
             </Dropdown.Menu>
           </Dropdown>
