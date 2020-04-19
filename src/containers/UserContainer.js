@@ -9,18 +9,31 @@ import { getUserFetch } from '../redux/actions';
 
 class UserContainer extends Component {
   componentDidMount = () => {
-    const id = this.props.match.params.id
-    this.props.getUserFetch(id);
+    this.runFetch();
   }
 
   renderUserShow = routerProps => {
     return (this.props.userShown && !this.props.userShown.status ? <UserShow userShown={this.props.userShown} {...routerProps} /> : <NoRouteMatch/> )
   }
 
+  runFetch = () => {
+    const id = this.props.match.params.id
+    this.props.getUserFetch(id);
+  }
+
   render() {
     if (!localStorage.token) {
       return <Redirect to="/login" />
     }
+
+    // This comparison ensures the page doesn't load the wrong user
+    // while the fetch is in progress and starts the fetch if needed
+    const currentUserToShow = parseInt(this.props.match.params.id)
+    if (this.props.userShown.id !== currentUserToShow) {
+      this.runFetch();
+      return "Loading..."
+    }
+
     return (
       <Switch>
         <Route path="/users/:id/edit" component={Settings} />

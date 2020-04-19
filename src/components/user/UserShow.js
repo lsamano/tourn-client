@@ -48,28 +48,25 @@ class UserShow extends React.Component {
     const { userShown, user } = this.props
     const currentUserToShow = parseInt(this.props.match.params.id)
 
-    // This comparison ensures the page doesn't load the last team shown
-    // (while the fetch is in progress) if the user is trying to view a
-    // different team
-    if (userShown.id === currentUserToShow) {
     return (
       <div>
         { this.state.formVisible
           && <UserEdit user={user} clickHandler={this.clickHandler}/>
         }
-        <h1 className="ui top attached inverted header">
-          <Image src={userShown.avatar} avatar />{ userShown.username }
-            <div className="sub header">
-              Member Since {moment(userShown.created_at).format("LL")}
-            </div>
-          </h1>
-          <div className="ui attached segment orange">
+        <div className="ui top attached inverted segment">
+          <h1>
+            <Image src={userShown.avatar} avatar />
+            { userShown.username }
             { userShown.id === user.id
-              ? <Button icon onClick={this.clickHandler}>
-                  <Icon name='edit'/>
-                </Button>
-              : null
-            }
+              ? <Button icon='edit' color='orange' inverted onClick={this.clickHandler} floated="right"/>
+            : null
+          }
+        </h1>
+          <div className="sub header">
+            Member Since {moment(userShown.created_at).format("LL")}
+          </div>
+        </div>
+          <div className="ui attached segment orange">
             <p className="description">{ userShown.bio }</p>
             <h3>Teams:</h3>
             {userShown.teams ? this.formatTeams(userShown.teams) : <MyPlaceholder /> }
@@ -83,9 +80,6 @@ class UserShow extends React.Component {
           </div>
         </div>
       )
-    } else {
-      return null
-    }
   }
 }
 
