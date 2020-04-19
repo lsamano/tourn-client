@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userPatchFetch } from '../../redux/actions';
 import { Button, Form } from 'semantic-ui-react';
+import { push } from 'connected-react-router';
 
 class UserEdit extends Component {
   state = {
@@ -19,8 +20,14 @@ class UserEdit extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.clickHandler();
-    this.props.userPatchFetch({...this.state, id: this.props.user.id});
+    this.props.userPatchFetch({...this.state, id: this.props.user.id})
+    .then(() => {
+      if (this.props.clickHandler) {
+        this.props.clickHandler();
+      } else {
+        this.props.push(`/users/${this.props.user.id}`)
+      }
+    })
   }
 
   render() {
@@ -77,7 +84,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    userPatchFetch: (userObj) => dispatch(userPatchFetch(userObj))
+    userPatchFetch: (userObj) => dispatch(userPatchFetch(userObj)),
+    push: (url) => dispatch(push(url))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserEdit);
