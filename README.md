@@ -1,6 +1,8 @@
+![Preview Image](/images/preview.png)
+
 # Tourn
 
-Tourn is an online tournament organizer for eSports. It is a reimagining of websites such as challonge.com and smash.gg. 
+Tourn is an online tournament organizer for eSports. It is a reimagining of websites such as challonge.com and smash.gg.
 
 See the live demo at [https://tourn-tournaments.herokuapp.com/](https://tourn-tournaments.herokuapp.com/).
 
@@ -42,7 +44,7 @@ The backend server will run on Port 3000.
 - Form a team
 - Join a team
 - Search for tournaments by name
-- Have your team join a tournament 
+- Have your team join a tournament
 - Host a tournament
 - Create a tournament bracket
 
